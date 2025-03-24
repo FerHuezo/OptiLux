@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const terminalLensesSchema = new Schema({
 
-    typeTermianals:{
+    typeTerminals:{
             type: String,
             require: true,
     },
