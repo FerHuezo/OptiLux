@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 import { config } from "./src/config.js";
 
-
 //conectar la base de datos
 //esta dirección se ubica en la carpeta config
 mongoose.connect(config.dataBase.URI);

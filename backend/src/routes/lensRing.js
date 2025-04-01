@@ -6,13 +6,13 @@ const router = express.Router();
 
 router
 .route("/")
-.get(lensRingController.getlensRing)
-.post(lensRingController.createLensRing)
+.get(lensRingController.getLensRing)
+.post(lensRingController.postLensRing)
 
 
 router
 .route("/:id")
-.put(lensRingController.updateLensRing)
+.put(lensRingController.putLensRing)
 .delete(lensRingController.deleteLensRing)
 
 

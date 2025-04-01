@@ -1,59 +1,62 @@
-const lensRingController = {}
+import lensRingModel from "../models/ringsModel.js";
+import requestMessages from "../utils/strings.js";
 
-import lensRingModel from "../models/lensRing.js"
+const lensRingController = {};
 
-
-lensRingController.getlensRing = async (req, res) => {
-
-const lensRing = await lensRingModel.find();
-
-res.json(lensRing);
-     
+lensRingController.getLensRing = async (req, res) => {
+  try {
+    const lensRings = await lensRingModel.find();
+    res.status(requestMessages.SUCCESS.code).json(lensRings);
+  } catch (error) {
+    res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
+  }
 };
 
-lensRingController.createLensRing = async(req, res) => {
+lensRingController.postLensRing = async (req, res) => {
+  try {
+    const { typeLens, price } = req.body;
 
-const {typeLens, price} = req.body;
+    const lensRing = new lensRingModel({ typeLens, price });
+    await lensRing.save();
 
-const lensRing = new lensRingModel({typeLens, price})
-
-await lensRing.save();
-
-res.json({message : "se ha creado correctamente"})
-
+    res.status(requestMessages.CREATED.code).json({ message: requestMessages.CREATED.message });
+  } catch (error) {
+    res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
+  }
 };
 
 lensRingController.deleteLensRing = async (req, res) => {
+  try {
+    const lensRing = await lensRingModel.findByIdAndDelete(req.params.id);
 
-const lensRing = await lensRingModel.findByIdAndDelete(req.params.id)
+    if (!lensRing) {
+      return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });
+    }
 
-if(!lensRing){
-
-    return res.status(404).json({message: "error no se elimino"});
-}
-
-res.json({message: "se elimino correctamente"})
-
+    res.status(requestMessages.DELETED.code).json({ message: requestMessages.DELETED.message });
+  } catch (error) {
+    res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
+  }
 };
 
+lensRingController.putLensRing = async (req, res) => {
+  try {
+    const { typeLens, price } = req.body;
 
-lensRingController.updateLensRing = async (req, res) => {
-    
-const {typeLens, price} = req.body;
+    const updatedLensRing = await lensRingModel.findByIdAndUpdate(
+      req.params.id,
+      { typeLens, price },
+      { new: true }
+    );
 
-await lensRingModel.findByIdAndUpdate(
-req.params.id,
-{
-    typeLens, 
-    price
-},
+    if (!updatedLensRing) {
+      return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });
+    }
 
-{new: true}
-);
-
-res.json({message: "updated"});
-
+    res.status(requestMessages.UPDATED.code).json({ message: requestMessages.UPDATED.message });
+  } catch (error) {
+    res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
+  }
 };
-
 
 export default lensRingController;

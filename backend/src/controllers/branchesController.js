@@ -1,33 +1,34 @@
-import increaseLensesModel from "../models/increasesModel.js";
+import Branch from "../models/store.js";
 import requestMessages from "../utils/strings.js";
 
-const increaseLensesController = {};
+const branchesController = {};
 
-increaseLensesController.getIncrease = async (req, res) => {
+branchesController.getBranch = async (req, res) => {
   try {
-    const increaseLens = await increaseLensesModel.find();
-    res.status(requestMessages.SUCCESS.code).json(increaseLens);
+    const branches = await Branch.find();
+    res.status(requestMessages.SUCCESS.code).json(branches);
   } catch (error) {
     res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
   }
 };
 
-increaseLensesController.createIncrease = async (req, res) => {
+branchesController.postBranch = async (req, res) => {
   try {
-    const { increaseLevel, price } = req.body;
-    const increaseLens = new increaseLensesModel({ increaseLevel, price });
-    await increaseLens.save();
-
+    const { name, address, phone } = req.body;
+    const newBranch = new Branch({ name, address, phone });
+    await newBranch.save();
+    
     res.status(requestMessages.CREATED.code).json({ message: requestMessages.CREATED.message });
   } catch (error) {
     res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
   }
 };
 
-increaseLensesController.deleteIncrease = async (req, res) => {
+branchesController.deleteBranch = async (req, res) => {
   try {
-    const increaseLens = await increaseLensesModel.findByIdAndDelete(req.params.id);
-    if (!increaseLens) {
+    const branch = await Store.findByIdAndDelete(req.params.id);
+    
+    if (!branch) {
       return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });
     }
 
@@ -37,17 +38,17 @@ increaseLensesController.deleteIncrease = async (req, res) => {
   }
 };
 
-increaseLensesController.updateIncrease = async (req, res) => {
+branchesController.putBranch = async (req, res) => {
   try {
-    const { increaseLevel, price } = req.body;
-
-    const updatedLens = await increaseLensesModel.findByIdAndUpdate(
+    const { name, address, phone } = req.body;
+    
+    const updatedBranch = await Store.findByIdAndUpdate(
       req.params.id,
-      { increaseLevel, price },
+      { name, address, phone },
       { new: true }
     );
 
-    if (!updatedLens) {
+    if (!updatedBranch) {
       return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });
     }
 
@@ -57,4 +58,4 @@ increaseLensesController.updateIncrease = async (req, res) => {
   }
 };
 
-export default increaseLensesController;
+export default branchesController;
