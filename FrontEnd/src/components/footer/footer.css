@@ -1,0 +1,40 @@
+footer {
+    background-color: #8CA9AD; 
+    padding: 2rem 0;
+    color: white;
+    margin-top: 38%;
+    display: fixed;
+    border-radius: 30px;
+    
+    
+    
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
+
+.footer-info,
+.footer-Optilux {
+    flex: 1;
+    text-align: center;
+  
+}
+
+.footer-info h3,
+.footer-Optilux h3 {
+    color: white; 
+}
+
+.footer-info p {
+    margin: 0.5rem 0;
+    color: white;
+}
+
+.footer-Optilux img {
+    width: 30px;
+    margin: 0 0.5rem;
+}
