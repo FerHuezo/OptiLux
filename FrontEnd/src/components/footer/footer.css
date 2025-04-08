@@ -1,11 +1,28 @@
+.Container-P img {
+    width: 60px;
+    margin: 10px 10px;
+    
+}
+.Container-P{
+    border-style:solid;
+    border-color: #BBCBCD;
+    text-align: center;
+    background-color: #BBCBCD;
+
+    
+}
+
+.Container-P h3{
+    margin: 20px;
+}
+
+
 footer {
     background-color: #8CA9AD; 
-    padding: 2rem 0;
     color: white;
-    margin-top: 38%;
-    display: fixed;
-    border-radius: 30px;
-    
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     
     
 }
@@ -34,7 +51,36 @@ footer {
     color: white;
 }
 
-.footer-Optilux img {
-    width: 30px;
-    margin: 0 0.5rem;
+.footer-info img {
+    margin: 30px;
+    width: 15rem;
+
 }
+
+.lineaSeparadora{
+    border-style: solid;
+    border-color: white;
+    width: 1000px;
+    border-radius: 10px;
+
+
+}
+    
+
+.contenedor-separadorA{
+    width: 100%;
+   height: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.info-secundaria{
+    margin: 50px;
+}
+
+
+
+

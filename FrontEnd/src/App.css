@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
 /*#root {
  
   max-width: 1280px;       ///he comentado esto por que da estilo al app.jsx
