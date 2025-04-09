@@ -1,0 +1,118 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    padding: 20px; 
+    margin-top: -9em;
+    
+  
+  }
+  
+  .detallesInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: space-around;
+    width: 500px; 
+    
+  }
+  
+  .contacto {
+    background-color: #f0f0f0; 
+    padding: 20px;
+    border-style: solid;
+    border-color: #f0f0f0;
+    border-radius: 45px;
+    flex-basis: calc(50% - 20px); 
+    box-sizing: border-box;
+
+  }
+  
+  .contacto h3 {
+    margin-top: 0;
+  }
+  
+  .preguntanos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #BBCBCD;
+    border-radius: 5px;
+    width: 500px;
+    color: white;
+  }
+  
+  .preguntanos form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .preguntanos form div {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  .preguntanos label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .preguntanos input[type="text"],
+  .preguntanos input[type="email"],
+  .preguntanos input[type="tel"],
+  .preguntanos textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .preguntanos button {
+    padding: 10px 15px;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .ContenedorPadre{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: center; contenedor principal que lo cree para poder utilziar flexbox y centrar*/
+    align-items: center;
+    justify-content: space-between; /*Espacio entre ellos 2 elementos*/
+    font-family:'Verdana', sans-serif;
+    font-size: 14px;
+    /*border-style: solid; esto es para el borde solido*/
+    height: 600px;
+    width: 80%;
+    margin-left: auto; /* con esto centro la caja*/
+    margin-right: auto; /*  igualmente*/
+    margin-bottom: 40px;
+  }
+  
+  .containerimg{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .containerimg img{
+    height: 350px;
+    width: 95%;
+    border-radius: 40px;
+  }
+
+  .text h2{
+    font-size: 30px;
+      padding-left: 5%;
+      margin-top: 90px;
+  }
+
+  .comunicate{
+    color: #7B7B7B;
+  }
