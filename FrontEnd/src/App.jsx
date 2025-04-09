@@ -1,19 +1,18 @@
 
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from './components/NavBar/NavBar';
+import Home from './pages/Home'
+import LogIn from './pages/LogIn'
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Navbar></Navbar>
-      <Router>
+    <Router>
       <Routes>
-          
+        <Route path="/Inicio" element={<Home />} />
+        <Route path="/Login" element={<LogIn />}/>
       </Routes>
     </Router>
-    </>
-  )
-}
+  );
+};
 
 export default App
