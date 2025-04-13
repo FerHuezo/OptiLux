@@ -1,7 +1,7 @@
 import './App.css'
 import Footer from './components/footer/footer'
 import {BrowserRouter as Router, Routes, Route} from "react-router"; 
-import Contanctanos from './Pages/contactanos';
+import Contactanos from './Pages/contactanos';
 import Nav from './components/navExample/Nav';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <Router>
           <Nav />
         <Routes>
-            <Route path='/contactanos' element = {<Contanctanos/>}/>
+            <Route path='/contactanos' element = {<Contactanos/>}/>
             <Route />
             <Route />
         </Routes>
