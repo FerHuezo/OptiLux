@@ -182,7 +182,7 @@
     transition: 0.2s ease all;
   }
   
-  .input-group input:focus ~ label, /*esto es cuando esta activo el input*/
+  .input-group input:focus ~ label, /*esto me sirve y hice para cuando esta activo el input*/
   .input-group input:valid ~ label, /*esto es cuabno el imput tiene ya texto encima*/
   .input-group textarea:focus ~ label,
   .input-group textarea:valid ~ label {
@@ -197,7 +197,61 @@ textarea:focus {
    
 }
 
+@media (max-width: 768px) {
+  .ContenedorPadre{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 28rem;
+  }
+  .detallesInfo{
+    display: flex;
+    justify-content: space-between;
+    width:650px;
+    text-align: center;
+  }
+  .preguntanos{
+  width: 650px;
+  }
+  .preguntanos button{
+   margin-bottom: 10px; 
+  }
+  .containerimg img{
+    height:210px;
+  }
+  .text h2{
+    font-size: 23px;
+    padding-left: 0%;
+    text-align: center;
+  }
+  
+  }
 
-button {
+
+@media (max-width: 480px) {
+.ContenedorPadre{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 37rem;
+}
+.detallesInfo{
+  display: flex;
+  width:400px;
+  text-align: center;
+}
+.preguntanos{
+width: 400px;
+}
+.preguntanos button{
+ margin-bottom: 10px; 
+}
+.containerimg img{
+  height: 150px;
+}
+.text h2{
+  font-size: 23px;
+  padding-left: 0%;
+}
 
 }
+
+
