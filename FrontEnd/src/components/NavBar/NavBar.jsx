@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(null);
-
-  const handleLinkClick = (linkName) => {
-    setActiveLink(linkName);
-  };
-
   const styles = {
     topbar: {
-      backgroundColor: '#8CA9AD',
+      backgroundColor: '#8ca9ad',
       color: 'white',
       padding: '5px 20px',
       fontSize: '14px',
@@ -41,21 +36,18 @@ const Navbar = () => {
     navLinks: {
       display: 'flex',
       alignItems: 'center',
-      position: 'absolute',
-      left: '40%',
-      textAlign: 'center',
       gap: '20px',
-      color: 'white',
     },
     link: {
       textDecoration: 'none',
-      color: 'white',
+      color: '#333',
       fontWeight: 500,
     },
     activeLink: {
       textDecoration: 'underline',
-      color: 'white',
+      fontStyle: 'italic',
       fontWeight: 'bold',
+      color: '#333',
     },
     navbarRight: {
       display: 'flex',
@@ -63,7 +55,7 @@ const Navbar = () => {
       gap: '15px',
     },
     button: {
-      backgroundColor: '#8CA9AD',
+      backgroundColor: '#8ca9ad',
       color: 'white',
       border: 'none',
       padding: '8px 15px',
@@ -71,10 +63,10 @@ const Navbar = () => {
       cursor: 'pointer',
     },
     cart: {
-      border: '1px solid #8CA9AD',
+      border: '1px solid #8ca9ad',
       padding: '8px 15px',
       borderRadius: '20px',
-      color: '#8CA9AD',
+      color: '#8ca9ad',
       backgroundColor: 'transparent',
       cursor: 'pointer',
     },
@@ -86,7 +78,7 @@ const Navbar = () => {
       <div style={styles.topbar}>
         <div>OptiLux ® | El Salvador | 2025</div>
         <div>
-          <a href="/Perfil" style={styles.topbarLinks}>Mi Perfil</a>
+          <a href="/MiPerfil" style={styles.topbarLinks}>Mi Perfil</a>
           <a href="/SobreNosotros" style={styles.topbarLinks}>Sobre Nosotros</a>
           <a href="/PoliticaPrivacidad" style={styles.topbarLinks}>Política y Privacidad</a>
         </div>
@@ -96,41 +88,39 @@ const Navbar = () => {
       <div style={styles.navbar}>
         <div style={styles.navbarLeft}>
           <img
-            src="/assets/react.svg"
+            src="/assets/logo-transparent-white.svg"
             alt="Logo OptiLux"
             style={styles.logo}
           />
           <div style={styles.navLinks}>
-            <a
-              href="/Inicio"
-              style={activeLink === 'Inicio' ? styles.activeLink : styles.link}
-              onClick={() => handleLinkClick('Inicio')}
+            <NavLink
+              to="/"
+              end
+              style={({ isActive }) => isActive ? styles.activeLink : styles.link}
             >
               Inicio
-            </a>
-            <a
-              href="/Ofertas"
-              style={activeLink === 'Ofertas' ? styles.activeLink : styles.link}
-              onClick={() => handleLinkClick('Ofertas')}
+            </NavLink>
+            <NavLink
+              to="/ofertas"
+              style={({ isActive }) => isActive ? styles.activeLink : styles.link}
             >
               Ofertas
-            </a>
-            <a
-              href="/Productos"
-              style={activeLink === 'Productos' ? styles.activeLink : styles.link}
-              onClick={() => handleLinkClick('Productos')}
+            </NavLink>
+            <NavLink
+              to="/productos"
+              style={({ isActive }) => isActive ? styles.activeLink : styles.link}
             >
               Productos
-            </a>
-            <a
-              href="/Marcas"
-              style={activeLink === 'Marcas' ? styles.activeLink : styles.link}
-              onClick={() => handleLinkClick('Marcas')}
+            </NavLink>
+            <NavLink
+              to="/marcas"
+              style={({ isActive }) => isActive ? styles.activeLink : styles.link}
             >
               Marcas
-            </a>
+            </NavLink>
           </div>
         </div>
+
         <div style={styles.navbarRight}>
           <button style={styles.button}>Contáctanos</button>
           <button style={styles.cart}>Ver carrito de compras</button>
