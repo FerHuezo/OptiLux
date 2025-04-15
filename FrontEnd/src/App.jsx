@@ -1,21 +1,23 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from './components/NavBar/NavBar';
+import Home from './pages/Home'
+import LogIn from './pages/LogIn'
 import Home from './pages/Home'
 
-function App() {
+const App = () => {
   return (
     <>
-      <Router>
+    <Router>
       <Routes>
         <Route path="/" element={Home} />
         <Route path="/Ofertas" element={<h1>Ofertas</h1>} />
         <Route path="/Productos" element={<h1>Productos</h1>} />
-        <Route path="/Marcas" element={<h1>Marcas</h1>} />
+        <Route path="/Inicio" element={<Home />} />
+        <Route path="/Login" element={<LogIn />}/>
       </Routes>
     </Router>
     </>
-  )
-}
+  );
+};
 
 export default App
