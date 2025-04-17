@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/NavBar/NavBar'
+import Footer from '../components/footer/footer'
 import imgFirst from '../assets/firstImage.svg'
 import imgOferta from '../assets/bannerPersonaliza.svg'
 import lentesImportados from '../assets/1.svg'
@@ -9,10 +10,11 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <br /> 
     <div className="flex flex-col items-center w-full bg-gray-100">
       <div className="w-[90%] max-w-6xl my-8 rounded-2xl overflow-hidden shadow-lg">
         <div className="flex overflow-x-auto snap-x snap-mandatory">
-          {[{imgFirst}].map((src, index) => (
+          {[imgFirst, "/img2.jpg", "/img3.jpg"].map((src, index) => (
             <img
               key={index}
               src={src}
@@ -22,7 +24,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-
+      <br/>
       {/* Sección con imágenes */}
       <div className="w-[90%] max-w-6xl flex flex-col md:flex-row gap-4 mb8">
         {/* Imagen grande a la izquierda */}
@@ -49,6 +51,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <br />
+    <Footer/>
     </>
   );
 };
