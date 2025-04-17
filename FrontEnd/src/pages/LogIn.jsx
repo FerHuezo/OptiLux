@@ -1,6 +1,6 @@
 import NavBar from "../components/NavBar/NavBar"
 
-const Home = () => {
+const LogIn = () => {
   return (
     <>
         <img src="../components" alt="" />
@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default Home
+export default LogIn

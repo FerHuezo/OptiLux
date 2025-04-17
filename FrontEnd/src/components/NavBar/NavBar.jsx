@@ -1,129 +1,77 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { FaPhoneAlt, FaShoppingCart } from 'react-icons/fa';
+import logo from '../../assets/logo-transparent-white.svg';
+import './Navbar.css';
 
 const Navbar = () => {
-  const styles = {
-    topbar: {
-      backgroundColor: "#8CA9AD",
-      color: "white",
-      padding: "5px 20px",
-      fontSize: "14px",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-    topbarLinks: {
-      color: "white",
-      marginLeft: "15px",
-      textDecoration: "none",
-    },
-    navbar: {
-      backgroundColor: "#d6e1e2",
-      padding: "15px 20px",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      flexWrap: "wrap",
-    },
-    navbarLeft: {
-      display: "flex",
-      alignItems: "center",
-      gap: "40px",
-    },
-    logo: {
-      height: "40px",
-    },
-    navLinks: {
-      display: "flex",
-      alignItems: "center",
-      gap: "20px",
-    },
-    link: {
-      textDecoration: "none",
-      color: "white",
-      fontWeight: 500,
-    },
-    activeLink: {
-      textDecoration: "underline",
-      color: "white",
-      fontWeight: "bold",
-    },
-    navbarRight: {
-      display: "flex",
-      alignItems: "center",
-      gap: "15px",
-    },
-    button: {
-      backgroundColor: "#8CA9AD",
-      color: "white",
-      border: "none",
-      padding: "8px 15px",
-      borderRadius: "20px",
-      cursor: "pointer",
-    },
-    cart: {
-      border: "1px solid #8CA9AD",
-      padding: "8px 15px",
-      borderRadius: "20px",
-      color: "#8CA9AD",
-      backgroundColor: "transparent",
-      cursor: "pointer",
-    },
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Definir si estamos en las páginas de Contactanos o Carrito
+  const isContactPage = location.pathname === "/Contactanos";
+  const isCartPage = location.pathname === "/Carrito";
 
   return (
-    <div>
+    <div className="navbar-container">
       {/* Topbar */}
-      <div style={styles.topbar}>
+      <div className="topbar">
         <div>OptiLux ® | El Salvador | 2025</div>
-        <div>
-          <NavLink to="/Perfil" style={styles.topbarLinks}>
-            Mi Perfil
-          </NavLink>
-          <NavLink to="/SobreNosotros" style={styles.topbarLinks}>
-            Sobre Nosotros
-          </NavLink>
-          <NavLink to="/PoliticaPrivacidad" style={styles.topbarLinks}>
-            Política y Privacidad
-          </NavLink>
+        <div className="topbar-links">
+          <NavLink to="/Perfil">Mi Perfil</NavLink>
+          <NavLink to="/sobre-nosotros">Sobre Nosotros</NavLink>
+          <NavLink to="/Politica">Política y Privacidad</NavLink>
         </div>
       </div>
 
-      {/* Navbar */}
-      <div style={styles.navbar}>
-        <div style={styles.navbarLeft}>
-          <img src="/assets/react.svg" alt="Logo OptiLux" style={styles.logo} />
-          <div style={styles.navLinks}>
-            <NavLink
-              to="/Inicio"
-              style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            >
-              Inicio
-            </NavLink>
-            <NavLink
-              to="/Ofertas"
-              style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            >
-              Ofertas
-            </NavLink>
-            <NavLink
-              to="/Productos"
-              style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            >
-              Productos
-            </NavLink>
-            <NavLink
-              to="/Marcas"
-              style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
-            >
-              Marcas
-            </NavLink>
-          </div>
+      {/* Barra principal */}
+      <div className="navbar">
+        {/* Logo */}
+        <img
+          src={logo}
+          alt="Logo OptiLux"
+          className="navbar-logo"
+          onClick={() => navigate('/')}
+        />
+
+        {/* Enlaces centrales */}
+        <div className="navbar-links">
+          <NavLink to="/" end className={({ isActive }) =>
+            isActive ? 'navbar-link active' : 'navbar-link'
+          }>
+            Inicio
+          </NavLink>
+          <NavLink to="/ofertas" className={({ isActive }) =>
+            isActive ? 'navbar-link active' : 'navbar-link'
+          }>
+            Ofertas
+          </NavLink>
+          <NavLink to="/productos" className={({ isActive }) =>
+            isActive ? 'navbar-link active' : 'navbar-link'
+          }>
+            Productos
+          </NavLink>
+          <NavLink to="/marcas" className={({ isActive }) =>
+            isActive ? 'navbar-link active' : 'navbar-link'
+          }>
+            Marcas
+          </NavLink>
         </div>
 
-        <div style={styles.navbarRight}>
-          <button style={styles.button}>Contáctanos</button>
-          <button style={styles.cart}>Ver carrito de compras</button>
+        {/* Botones derecha */}
+        <div className="navbar-buttons">
+          <button
+            className={`navbar-button ${isContactPage ? 'active-btn' : ''}`}
+            onClick={() => navigate('/Contactanos')}
+          >
+            <FaPhoneAlt /> Contáctanos
+          </button>
+          <button
+            className={`navbar-button ${isCartPage ? 'active-btn' : ''}`}
+            onClick={() => navigate('/Carrito')}
+          >
+            <FaShoppingCart /> Carrito de Compras
+          </button>
         </div>
       </div>
     </div>

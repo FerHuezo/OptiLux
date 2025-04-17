@@ -2,18 +2,18 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/Home'
 import LogIn from './pages/LogIn'
-import Home from './pages/Home'
+import Contactanos from './pages/Contactanos/contactanos'
 
 const App = () => {
   return (
     <>
     <Router>
       <Routes>
-        <Route path="/" element={Home} />
-        <Route path="/Ofertas" element={<h1>Ofertas</h1>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/Ofertas" element={<h1>Ofertas</h1>} />
         <Route path="/Productos" element={<h1>Productos</h1>} />
-        <Route path="/Inicio" element={<Home />} />
         <Route path="/Login" element={<LogIn />}/>
+        <Route path="/Contactanos" element={<Contactanos />}/>
       </Routes>
     </Router>
     </>

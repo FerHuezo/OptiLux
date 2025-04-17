@@ -1,0 +1,170 @@
+/*------------------------------------
+  Contenedor global
+------------------------------------*/
+.navbar-container {
+    font-family: 'Verdana', sans-serif;
+  }
+  
+  /*------------------------------------
+    Topbar
+  ------------------------------------*/
+  .topbar {
+    background-color: #8ca9ad;
+    color: white;
+    padding: 6px 30px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .topbar-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    border-left: 1px solid white;
+    padding-left: 15px;
+    transition: color 0.3s;
+  }
+  
+  .topbar-links a:hover {
+    color: #d1e4e5;
+  }
+  
+  /*------------------------------------
+    Navbar principal
+  ------------------------------------*/
+  .navbar {
+    background-color: #8ca9ad;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: 1px solid #BBCBCD;
+    position: relative;
+  }
+  
+  .navbar-logo {
+    height: 45px;
+    padding-left: 40px;
+    transform: scale(4.0);
+    transform-origin: center;
+    cursor: pointer;
+  }
+  
+  /*------------------------------------
+    Links centrales
+  ------------------------------------*/
+  .navbar-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    color: white;
+    font-style: italic;
+    font-weight: 400;
+  }
+  
+  .navbar-link:hover {
+    color: #d1e4e5;
+  }
+  
+  .navbar-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+  }
+  
+  /*------------------------------------
+    Botones de acción
+  ------------------------------------*/
+  .navbar-buttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navbar-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-button:hover {
+    background-color: white;
+    color: #8ca9ad;
+  }
+
+  .navbar-btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-button:hover {
+    background-color: #a9c0c2;
+    color: white;
+  }
+
+  .navbar-button.active-btn {
+    background-color: #a9c0c2;
+    color: white;
+  }
+  
+  /*------------------------------------
+    Responsive
+  ------------------------------------*/
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 15px 20px;
+    }
+  
+    .navbar-links {
+      position: static;
+      transform: none;
+      flex-direction: column;
+      gap: 15px;
+      margin: 15px 0;
+    }
+  
+    .navbar-buttons {
+      width: 100%;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  
+    .topbar {
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 20px;
+    }
+  
+    .topbar-links a {
+      border: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }

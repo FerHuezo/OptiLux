@@ -1,137 +1,80 @@
-.Container-P img {
-    width: 60px;
-    margin: 10px 10px;
-    
-}
-.Container-P{
-    border-style:solid;
-    border-color: #BBCBCD;
-    text-align: center;
-    background-color: #BBCBCD;
-
-    
+.footer {
+  background-color: #8ca9ad;
+  color: white;
+  text-align: center;
+  padding-top: 20px;
 }
 
-.Container-P h3{
-    margin: 20px;
+.footer-top {
+  background-color: #BBCBCD;
+  padding: 15px 0;
 }
 
-
-footer {
-    background-color: #8CA9AD; 
-    color: white;
-    bottom: 0;
-    width: 100%;
-    
-    
+.social-icons a img {
+  width: 35px;
+  margin: 1px 5px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(40%);
 }
 
-.container {
-    display: flex;
-    justify-content: space-around;
-    
-    
+.social-icons a img:hover {
+  transform: scale(1.2);
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
-.footer-info,
-.footer-Optilux {
-    flex: 1;
-    text-align: center;
-  
+.footer-main {
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.footer-info h3,
-.footer-Optilux h3 {
-    color: white; 
+.footer-logo {
+  width: 150px;  /* El tamaño inicial */
+  margin-bottom: 20px;
+  opacity: 0.8;  /* Opacidad para hacerlo sutil */
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  transform-origin: center; /* Esto asegura que el zoom se haga desde el centro */
 }
 
-.footer-info p {
-    margin: 0.5rem 0;
-    color: white;
+.footer-logo:hover {
+  opacity: 2; /* Vuelve a la opacidad completa al pasar el ratón */
+  transform: scale(2.3); /* Aplica un zoom del 20% al pasar el ratón */
+  filter: brightness(2.0); /* Aumenta el brillo para hacer más visible el logo */
 }
 
-.footer-info img {
-    margin: 30px;
-    width: 15rem;
-
+.footer-divider {
+  width: 80%;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  margin-bottom: 30px;
 }
 
-.lineaSeparadora{
-    border-style: solid;
-    border-color: white;
-    width: 1000px;
-    border-radius: 10px;
-
-
-}
-    
-
-.contenedor-separadorA{
-    width: 100%;
-   height: 10px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-    margin-bottom: 20px;
-
+.footer-text {
+  max-width: 600px;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.info-secundaria{
-    margin: 50px;
+.footer-text a {
+  color: white;
+  text-decoration: underline;
+  font-weight: 500;
 }
 
-@media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .footer-info img {
-      width: 10rem;
-      margin: 20px;
-    }
-  
-    .info-secundaria {
-      margin: 30px;
-      text-align: center;
-    }
-  
-    .lineaSeparadora {
-      width: 80%;
-    }
-  
-    .Container-P img {
-      width: 40px;
-      margin: 8px;
-    }
+@media (max-width: 600px) {
+  .footer-logo {
+    width: 100px; /* Reduce el tamaño del logo en pantallas pequeñas */
   }
-  
-  @media (max-width: 480px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .footer-info img {
-      width: 8rem;
-      margin: 15px;
-    }
-  
-    .info-secundaria {
-      margin: 20px;
-      font-size: 0.9rem;
-    }
-  
-    .lineaSeparadora {
-      width: 70%;
-    }
-  
-    .Container-P img {
-      width: 30px;
-      margin: 5px;
-    }
-  
-    .Container-P h3 {
-      font-size: 1rem;
-    }
+
+  .footer-text {
+    font-size: 0.85rem;
+    padding: 0 15px;
   }
+
+  .social-icons a img {
+    width: 30px; /* Reduce el tamaño de los iconos sociales */
+  }
+}
