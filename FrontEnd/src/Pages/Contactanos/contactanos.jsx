@@ -27,7 +27,7 @@ const Contactanos = () => {
               <div className="contacto">
                 <h3>Centro de Atención</h3><br />
                 <address>
-                  <p><a className="Ndecoracion" href="tel:+5032224-1932">+503 2224-1932</a> <img className="iconos" src={Elsalvador} alt="El salvador" /></p><br />
+                  <p><a className="Ndecoracion" href="tel:+5032224-1932">+503 2224-1932</a> <img className="iconos" src={Elsalvador} alt="El Salvador" /></p><br />
                   <p><a className="Ndecoracion" href="tel:+12125551234">+1 212 555 1234</a> <img className="iconos" src={eeuu} alt="Estados Unidos" /></p>
                 </address>
               </div>
