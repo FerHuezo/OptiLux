@@ -48,6 +48,7 @@
   font-size: 30px;
   padding-left: 5%;
   margin-top: 90px;
+  color: #000000;
 }
 
 .comunicate {
@@ -80,6 +81,7 @@
 
 .contacto p {
   font-size: 14px;
+  color: #7B7B7B;
 }
 
 .contacto ul li {
