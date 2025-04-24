@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import LogIn from './pages/LogIn'
 import Contactanos from './pages/Contactanos/contactanos'
 import Politica from './Pages/Politica/politica'
+import SobreNosotros from './Pages/Sobre Nosotros/sobreNosotros'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/Login" element={<LogIn />}/>
         <Route path="/Contactanos" element={<Contactanos />}/>
         <Route path="/Politica" element={<Politica/>}/>
+        <Route path="/sobreNosotros" element={<SobreNosotros/>}/>
       </Routes>
     </Router>
     </>

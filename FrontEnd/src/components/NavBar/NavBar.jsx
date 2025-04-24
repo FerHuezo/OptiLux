@@ -19,7 +19,7 @@ const Navbar = () => {
         <div>OptiLux ® | El Salvador | 2025</div>
         <div className="topbar-links">
           <NavLink to="/Perfil">Mi Perfil</NavLink>
-          <NavLink to="/sobre-nosotros">Sobre Nosotros</NavLink>
+          <NavLink to="/sobreNosotros">Sobre Nosotros</NavLink>
           <NavLink to="/Politica">Política y Privacidad</NavLink>
         </div>
       </div>

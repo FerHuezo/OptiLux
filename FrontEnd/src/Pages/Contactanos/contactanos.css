@@ -9,7 +9,7 @@
   align-items: center;
   font-family: 'Verdana', sans-serif;
   font-size: 14px;
-  height: 600px;
+  height: auto;
   width: 80%;
   margin: 0 auto 40px;
 }
@@ -41,7 +41,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  margin-top: -9em;
+  margin-top: 0;
 }
 
 .text h2 {
@@ -59,7 +59,7 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-around;
-  width: 500px;
+  width: 600px;
 }
 
 .contacto {
@@ -75,10 +75,11 @@
 .contacto h3 {
   margin-top: 0;
   color: #000000;
+  font-size: 20px;
 }
 
 .contacto p {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .contacto ul li {
@@ -118,8 +119,9 @@
   gap: 20px;
   background-color: #BBCBCD;
   border-radius: 25px;
+  margin-top: 80px;
   width: 500px;
-  height: 595px;
+  height: 650px;
   color: white;
   padding: 20px 40px 0px 40px;
 }
@@ -214,7 +216,7 @@ textarea:focus {
 @media (max-width: 768px) {
   .ContenedorPadre {
     flex-direction: column;
-    margin-bottom: 28rem;
+    margin-bottom: 7rem;
   }
 
   .detallesInfo {
@@ -245,7 +247,7 @@ textarea:focus {
 @media (max-width: 480px) {
   .ContenedorPadre {
     flex-direction: column;
-    margin-bottom: 37rem;
+    margin-bottom: 7rem;
   }
 
   .detallesInfo {
