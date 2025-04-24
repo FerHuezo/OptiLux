@@ -5,6 +5,7 @@ import LogIn from './pages/LogIn'
 import Contactanos from './pages/Contactanos/contactanos'
 import Politica from './Pages/Politica/politica'
 import SobreNosotros from './Pages/Sobre Nosotros/sobreNosotros'
+import Carrito from './Pages/Carrito/carrito';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/Contactanos" element={<Contactanos />}/>
         <Route path="/Politica" element={<Politica/>}/>
         <Route path="/sobreNosotros" element={<SobreNosotros/>}/>
+        <Route path="/carrito" element={<Carrito/>} />
       </Routes>
     </Router>
     </>

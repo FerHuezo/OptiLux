@@ -68,7 +68,7 @@ const Navbar = () => {
           </button>
           <button
             className={`navbar-button ${isCartPage ? 'active-btn' : ''}`}
-            onClick={() => navigate('/Carrito')}
+            onClick={() => navigate('/carrito')}
           >
             <FaShoppingCart /> Carrito de Compras
           </button>
