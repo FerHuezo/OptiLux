@@ -1,0 +1,71 @@
+
+.containerBanner {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .containerBanner img {
+    height: 420px;
+    width: 90%;
+    border-radius: 40px;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.sobre-nosotros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    width: 80%;
+    margin: 0 auto 40px;
+    padding: 20px;
+}
+
+.contenido {
+    max-width: 50%;
+}
+
+.contenido h1 {
+    font-size: 3rem;
+    color: #4e4e4e;
+    
+}
+
+.contenido p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.estadisticas {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 45%;
+}
+
+.stat {
+    flex: 1 1 45%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border: none;
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 3rem;
+    color: #4e4e4e;
+}
+
+.stat p {
+    font-size: 1rem;
+    color: #555;
+}

@@ -49,8 +49,8 @@ const Contactanos = () => {
 
               <div className="contacto">
                 <h3>Redes sociales</h3><br />
-                <p><a className="Ndecoracion" href="#"> <img className="iconosR" src={facebook} alt="facebook" /> Facebook</a> Optilux El Salvador</p><br />
-                <p><a className="Ndecoracion" href="#"> <img className="iconosR" src={instagram} alt="instagram" /> Instagram</a> Optiluxsv</p>
+                <p><a className="Ndecoracion" href="#"> <img className="iconosR" src={facebook} alt="facebook" />Facebook</a> Optilux El Salvador</p><br />
+                <p><a className="Ndecoracion" href="#"> <img className="iconosR" src={instagram} alt="instagram" />Instagram</a> Optiluxsv</p>
               </div>
             </div>
           </section>

@@ -1,0 +1,99 @@
+*{
+ color: white;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 40px;
+    text-align: center;
+}
+.cart {
+    flex: 3;
+}
+.item {
+    background: #c9dadc;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.item img {
+    height: 70px;
+    width: auto;
+    border-radius: 8px;
+}
+.item-info {
+    flex: 3;
+    margin-left: 20px;
+}
+.precio, .itemca, .total {
+    flex: 1;
+    text-align: center;
+}
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.control button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    margin: 0 10px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: black;
+}
+.removerit {
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+.carritopago {
+    flex: 1.5;
+    background: #c9dadc;
+    padding: 30px;
+    border-radius: 15px;
+    margin-left: 30px;
+}
+.carritopago h3 {
+    font-size: 24px;
+}
+.carritopago .checkbox {
+    margin: 15px 0;
+}
+.carritopago textarea {
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+.carritopago button {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+}
+.mapa {
+    height: 200px;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.details-link {
+    text-align: right;
+    font-size: 14px;
+    color: #0066cc;
+    text-decoration: underline;
+    cursor: pointer;
+}
