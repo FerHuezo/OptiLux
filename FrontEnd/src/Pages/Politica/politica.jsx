@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "../../components/NavBar/NavBar";
 import Banner from "../../assets/Banner-politica.png";
 import "./politica.css";
+import Footer from "../../components/footer/footer";
+
 
 const Politica = () =>{
     return(
@@ -80,7 +82,7 @@ Pasados los 30 días se volverá a pedir la información para el inicio de sesi�
 
 </div>
         </main>
-        
+        <Footer/>
         </>
     )
 }

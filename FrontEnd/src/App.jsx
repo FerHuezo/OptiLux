@@ -4,6 +4,7 @@ import Home from './pages/Inicio/Home'
 import Register from './pages/Registro/Register'
 import Contactanos from './pages/Contactanos/contactanos'
 import Politica from './Pages/Politica/politica'
+import Pimportados from './Pages/Productos/pImportados';
 import SobreNosotros from './Pages/Sobre Nosotros/sobreNosotros'
 import Carrito from './Pages/Carrito/carrito';
 import Login from './Pages/Login/Login'
@@ -15,6 +16,8 @@ const App = () => {
       <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Ofertas" element={<h1>Ofertas</h1>} />
+        <Route path="/productos" element={<Pimportados/>} />
+        <Route path="/Login" element={<LogIn />}/>
         <Route path="/Productos" element={<h1>Productos</h1>} />
         <Route path="/InicioSesion" element={<Login />}/>
         <Route path="/Register" element={<Register />}/>
@@ -25,6 +28,9 @@ const App = () => {
       </Routes>
     </Router>
     </>
+
+
+
   );
 };
 
