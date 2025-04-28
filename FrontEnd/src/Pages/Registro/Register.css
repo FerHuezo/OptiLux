@@ -1,0 +1,304 @@
+/* Register.css */
+
+/* Contenedor fondo */
+.registro-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #8ca9ad;
+  padding: 20px;
+  box-sizing: border-box;
+  }
+  
+  /* Botón Regresar global */
+  .btn-regresar-global {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 20;
+  }
+  
+  .icono-regresar {
+  font-size: 20px;
+  }
+  
+  /* Card que agrupa ambos lados */
+  .registro-card {
+  display: flex;
+  width: 1200px;
+  max-width: 2000px;
+  height: 80vh;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+  
+  .registro-left {
+    flex: 1;
+    position: relative;
+    display: flex;              
+    justify-content: center;    
+    align-items: center;        
+    overflow: hidden;
+  }
+  
+  .registro-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .registro-blur {
+    position: absolute;
+    width: 90%;            
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    backdrop-filter: blur(5px);
+    background-color: rgba(206, 206, 206, 0.1); 
+    border-radius: 20px; 
+    z-index: 1;
+  }
+  
+  .registro-blur img {
+    display: flex;
+    transform: scale(0.5);
+    justify-content: center;    
+    align-items: center;       
+    }
+
+  .registro-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;            
+    justify-content: center;    
+    align-items: center;       
+    z-index: 2;
+  }
+  
+  .registro-overlay h1 {
+    font-family: 'Sansation', sans-serif;
+    font-style: italic;
+    padding: 15px 25px; 
+    border-radius: 15px; 
+    color: white;
+    font-size: 5rem;
+    text-align: center;
+    z-index: 3;
+  }
+  
+  /* Lado derecho (formulario) */
+  .registro-right {
+  font-family: 'Poppins', sans-serif;
+  flex: 1;
+  margin-top: 40px;
+  padding: 30px 40px;
+  position: relative;
+  overflow-y: auto;
+  }
+  
+  /* Título */
+  .registro-right h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  color: #333;
+  }
+  
+  /* Formulario */
+  .registro-form {
+  display: flex;
+  flex-direction: column;
+  }
+  
+  /* Nombres en fila */
+  .registro-nombres {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 5px;
+  }
+  
+  .registro-nombres input {
+  flex: 1;
+  width: 100px;
+  min-width: 0;
+  color: #000;
+  }
+  
+  /* Inputs generales */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+  padding: 12px 12px;
+  font-size: 16px;
+  color: #000;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  }
+  
+  input:focus {
+  border-color: #8ca9ad;
+  outline: none;
+  }
+  
+  /* Checkbox */
+  .registro-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #8ca9ad;
+  }
+
+  .registro-checkbox label{
+    color: #7B7B7B;
+    }
+  
+  .registro-checkbox a {
+  color: #8ca9ad;
+  text-decoration: underline;
+  }
+  
+  /* Botón Crear Cuenta */
+  .btn-crear {
+  background-color: #8ca9ad;
+  color: white;
+  width: 240px;
+  padding: 12px;
+  font-size: 16px;
+  align-self: center;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  }
+  
+  .btn-crear:hover {
+  background-color: #7b989a;
+  }
+  
+  /* Divider “o” */
+  .registro-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  }
+  
+  .registro-divider hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #000;
+  }
+  
+  .registro-divider span {
+  margin: 0 10px;
+  font-size: 14px;
+  color: #7B7B7B;
+  }
+  
+  /* Botón Google */
+  .btn-google {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  font-size: 16px;
+  color: #000;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  }
+  
+  /* Link Inicia Sesión */
+  .registro-login {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  }
+  
+  .registro-login a {
+  color: #8ca9ad;
+  text-decoration: none;
+  font-weight: bold;
+  }
+  
+/* Botón Google */
+.btn-google {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  padding: 12px;
+  font-size: 16px;
+  color: #000;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%; 
+  max-width: 240px; 
+  margin: 20px auto;
+  margin-bottom: 60px;
+}
+  
+.registro-password-container {
+  position: relative;
+  width: 100%;
+}
+
+.registro-password-container input {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+  
+/* Responsive móvil */
+@media (max-width: 768px) {
+  .registro-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .registro-left,
+  .registro-right {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .registro-img {
+    width: 100%;  /* Asegura que la imagen ocupe el 100% del contenedor */
+    height: 100%; /* Asegura que la imagen ocupe todo el alto disponible */
+    object-fit: cover; /* Hace que la imagen cubra el contenedor, recortando si es necesario */
+  }
+}

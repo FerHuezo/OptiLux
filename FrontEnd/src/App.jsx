@@ -1,11 +1,12 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './pages/Home'
-import LogIn from './pages/LogIn'
+import Home from './pages/Inicio/Home'
+import Register from './pages/Registro/Register'
 import Contactanos from './pages/Contactanos/contactanos'
 import Politica from './Pages/Politica/politica'
 import SobreNosotros from './Pages/Sobre Nosotros/sobreNosotros'
 import Carrito from './Pages/Carrito/carrito';
+import Login from './Pages/Login/Login'
 
 const App = () => {
   return (
@@ -15,11 +16,12 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/Ofertas" element={<h1>Ofertas</h1>} />
         <Route path="/Productos" element={<h1>Productos</h1>} />
-        <Route path="/Login" element={<LogIn />}/>
+        <Route path="/InicioSesion" element={<Login />}/>
+        <Route path="/Register" element={<Register />}/>
         <Route path="/Contactanos" element={<Contactanos />}/>
         <Route path="/Politica" element={<Politica/>}/>
-        <Route path="/sobreNosotros" element={<SobreNosotros/>}/>
-        <Route path="/carrito" element={<Carrito/>} />
+        <Route path="/SobreNosotros" element={<SobreNosotros/>}/>
+        <Route path="/Carrito" element={<Carrito/>} />
       </Routes>
     </Router>
     </>

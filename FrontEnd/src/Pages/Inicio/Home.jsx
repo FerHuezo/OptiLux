@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '../components/NavBar/NavBar'
-import Footer from '../components/footer/footer'
-import imgFirst from '../assets/firstImage.svg'
-import imgOferta from '../assets/bannerPersonaliza.svg'
-import lentesImportados from '../assets/1.svg'
-import lentesPersonalizados from '../assets/2.svg'
+import Navbar from '../../components/NavBar/NavBar'
+import Footer from '../../components/footer/footer'
+import imgFirst from '../../assets/firstImage.svg'
+import imgOferta from '../../assets/bannerPersonaliza.svg'
+import lentesImportados from '../../assets/1.svg'
+import lentesPersonalizados from '../../assets/2.svg'
 
 const Home = () => {
   return (
@@ -25,9 +25,7 @@ const Home = () => {
         </div>
       </div>
       <br/>
-      {/* Sección con imágenes */}
       <div className="w-[90%] max-w-6xl flex flex-col md:flex-row gap-4 mb8">
-        {/* Imagen grande a la izquierda */}
         <div className="md:w-1/2 w-full">
           <img
             src={imgOferta}
@@ -36,7 +34,6 @@ const Home = () => {
           />
         </div>
 
-        {/* Dos imágenes a la derecha */}
         <div className="md:w-1/2 w-full flex flex-col gap-4">
           <img
             src={lentesPersonalizados}

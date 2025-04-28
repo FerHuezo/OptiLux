@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { FaPhoneAlt, FaShoppingCart } from 'react-icons/fa';
+import { FaPhoneAlt, FaShoppingCart, FaBars } from 'react-icons/fa';
 import logo from '../../assets/logo-transparent-white.svg';
 import './Navbar.css';
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para abrir y cerrar el menú
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -12,14 +13,18 @@ const Navbar = () => {
   const isContactPage = location.pathname === "/Contactanos";
   const isCartPage = location.pathname === "/Carrito";
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); // Cambia el estado del menú
+  };
+
   return (
     <div className="navbar-container">
       {/* Topbar */}
       <div className="topbar">
         <div>OptiLux ® | El Salvador | 2025</div>
         <div className="topbar-links">
-          <NavLink to="/Perfil">Mi Perfil</NavLink>
-          <NavLink to="/sobreNosotros">Sobre Nosotros</NavLink>
+          <NavLink to="/Register">Mi Perfil</NavLink>
+          <NavLink to="/SobreNosotros">Sobre Nosotros</NavLink>
           <NavLink to="/Politica">Política y Privacidad</NavLink>
         </div>
       </div>
@@ -34,8 +39,13 @@ const Navbar = () => {
           onClick={() => navigate('/')}
         />
 
+        {/* Icono hamburguesa (visible en pantallas pequeñas) */}
+        <div className="navbar-toggle" onClick={toggleMenu}>
+          <FaBars className="navbar-toggle-icon" />
+        </div>
+
         {/* Enlaces centrales */}
-        <div className="navbar-links">
+        <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
           <NavLink to="/" end className={({ isActive }) =>
             isActive ? 'navbar-link active' : 'navbar-link'
           }>
