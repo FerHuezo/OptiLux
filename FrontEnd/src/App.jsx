@@ -8,6 +8,8 @@ import Pimportados from './Pages/Productos/pImportados';
 import SobreNosotros from './Pages/Sobre Nosotros/sobreNosotros'
 import Carrito from './Pages/Carrito/carrito';
 import Login from './Pages/Login/Login'
+import Categorias from './Pages/Categoria/Categoria'
+import Ofertas from './Pages/Ofertas/Ofertas'
 
 const App = () => {
   return (
@@ -15,16 +17,16 @@ const App = () => {
     <Router>
       <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/Ofertas" element={<h1>Ofertas</h1>} />
-        <Route path="/productos" element={<Pimportados/>} />
-        <Route path="/Login" element={<LogIn />}/>
-        <Route path="/Productos" element={<h1>Productos</h1>} />
+        <Route path="/Productos/Importados" element={<Pimportados/>} />
+        <Route path="/Productos/Personalizados" element={<h1>Personalizados</h1>} />
         <Route path="/InicioSesion" element={<Login />}/>
         <Route path="/Register" element={<Register />}/>
         <Route path="/Contactanos" element={<Contactanos />}/>
         <Route path="/Politica" element={<Politica/>}/>
         <Route path="/SobreNosotros" element={<SobreNosotros/>}/>
-        <Route path="/Carrito" element={<Carrito/>} />
+        <Route path="/Carrito" element={<Carrito/>} />        
+        <Route path="/Productos" element={<Categorias/>} />
+        <Route path="/Ofertas" element={<Ofertas/>} />
       </Routes>
     </Router>
     </>

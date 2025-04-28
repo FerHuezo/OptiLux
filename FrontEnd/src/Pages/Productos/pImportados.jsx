@@ -18,10 +18,6 @@ import lentes4 from '../../assets/lentes4.png'
 import lentes5 from '../../assets/lentes5.png'
 import lentes6 from '../../assets/lentes6.png'
 
-
-
-
-
 const Pimportados = () =>{
     return(
         <>
@@ -31,8 +27,8 @@ const Pimportados = () =>{
 
         <div>
             <div className="bar">
-                 <a href="#"><strong>Importados</strong></a>
-                 <a href="#"><strong>Personalizar</strong></a>
+                 <a href="/Productos/Importados"><strong>Importados</strong></a>
+                 <a href="/Productos/Personalizados"><strong>Personalizar</strong></a>
             </div>
 
         <div className="contenedor">
