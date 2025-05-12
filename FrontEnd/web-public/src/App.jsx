@@ -30,9 +30,6 @@ const App = () => {
       </Routes>
     </Router>
     </>
-
-
-
   );
 };
 

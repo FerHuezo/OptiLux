@@ -16,31 +16,6 @@ body {
       font-family: Arial, sans-serif;
     }
 
-/** esto es un ejemplo de sidebar que cree para ver todo
-    .sidebar {
-      height: 100vh;
-      width: 250px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #333;
-      padding-top: 20px;
-    }
-
-
-    .sidebar a {
-      padding: 15px 25px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-    }
-
-    .sidebar a:hover {
-      background-color: #575757;
-    }
-**/
-
     .main {
         margin-left: 260px;
         padding: 20px;

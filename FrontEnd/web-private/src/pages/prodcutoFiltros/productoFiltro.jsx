@@ -1,11 +1,27 @@
 import React from "react";
+import SideBar from "../../components/SideBar/SideBar";
 import './productoFiltro.css';
+import CategorySelector from '../../components/ComboBox/ComboBox';
+
 
 const ProductoFiltro = () =>{
     return( 
     <>
+        <SideBar/>
                 <div className="main">
             <h1>Añadir un nuevo producto</h1>
+            <CategorySelector
+                    placeholder="Filtros"
+                    options={[
+                        { value: ' ', label: 'Lentes Importados' },
+                        { value: 'aros', label: 'Aros' },
+                        { value: 'terminales', label: 'Terminales' },
+                        { value: 'aumento', label: 'Aumento' },
+                    ]}
+                />
+<br />
+<br />
+         <h1>Tipo de lente</h1>           
 
             <select name="combo" id="">
                 <option value="value1">Lentes importados</option>
@@ -25,7 +41,7 @@ const ProductoFiltro = () =>{
                     </div>
                     <div className="container-child">
                     <h2>Precio:</h2>
-                    <input type="text" id="precio" name="precio" placeholder="Precio" required/>
+                    <input type="number" id="precio" name="precio" placeholder="Precio" required/>
                     </div>
                 </div>
             <div className="buttons">
