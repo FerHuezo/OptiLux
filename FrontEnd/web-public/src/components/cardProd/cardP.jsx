@@ -9,7 +9,6 @@ function CardP({ img, nombre, precio }) {
                     <div className="card-body">
                         <h5 class="card-title">{nombre}</h5>
                         <p class="card-text"> <strong>{precio} </strong></p>
-
                         
                     </div>
                 </div>

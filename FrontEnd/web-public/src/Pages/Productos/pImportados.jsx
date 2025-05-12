@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/NavBar/NavBar";
 import Footer from "../../components/footer/footer";
 import "./pImportados.css";
-import CardP from "../../components/cardProd/cardP"
+
 import color1 from '../../assets/color1.png'
 import color2 from '../../assets/color2.png'
 import color3 from '../../assets/color3.png'
@@ -11,18 +11,29 @@ import color5 from '../../assets/color5.png'
 import color6 from '../../assets/color6.png'
 import color7 from '../../assets/color7.png'
 
-import lentes1 from '../../assets/lentes1.png'
-import lentes2 from '../../assets/lentes2.png'
-import lentes3 from '../../assets/lentes3.png'
-import lentes4 from '../../assets/lentes4.png'
-import lentes5 from '../../assets/lentes5.png'
-import lentes6 from '../../assets/lentes6.png'
+import ListProducts from '../../components/Products/List'
 
 const Pimportados = () =>{
+
+    const API = "http://localhost:4000/api/imported";
+    //const [id, setId] = useState("");
+    const [products, setProducts] = useState([]);
+
+    const fetchProducts = async () => {
+        const response = await fetch(API);
+        if (!response.ok) {
+        throw new Error("Hubo un error al obtener las marcas");
+        }
+        const data = await response.json();
+        setProducts(data);
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     return(
         <>
-
-
         <Navbar/>
 
         <div>
@@ -54,58 +65,25 @@ const Pimportados = () =>{
                         </div>
                         <br />
          
-
-
                     <p>Rango de precio</p>
                     <input type="range" id="rango"  min="0" max="100" />
                     <div id="rangopequeño">
                     <p>$0</p><p>$2500</p></div>
+                    <br />
+                    <button >Filtrar</button>
             </div>
-
-
 
 <div className="contenedorprod">
-            <div className="cardsjunta1">
-            <CardP img={lentes1}
-                nombre={"Lentes lacoste L2912"}
-                precio={"$180.00"}
-            />
-
-<CardP img={lentes2}
-                nombre={"Lentes nautica M1893"}
-                precio={"$225.00"}
-            />
-
-<CardP img={lentes3}
-                nombre={"Lentes nautica M1893"}
-                precio={"$315.00"}
-            />
-            </div>
-            <div className="cardsjunta2">
-
-<CardP img={lentes4}
-                nombre={"Lentes lacoste L2912"}
-                precio={"$170.00"}
-            />
-
-<CardP img={lentes5}
-                nombre={"Lentes rayban R5732"}
-                precio={"$400.00"}
-            />
-
-<CardP img={lentes6}
-                nombre={"Lentes guess G9481"}
-                precio={"$195.00"}
-            />
-           
-            </div></div>
+    <div>
+        <ListProducts
+            products={products}
+        />
         </div>
-       
-       </div>
+    </div>
+</div>
+</div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
        <Footer/>
-
-       
         </>
     )
 }

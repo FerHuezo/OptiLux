@@ -1,4 +1,4 @@
-import Branch from "../models/store.js";
+import Branch from "../models/branchesModel.js";
 import requestMessages from "../utils/strings.js";
 
 const branchesController = {};

@@ -27,8 +27,14 @@ const importLensSchema = new Schema(
       required: [true, "La marca es obligatoria."],
       trim: true,
     },
+    img: {
+      type: String,
+      required : [true, "Imagen obligatoria."],
+      trim : true,
+    }
   },
   {
+    collection: 'importLenses',
     timestamps: true,
     strict: true,
   }
