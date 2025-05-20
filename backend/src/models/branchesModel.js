@@ -17,6 +17,11 @@ const branchSchema = new Schema(
       required: [true, "El número de teléfono es obligatorio."],
       match: [/^\d{4}-\d{4}$/, "El formato del teléfono debe ser ####-####"],
     },
+    image : {
+      type : String,
+      required : [true, "La imagen es obligatoria"],
+      trim : true
+    }
   },
   {
     timestamps: true,

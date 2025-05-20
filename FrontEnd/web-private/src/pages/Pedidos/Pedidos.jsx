@@ -15,6 +15,7 @@ const PaginaPedidos = () => {
       })
       .then((data) => {
         setPedidos(data);
+        console.log(data)
         setLoading(false);
       })
       .catch((err) => { 
