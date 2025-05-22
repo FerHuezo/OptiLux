@@ -25,6 +25,11 @@ const clientSchema = new Schema(
       required: [true, "La contraseña es obligatoria."],
       minlength: [6, "La contraseña debe tener al menos 6 caracteres."],
     },
+
+    isVerified: {
+    type: Boolean,
+    default: false
+}
   },
   {
     timestamps: true,

@@ -8,8 +8,23 @@ export const config = {
     },
 
     server:{
+        PORT: process.env.PORT || 4000,
+    },
 
-        PORT: process.env.PORT
-    }
+    JWT:{
+        SECRET : process.env.JWT_SECRET,
+        EXPIRESIN : process.env.JWT_EXPIRES
+    },
+
+    EMAIL:{
+        EMAILUSER: process.env.EMAIL_USER,
+        EMAILPASS: process.env.EMAIL_PASS,
+    },
+
+    EMAILADMIN:{
+        EMAILADMIN: process.env.ADMIN_EMAIL,
+        EMAILPASS: process.env.ADMIN_PASSWORD,
+    },
+
 
 }
