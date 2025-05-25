@@ -2,6 +2,7 @@ import { useAuth } from "../context/AuthContext";
 import React, { useEffect, useState } from "react";
 import {Toaster, toast} from "react-hot-toast";
 import { useNavigate, Navigate } from "react-router-dom";
+import "../pages/Login.css"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+ 
     e.preventDefault();
     if (!email || !password) {
       toast.error("Por favor, complete todos los campos.");
@@ -21,7 +23,8 @@ const Login = () => {
       toast.error(result.message || "Credenciales incorrectas.");
       return;
     }
-    
+
+    toast.success("Inicio de sesión exitoso.");
     
   };
 
@@ -69,7 +72,8 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+            className="buttonLogin"
+            onClick={handleSubmit}
           >
             Iniciar Sesión
           </button>

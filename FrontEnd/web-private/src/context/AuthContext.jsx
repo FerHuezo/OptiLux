@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
 
@@ -9,31 +9,30 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authCokie, setAuthCokie] = useState(null);
 
-      const Login = async (email, password) => {
-    try {
-      const response = await fetch(`${SERVER_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+const Login = async (email, password) => {
+  try {
+    const response = await fetch(`${SERVER_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error en la autenticación");
-      }
+    const data = await response.json(); 
 
-      const data = await response.json();
-      localStorage.setItem("authToken", data.token);
-      localStorage.setItem("user", JSON.stringify({ email }));
-      setAuthCokie(data.token);
-      setUser({ email });
-
-      return { success: true, message: data.message };
-
-    } catch (error) {
-      return { success: false, message: error.message };
+    if (!response.ok) {
+      throw new Error(data.message || "Error en la autenticación");
     }
-  };
+
+    localStorage.setItem("authToken", data.token);
+    localStorage.setItem("user", JSON.stringify({ email }));
+    setAuthCokie(data.token);
+    setUser({ email });
+
+    return { success: true, message: data.message };
+  } catch (error) {
+    return { success: false, message: error.message };
+  }
+};
 
     const logout = async () => {
 
@@ -64,4 +63,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => { useContext(AuthContext) };
+export const useAuth = () => useContext(AuthContext);
