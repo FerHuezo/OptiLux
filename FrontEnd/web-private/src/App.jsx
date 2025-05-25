@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import Menu from './pages/Menu/menu';
 import PedidosActivos from './pages/Pedidos/Pedidos';
 import ProductoFiltro from './pages/prodcutoFiltros/productoFiltro';
 import ProductoAros from './pages/productoAros/productoAros';
@@ -8,6 +9,7 @@ import ProductoAumento from './pages/productoAumento/productoAumento'
 import ProductoTerminales from './pages/productoTerminales/productoTerminales'
 import DetallePedido from './pages/DetallePedido/DetallePedido';
 import Sidebar from './components/SideBar/SideBar';
+import Login from './pages/Login';
 
 import { PrivateRoute } from './components/privateRoute';
 import { useAuth } from './context/AuthContext';
@@ -28,10 +30,10 @@ const App = () => {
     <>
     <Router>
       <Routes>
-
         {!authCokie ? <Route path="/login" element={<Login />} /> :null}
 
         <Route element = {<PrivateRoute/>}>
+        <Route path="/Menu" element={<Menu/>}/>
         <Route path="/Productos" element={<ProductosImportados/>}/>
         <Route path="/Productos/Filtros" element={<ProductoFiltro/>}/>
         <Route path="/Productos/Aros" element={<ProductoAros/>}/>
