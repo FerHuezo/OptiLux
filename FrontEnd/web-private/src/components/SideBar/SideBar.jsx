@@ -1,11 +1,25 @@
-import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './sidebar.css';
 import logo from '../../assets/logo-transparent-white.svg';
+import { useNavigate, NavLink } from "react-router-dom";
+
 
 // Íconos
 import { Boxes, ClipboardList, Home, LogOut } from 'lucide-react';
 
+
 const Sidebar = () => {
+
+  const navigate = useNavigate();
+  const {logout, authCokie} = useAuth();
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  }
+
+  if(!authCokie) return null; 
+
+
   return (
     <div className="sidebar">
       <div className="logo-container">
@@ -32,11 +46,12 @@ const Sidebar = () => {
 
       {/* Cerrar sesión al fondo */}
       <div style={{ marginTop: '400px' }}>
-        <NavLink to="/logout" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <LogOut size={18} />Cerrar sesión
-          </span>
-        </NavLink>
+        <button
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            onClick={handleLogout}
+          >
+            Cerrar Sesión
+          </button>
       </div>
     </div>
   );
