@@ -2,33 +2,44 @@ import { useAuth } from "../context/AuthContext";
 import React, { useEffect, useState } from "react";
 import {Toaster, toast} from "react-hot-toast";
 import { useNavigate, Navigate } from "react-router-dom";
+import "../pages/Login.css"
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { user, Login, logout, authCokie, setAuthCokie } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+ 
     e.preventDefault();
     if (!email || !password) {
       toast.error("Por favor, complete todos los campos.");
       return;
     }
     const result = await Login(email, password);
-
+    console.log("Resultado del login:", result);
     if (!result.success) {
       toast.error(result.message || "Credenciales incorrectas.");
       return;
     }
-    
+
+    toast.success("Inicio de sesión exitoso.");
+    setIsLoggedIn(true); 
     
   };
+/*
+useEffect(() => {
+  console.log("Entrando a useEffect del Login...");
+  console.log("authCokie:", authCokie);
+  console.log("isLoggedIn:", isLoggedIn);
 
-  useEffect(() => {
-    const miCookie = localStorage.getItem("authToken");
-    console.log(miCookie, "cookie desde el login useEffect");
-  }, []);
+  if (authCokie && isLoggedIn) {
+    console.log("Redirigiendo a productos...");
+    navigate("/Productos");
+  }
+}, [authCokie, isLoggedIn]);*/
 
   return (
     <div className="flex items-center justify-center bg-gray-100 h-screen">
@@ -69,7 +80,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
+            className="buttonLogin"
           >
             Iniciar Sesión
           </button>

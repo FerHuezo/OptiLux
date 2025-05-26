@@ -1,39 +1,42 @@
-import React, { use } from "react";
+import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
 
-const SERVER_URL = "http://localhost:4000/api";
+const SERVER_URL = "http://localhost:4000/api/login";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authCokie, setAuthCokie] = useState(null);
 
-      const Login = async (email, password) => {
-    try {
-      const response = await fetch(`${SERVER_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+const Login = async (email, password) => {
+try {
+    const response = await fetch(SERVER_URL, {
+      method: "POST",
+      credentials: "include", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error en la autenticación");
-      }
+    const data = await response.json();
 
-      const data = await response.json();
-      localStorage.setItem("authToken", data.token);
-      localStorage.setItem("user", JSON.stringify({ email }));
-      setAuthCokie(data.token);
-      setUser({ email });
-
-      return { success: true, message: data.message };
-
-    } catch (error) {
-      return { success: false, message: error.message };
+    if (!data.token) {
+      return { success: false, message: data.message || "Login fallido" };
     }
-  };
+
+   
+    localStorage.setItem("authToken", data.token);
+    setAuthCokie(data.token);
+    console.log("Token recibido:", data.token);
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error en Login:", error);
+    return { success: false, message: "Error de conexión con el servidor" };
+  }
+};
 
     const logout = async () => {
 
@@ -55,6 +58,10 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  useEffect(() => {
+  console.log("Token en authCokie cambió:", authCokie);
+  }, [authCokie]);
+
   return (
     <AuthContext.Provider
       value={{ user, Login, logout, authCokie, setAuthCokie }}
@@ -64,4 +71,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => { useContext(AuthContext) };
+export const useAuth = () => useContext(AuthContext);
