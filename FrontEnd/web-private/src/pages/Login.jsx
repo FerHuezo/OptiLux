@@ -2,6 +2,8 @@ import { useAuth } from "../context/AuthContext";
 import React, { useEffect, useState } from "react";
 import {Toaster, toast} from "react-hot-toast";
 import { useNavigate, Navigate } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa";
+import imageLogo from "../assets/logo-transparent-white.svg";
 import "../pages/Login.css"
 
 const Login = () => {
@@ -42,56 +44,25 @@ useEffect(() => {
 }, [authCokie, isLoggedIn]);*/
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 h-screen">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          Iniciar Sesión
-        </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-gray-700 font-medium mb-2"
-            >
-              Correo Electrónico
-            </label>
-            <input
-              type="text"
-              id="email"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-gray-700 font-medium mb-2"
-            >
-              Contraseña
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="buttonLogin"
-          >
-            Iniciar Sesión
-          </button>
-        </form>
-        <Toaster
-          toastOptions={{
-            duration: 2000,
-          }}
-        />
+    <div className="login-container">
+      <div className="image-side">
+        
       </div>
-
+      <div className="form-side">
+        <div className="logo">
+          <img src={imageLogo} alt="OptiLux Logo" />
+        </div>
+        <h1>Inicia Sesión</h1>
+        <div className="input-group">
+          <FaUser className="icon" />
+          <input type="email" placeholder="Correo Electrónico" required value={email} onChange={(e)=> setEmail(e.target.value)} />
+        </div>
+        <div className="input-group">
+          <FaLock className="icon" />
+          <input type="password" placeholder="Contraseña" required value={password} onChange={(e)=> setPassword(e.target.value)} />
+        </div>
+        <button onClick={handleSubmit}>Ingresar</button>
+      </div>
     </div>
   );
 };

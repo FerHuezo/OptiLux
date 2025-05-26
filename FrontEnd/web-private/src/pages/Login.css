@@ -1,15 +1,105 @@
-.buttonLogin{
-    width: 50%;
-    height: 50px;
-    display: flex ;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #4CAF50; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 25%;
+body {
+  background-color: #eeeeee;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  width: 950px;
+  height: 650px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 130px auto;
+}
+
+.image-side {
+  width: 50%;
+  background: url('../assets/iniciosesionoptilux.png') no-repeat center center;
+  background-size: cover;
+  border-right: 2px solid #B2D4E1;
+}
+
+.form-side {
+  width: 50%;
+  padding: 40px 30px;
+  background-color: #B2D4E1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-side h1 {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: white;
+  position: relative;
+}
+
+.form-side h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: white;
+  margin-top: 8px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.logo img {
+  width: 250px;
+  margin-right: 20px;
+  margin-bottom: 100px;
+}
+
+.logo-text {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.input-group .icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+.input-group input {
+  padding: 12px 12px 12px 35px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.input-group input::placeholder {
+  color: #888;
+}
+
+button {
+  margin-top: 20px;
+  margin-left: 25%;
+  background-color: #566D6F;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
 }
