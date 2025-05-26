@@ -7,4 +7,7 @@ router
 .route("/")
 .get(clientsController.getClients)
 
+router
+.route("/:id")
+.delete(clientsController.deleteClient)
 export default router;

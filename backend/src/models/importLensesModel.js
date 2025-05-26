@@ -12,12 +12,13 @@ const importLensSchema = new Schema(
       required: [true, "El precio es obligatorio."],
       min: [0, "El precio no puede ser negativo."],
     },
-    /*
-    idIncreaseLenses: {
-      type: Schema.Types.ObjectId,
-      ref: "increaseLenses",
+    
+    IncreaseLenses: {
+      type: String,
+      min: 0,
       required: [true, "El aumento de lentes es obligatorio."],
-    },*/
+    },
+
     amount: {
       type: Number,
       required: [true, "La cantidad es obligatoria."],
@@ -27,12 +28,12 @@ const importLensSchema = new Schema(
       type: String,
       required: [true, "La marca es obligatoria."],
       trim: true,
-    },/*
+    },
     img: {
       type: String,
       required : [true, "Imagen obligatoria."],
       trim : true,
-    }*/
+    }
   },
   {
     collection: 'importLenses',
