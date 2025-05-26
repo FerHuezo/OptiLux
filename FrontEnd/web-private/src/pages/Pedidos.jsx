@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../components/SideBar/Sidebar"; // Ajusta si tu ruta es distinta
+import Sidebar from "../components/SideBar/Sidebar";
 import ListPedidos from "../components/Pedidos/ListaPedidos";
 
 const Pedidos = () => {

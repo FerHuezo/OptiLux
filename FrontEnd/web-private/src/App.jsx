@@ -5,12 +5,12 @@ import Navegation from './components/Navegation';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
-  return (
+  return (      
+  <Router>
     <AuthProvider>
-      <Router>
-          <Navegation />
-      </Router>
+      <Navegation />
     </AuthProvider>
+  </Router>
   );
 }
 

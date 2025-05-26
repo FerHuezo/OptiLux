@@ -32,7 +32,7 @@ try {
     localStorage.setItem("authToken", data.token);
     setAuthCokie(data.token);
     console.log("Token recibido:", data.token);
-    navigate("/")
+    navigate("/Home")
     return { success: true };
     
   } catch (error) {
