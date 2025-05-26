@@ -25,7 +25,6 @@ try {
     if (!data.token) {
       return { success: false, message: data.message || "Login fallido" };
     }
-
    
     localStorage.setItem("authToken", data.token);
     setAuthCokie(data.token);

@@ -45,10 +45,10 @@ const Sidebar = () => {
       </nav>
 
       {/* Cerrar sesión al fondo */}
-      <div style={{ marginTop: '400px' }}>
+      <div className="logout-container">
         <button
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-            onClick={handleLogout}
+            onClick={handleLogout} 
           >
             Cerrar Sesión
           </button>
