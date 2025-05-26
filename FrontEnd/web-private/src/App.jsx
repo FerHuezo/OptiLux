@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import Navegation from './components/Navegation';
 import { AuthProvider } from './context/AuthContext';
 
-
 function App() {
   return (
     <AuthProvider>
@@ -14,9 +13,5 @@ function App() {
     </AuthProvider>
   );
 }
-
-
-
-
 
 export default App

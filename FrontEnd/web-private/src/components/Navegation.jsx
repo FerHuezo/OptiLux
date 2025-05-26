@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import PedidosActivos from '../pages/Pedidos/Pedidos';
-import ProductoFiltro from '../pages/prodcutoFiltros/productoFiltro';
-import ProductoAros from '../pages/productoAros/productoAros';
-import ProductosImportados from '../pages/productosImportados/productosImportados'
-import ProductoAumento from '../pages/productoAumento/productoAumento'
-import ProductoTerminales from '../pages/productoTerminales/productoTerminales'
-import DetallePedido from '../pages/DetallePedido/DetallePedido';
-import Sidebar from '../components/SideBar/SideBar';
-import Login from '../pages/Login';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 
-import { PrivateRoute } from '../components/privateRoute';
-import { useAuth } from '../context/AuthContext';
-import { use } from 'react';
+import Pedidos from "../pages/Pedidos";
+import Venta from "../pages/Venta";
+import Home from "../pages/Menu/menu";
+import ProductoFiltro from "../pages/prodcutoFiltros/productoFiltro";
+import ProductoAros from "../pages/productoAros/productoAros";
+import ProductosImportados from "../pages/productosImportados/productosImportados";
+import ProductoAumento from "../pages/productoAumento/productoAumento";
+import ProductoTerminales from "../pages/productoTerminales/productoTerminales";
+import Login from "../pages/LogIn/Login";
 
-function Navegation() {
-   const { authCokie } = useAuth();
+import { PrivateRoute } from "../components/privateRoute";
+import { useAuth } from "../context/AuthContext";
+import Sidebar from "../components/SideBar/SideBar";
+
+const AppRoutes = () => {
+  const { authCokie } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,23 +33,29 @@ function Navegation() {
 
   return (
     <>
-    <Sidebar />
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        {!authCokie ? <Route path="/login" element={<Login />} /> :null}
+      {authCokie && <Sidebar />}
 
-        <Route element = {<PrivateRoute/>}>
-        <Route path="/Productos" element={<ProductosImportados/>}/>
-        <Route path="/Productos/Filtros" element={<ProductoFiltro/>}/>
-        <Route path="/Productos/Aros" element={<ProductoAros/>}/>
-        <Route path="/Productos/Aumento" element={<ProductoAumento/>}/>
-        <Route path="/Productos/Terminales" element={<ProductoTerminales/>}/>
-        <Route path="/Pedidos" element={<PedidosActivos/>}/>
-        <Route path="/Pedidos/1" element={<DetallePedido/>}/>
-        </Route>
-      </Routes>
+      <div className={authCokie ? "ml-64" : ""}> 
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          {!authCokie && <Route path="/login" element={<Login />} />}
+
+          <Route element={<PrivateRoute />}>
+            <Route path="/Productos" element={<ProductosImportados />} />
+            <Route path="/Productos/Filtros" element={<ProductoFiltro />} />
+            <Route path="/Productos/Aros" element={<ProductoAros />} />
+            <Route path="/Productos/Aumento" element={<ProductoAumento />} />
+            <Route path="/Productos/Terminales" element={<ProductoTerminales />} />
+            <Route path="/Pedidos" element={<Pedidos />} />
+            <Route path="/Pedidos/:id" element={<Venta />} />
+          </Route>
+            <Route path="/" element={<Home />} />
+
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </div>
     </>
   );
-}  
+};
 
-export default Navegation;
+export default AppRoutes;

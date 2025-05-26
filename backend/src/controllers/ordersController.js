@@ -1,5 +1,4 @@
 import Order from "../models/ordersModel.js";
-import CustomLenses from "../models/customLensesModel.js"; 
 import requestMessages from "../utils/strings.js";
 
 const ordersController = {};

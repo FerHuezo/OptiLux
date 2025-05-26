@@ -1,13 +1,24 @@
-import PedidoCard from "./CardPedidos";
+import React from "react";
+import CardPedidos from "./CardPedidos";
+import useDataPedidos from "./hooks/useDataPedidos";
 
-const ListadoPedidos = ({ pedidos }) => {
+const ListPedidos = () => {
+  const { pedidos, isLoading } = useDataPedidos();
+
   return (
-    <div className="flex flex-col gap-6">
-      {pedidos.map((pedido) => (
-        <PedidoCard key={pedido.id} pedido={pedido} />
-      ))}
+    <div className="p-6 flex-1 bg-white">
+      <h1 className="text-2xl font-semibold mb-2">Bienvenido al menú de empleado</h1>
+      <h2 className="text-xl font-medium mb-4">Pedidos activos</h2>
+
+      {isLoading ? (
+        <p>Cargando pedidos...</p>
+      ) : (
+        pedidos.map((pedido) => (
+          <CardPedidos key={pedido._id} pedido={pedido} />
+        ))
+      )}
     </div>
   );
 };
 
-export default ListadoPedidos;
+export default ListPedidos;

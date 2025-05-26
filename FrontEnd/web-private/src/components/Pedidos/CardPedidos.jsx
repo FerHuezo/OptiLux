@@ -1,35 +1,24 @@
-import { MapPin, Mail, Phone, User } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { FaUser, FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 
-const PedidoCard = ({ pedido }) => {
-  const navigate = useNavigate();
+const CardPedidos = ({ pedido }) => {
+  const { idClient } = pedido;
 
   return (
-    <div className="bg-[#b7c6c9] p-6 rounded-lg shadow-md text-sm">
-      <div className="flex items-center gap-2 mb-2">
-        <User size={18} />
-        <span><strong>Cliente:</strong> {pedido.cliente}</span>
+    <div className="bg-[#C3D3D5] p-4 rounded-lg shadow mb-4">
+      <div className="flex flex-col gap-2 text-sm">
+        <p><FaUser className="inline mr-2" /> Cliente: {idClient?.name}</p>
+        <p><FaMapMarkerAlt className="inline mr-2" /> Dirección: {idClient?.address}</p>
+        <p><FaEnvelope className="inline mr-2" /> Correo: {idClient?.email}</p>
+        <p><FaPhone className="inline mr-2" /> Teléfono: {idClient?.phone}</p>
       </div>
-      <div className="flex items-center gap-2 mb-2">
-        <MapPin size={18} />
-        <span><strong>Dirección:</strong> {pedido.direccion}</span>
+      <div className="mt-4 text-center">
+        <button className="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-800 transition">
+          Ver detalles
+        </button>
       </div>
-      <div className="flex items-center gap-2 mb-2">
-        <Mail size={18} />
-        <span><strong>Correo:</strong> {pedido.correo}</span>
-      </div>
-      <div className="flex items-center gap-2 mb-4">
-        <Phone size={18} />
-        <span><strong>Teléfono:</strong> {pedido.telefono}</span>
-      </div>
-      <button
-        onClick={() => navigate(`/pedidos/${pedido.id}`)}
-        className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
-        Ver detalles
-      </button>
     </div>
   );
 };
 
-export default PedidoCard;
+export default CardPedidos;

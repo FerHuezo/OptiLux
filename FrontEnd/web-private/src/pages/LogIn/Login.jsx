@@ -1,10 +1,13 @@
-import { useAuth } from "../context/AuthContext";
 import React, { useEffect, useState } from "react";
+
 import {Toaster, toast} from "react-hot-toast";
 import { useNavigate, Navigate } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa";
-import imageLogo from "../assets/logo-transparent-white.svg";
-import "../pages/Login.css"
+
+import { useAuth } from "../../context/AuthContext";
+
+import imageLogo from "../../assets/logo-transparent-white.svg";
+import "./Login.css"
 
 const Login = () => {
   const [email, setEmail] = useState("");
