@@ -1,90 +1,92 @@
-body{
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
     background-color: white;
 }
 
-select{
-    background-color: #607578;
-    color: white;
-    border-radius: 10px;
-    width: 320px;
-    height: 58px;
-    font-size: 28px;
+.main {
+    margin-left: 260px;
+    padding: 20px;
 }
 
-body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+h1 {
+    margin-bottom: 30px;
+}
 
-    .main {
-        margin-left: 260px;
-        padding: 20px;
-    }
+.form-container {
+    background-color: #EBF5F6;
+    padding: 40px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 700px;
+    margin-top: 40px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 
-    #container{
-        display: flex;
-        justify-content: left;
-        align-items: left;
-        padding: 30px;
-        flex-direction: column;
-        background-color: #EBF5F6;
-        margin-top: 50px;
-        width: 80%;
-        height: 60vh;
-        border-radius: 20px;
-        
-    }
-    #contenedor2{
-      width: 50%;
-    }
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-
-    #container input{
-        width: 150px;
-        height: 40px;
-        border-radius: 10px;
-        border-color: #C3E0E4;
-        font-size: large;
-        
-    }
-  .container-child{
+.form-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
-    padding: 20px;
-    margin-left: 80px;
-  }
-  .container-child select{
+}
+
+.form-group label {
+    font-size: 18px;
+    font-weight: bold;
+    width: 120px;
+}
+
+.form-group select,
+.form-group input {
     background-color: #C3E0E4;
-    color: black ;
-    border-color: #C3E0E4;
-    width: auto;
-    padding: 12px;
-  }
+    color: black;
+    border: 1px solid #C3E0E4;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    width: 60%;
+}
 
-  .buttons{
+input[type="number"] {
+    background-color: #fff;
+}
 
-    width: 100%;
+.form-buttons {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-  }
+    gap: 40px;
+    margin-top: 20px;
+}
 
-  .childButton{
-
-    display: flex;
-    justify-content: space-between;
-    width: 60%;
-  }
-
-  button{
-    height: 60px;
-    width: 200px;
+button {
+    height: 50px;
+    width: 160px;
     background-color: #607578;
-    font-size: large;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
-    border-color: #C3E0E4 ;
+    border: none;
     border-radius: 10px;
-  }
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #4e5f62;
+}
+
+button.cancel {
+    background-color: #aab1b2;
+}
+
+button.cancel:hover {
+    background-color: #929a9b;
+}
