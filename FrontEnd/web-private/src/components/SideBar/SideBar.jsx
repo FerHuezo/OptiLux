@@ -3,10 +3,7 @@ import './sidebar.css';
 import logo from '../../assets/logo-transparent-white.svg';
 import { useNavigate, NavLink } from "react-router-dom";
 
-
-// Íconos
 import { Boxes, ClipboardList, Home, LogOut } from 'lucide-react';
-
 
 const Sidebar = () => {
 
@@ -42,6 +39,11 @@ const Sidebar = () => {
             <ClipboardList size={18} /> Pedidos
           </span>
         </NavLink>
+        <NavLink to="/Empleados" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <ClipboardList size={18} /> Empleados
+          </span>
+        </NavLink>
       </nav>
 
       {/* Cerrar sesión al fondo */}
@@ -50,7 +52,7 @@ const Sidebar = () => {
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
             onClick={handleLogout} 
           >
-            Cerrar Sesión
+            <LogOut size={18} /> Cerrar Sesión
           </button>
       </div>
     </div>

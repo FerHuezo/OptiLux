@@ -1,5 +1,6 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 
 const SERVER_URL = "http://localhost:4000/api/login";
@@ -8,6 +9,8 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [authCokie, setAuthCokie] = useState(null);
+    const navigate = useNavigate();
+
 
 const Login = async (email, password) => {
 try {
@@ -29,8 +32,9 @@ try {
     localStorage.setItem("authToken", data.token);
     setAuthCokie(data.token);
     console.log("Token recibido:", data.token);
-
+    navigate("/")
     return { success: true };
+    
   } catch (error) {
     console.error("Error en Login:", error);
     return { success: false, message: "Error de conexión con el servidor" };

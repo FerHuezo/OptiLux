@@ -33,8 +33,7 @@ const Login = () => {
 
     toast.success("Inicio de sesión exitoso.");
     setIsLoggedIn(true);
-    
-
+    navigate("/")
     
   };
 /*
