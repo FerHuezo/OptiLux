@@ -2,7 +2,7 @@ import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
 
-const SERVER_URL = "http://localhost:4000/api";
+const SERVER_URL = "http://localhost:4000/api/login";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,27 +10,31 @@ export const AuthProvider = ({ children }) => {
     const [authCokie, setAuthCokie] = useState(null);
 
 const Login = async (email, password) => {
-  try {
-    const response = await fetch(`${SERVER_URL}/login`, {
+try {
+    const response = await fetch(SERVER_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      credentials: "include", 
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json(); 
+    const data = await response.json();
 
-    if (!response.ok) {
-      throw new Error(data.message || "Error en la autenticación");
+    if (!data.token) {
+      return { success: false, message: data.message || "Login fallido" };
     }
 
+   
     localStorage.setItem("authToken", data.token);
-    localStorage.setItem("user", JSON.stringify({ email }));
     setAuthCokie(data.token);
-    setUser({ email });
+    console.log("Token recibido:", data.token);
 
-    return { success: true, message: data.message };
+    return { success: true };
   } catch (error) {
-    return { success: false, message: error.message };
+    console.error("Error en Login:", error);
+    return { success: false, message: "Error de conexión con el servidor" };
   }
 };
 
@@ -53,6 +57,10 @@ const Login = async (email, password) => {
       }
     }
   }, []);
+
+  useEffect(() => {
+  console.log("Token en authCokie cambió:", authCokie);
+  }, [authCokie]);
 
   return (
     <AuthContext.Provider

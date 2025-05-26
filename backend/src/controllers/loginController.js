@@ -29,7 +29,7 @@ loginController.login = async (req, res) => {
 
         if (!userFound) {
             console.log("Usuario no encontrado");
-            return res.json({message : "usuario no encontrado"})
+            return res.json({message : "usuario incorrecto"})
         }
 
 
@@ -49,7 +49,7 @@ loginController.login = async (req, res) => {
             (error, token) => {
                 if (error) console.log(error);
                 res.cookie("authToken", token);
-                res.json({message: 'Usuario logueado'});
+                res.json({message: 'Usuario logueado', token});
             }
         );
     } catch (error) {
