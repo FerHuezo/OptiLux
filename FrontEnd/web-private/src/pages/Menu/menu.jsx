@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import Ventas from "../../assets/ventas.png"
+import GraficoActivos from "../../components/Stats/Grafico";
 const Menu = () => {
 
 
@@ -11,7 +12,7 @@ const Menu = () => {
         <h2 className="text-xl font-medium mb-6">Estadisticas de venta</h2>
 
 
-<img src={Ventas} alt="" />
+<GraficoActivos/>
 
         
       </div>
