@@ -2,29 +2,23 @@ import React, {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 import { data } from "react-router";
 
-const useDataImport = ()=>{
+const useDataFiltro = ()=>{
     const [activeTab, setActiveTab] = useState("list");
-    const API = "http://localhost:4000/api/imported";
+    const API = "http://localhost:4000/api/filters";
     const [id, setId] = useState("");
-    const [color, setColor] = useState("");
+    const [typeFilter, setTypeFilter] = useState("");
     const [price, setPrice] = useState("");
-    const [amount, setAmount] = useState("");
-    const [brand, setBrand] = useState("");
-    const [increaseLenses, setIncreaseLenses] = useState("");
-    const [importLens, setImportLens] = useState([]);
+    const [filterLens, setFilterLens] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const cleanData = () => {
         setId("");
-        setColor("");
+        setTypeFilter("");
         setPrice("");
-        setAmount("");
-        setBrand("");
-        setIncreaseLenses("");
     }
 
     
-    const fetchImportLens = async() =>{
+    const fetchFiltro = async() =>{
       
         const response = await fetch(API);
         if(!response.ok){
@@ -32,27 +26,24 @@ const useDataImport = ()=>{
         }
 
         const data = await response.json();
-        setImportLens(data);
+        setFilterLens(data);
         setLoading(false);
     };
 
     useEffect(() => {
-        fetchImportLens();
+        fetchFiltro();
       }, []);
 
-    const saveImportLenses = async(e) =>{
+    const saveFilterLenses = async(e) =>{
         e.preventDefault();
 
-        const newImportLenses = {
-            color: color,
+        const newFilterLenses = {
+            typeFilter: typeFilter,
             price: Number(price),
-            amount : Number(amount),
-            increaseLenses: increaseLenses,
-            brand : brand,
             
         };
 
-        console.log("Enviando:", newImportLenses);
+        console.log("Enviando:", newFilterLenses);
         if (!color || !increaseLenses || !brand || !price || !amount) {
          toast.error("Todos los campos son obligatorios");
         return;
@@ -64,7 +55,7 @@ const useDataImport = ()=>{
                 "Content-Type": "application/json",
             },
             credentials: "include",
-            body: JSON.stringify(newImportLenses),
+            body: JSON.stringify(newFilterLenses),
         });
 
         if(!response.ok){
@@ -73,13 +64,10 @@ const useDataImport = ()=>{
 
         const data = await response.json();
         toast.success("nuevos lentes registrados exitosamente")
-        setImportLens(data);
-        fetchImportLens();
-        setColor("");
+        setFilterLens(data);
+        fetchFiltro();
+        setTypeFilter("");
         setPrice("");
-        setAmount("");
-        setBrand("");
-        setIncreaseLenses("");
     };
 
     const deleteImportLenses = async(id)=>{
@@ -94,16 +82,13 @@ const useDataImport = ()=>{
         }
 
         toast.success("lentes eliminados")
-        fetchImportLens();
+        fetchFiltro();
     };
 
-    const update = async(dataImportLens)=>{
-        setId(dataImportLens._id);
-        setColor(dataImportLens.color);
-        setPrice(dataImportLens.price);
-        setAmount(dataImportLens.amount);
-        setIncreaseLenses(dataImportLens.increaseLenses);
-        setBrand(dataImportLens.brand);
+    const update = async(dataFilterLens)=>{
+        setId(dataFilterLens._id);
+        setTypeFilter(dataFilterLens.filter);
+        setPrice(dataFilterLens.price);
         setActiveTab("form");
     };
 
@@ -111,19 +96,16 @@ const useDataImport = ()=>{
         e.preventDefault();
     
         try {
-          const editImportLens = {
-            color: color,
+          const editFilterLens = {
+            typeFilter: typeFilter,
             price: price,
-            amount : amount,
-            setIncreaseLenses: increaseLenses,
-            brand : brand,
           };
           const response = await fetch(`${API}/${id}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(editImportLens),
+            body: JSON.stringify(editFilterLens),
           });
     
           if (!response.ok) {
@@ -132,10 +114,10 @@ const useDataImport = ()=>{
     
           const data = await response.json();
           toast.success('Lentes Actualizados');
-          setImportLens(data);
+          setFilterLens(data);
           setId(""); 
          
-          fetchImportLens();
+          fetchFiltro();
         } catch (error) {
           console.error("Error al editar los lentes:", error);
           alert("Error al editar los lentes");
@@ -147,27 +129,21 @@ const useDataImport = ()=>{
         setActiveTab,
         id,
         setId,
-        color,
-        setColor,
+        typeFilter,
+        setTypeFilter,
         price,
         setPrice,
-        amount,
-        setAmount,
-        brand,
-        setBrand,
-        importLens,
-        setImportLens,
+        filterLens,
+        setFilterLens,
         loading,
         setLoading,
-        fetchImportLens,
-        saveImportLenses,
+        cleanData,
+        saveFilterLenses,
+        fetchFiltro,
         deleteImportLenses,
         update,
-        setIncreaseLenses,
-        increaseLenses,
         handleEdit,
-        cleanData
       };
 };
 
-export default useDataImport;
+export default useDataFiltro;

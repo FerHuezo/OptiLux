@@ -13,7 +13,7 @@ const importLensSchema = new Schema(
       min: [0, "El precio no puede ser negativo."],
     },
     
-    IncreaseLenses: {
+    increaseLenses: {
       type: String,
       min: 0,
       required: [true, "El aumento de lentes es obligatorio."],
@@ -29,11 +29,12 @@ const importLensSchema = new Schema(
       required: [true, "La marca es obligatoria."],
       trim: true,
     },
+    /*
     img: {
       type: String,
       required : [true, "Imagen obligatoria."],
       trim : true,
-    }
+    }*/
   },
   {
     collection: 'importLenses',

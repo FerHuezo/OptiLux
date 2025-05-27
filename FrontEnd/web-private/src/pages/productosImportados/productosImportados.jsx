@@ -2,65 +2,121 @@ import React from "react";
 import Sidebar from "../../components/SideBar/SideBar";
 import CategorySelector from "../../components/ComboBox/ComboBox";
 import './productosimportados.css';
+import useDataImport from "../../components/productosImportados/hooks/useDataImport";
+import RegisterImport from "../../components/productosImportados/registerProductsImport";
+import ListProduct from "../../components/productosImportados/listProductsImport";
+import {Toaster} from 'react-hot-toast';
 
 const ProductosImportados = () => {
-    return (
-        <>
-            <Sidebar />
-            <div className="main">
-                <h1>Añadir un nuevo producto</h1>
+    
+    
+    const { 
+        activeTab,
+        setActiveTab,
+        id,
+        setId,
+        color,
+        setColor,
+        price,
+        setPrice,
+        amount,
+        setAmount,
+        brand,
+        setBrand,
+        importLens,
+        setImportLens,
+        loading,
+        setLoading,
+        fetchImportLens,
+        saveImportLenses,
+        deleteImportLenses,
+        update,
+        increaseLenses,
+        setIncreaseLenses,
+        handleEdit,
+        cleanData,  
+    } = useDataImport();
 
-                <CategorySelector
-                    options={[
-                        { value: 'aumento', label: 'Aumento' },
-                        { value: 'filtros', label: 'Filtros' },
-                        { value: 'aros', label: 'Aros' },
-                        { value: 'terminales', label: 'Terminales' },
-                    ]}
-                />
-
-                <div className="form-container">
-                    <div className="form-section">
-                        <div className="form-group">
-                            <label>Color:</label>
-                            <select name="color">
-                                <option value="rojo">Rojo</option>
-                                <option value="verde">Verde</option>
-                                <option value="azul">Azul</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Marca:</label>
-                            <select name="marca">
-                                <option value="1">Marca 1</option>
-                                <option value="2">Marca 2</option>
-                                <option value="3">Marca 3</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Cantidad:</label>
-                            <select name="cantidad">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Precio:</label>
-                            <input type="number" name="precio" placeholder="Precio" required />
-                        </div>
-                    </div>
-
-                    <div className="form-buttons">
-                        <button>Guardar</button>
-                        <button className="cancel">Cancelar</button>
-                    </div>
-                </div>
+      return (
+            <>
+      <Sidebar />
+      <div className="contenedor-padre">
+        <div className="productos-container">
+          <div className="main-box">
+            <div className="category-selector">
+            <CategorySelector
+              options={[
+                { value: 'aumento', label: 'Aumento' },
+                { value: 'filtros', label: 'Filtros' },
+                { value: 'aros', label: 'Aros' },
+                { value: 'terminales', label: 'Terminales' },
+              ]}
+            />
             </div>
-        </>
-    );
+            <h1 className="titulo-principal">Gestión de Lentes Importados</h1>
+
+            <div className="tab-buttons">
+                <div className="tab-container">
+              <button
+                className={activeTab === 'list' ? 'tab-button active' : 'tab-button'}
+                onClick={() => setActiveTab("list")}
+              >
+                Lista de Lentes
+              </button>
+              <button
+                className={activeTab === 'form' ? 'tab-button active' : 'tab-button'}
+                onClick={() => {
+                  setActiveTab("form");
+                  cleanData();
+                }}
+              >
+                Gestionar Lentes
+              </button>
+              </div>
+            </div>
+
+            <div className="contenido-tab">
+              {activeTab === "list" && (
+                <ListProduct
+                  setId={setId}
+                  setActiveTab={setActiveTab}
+                  update={update}
+                  handleEdit={handleEdit}
+                  deleteImportLenses={deleteImportLenses}
+                  importLens={importLens}
+                  loading={loading}
+                />
+              )}
+              {activeTab === "form" && (
+                <RegisterImport
+                  id={id}
+                  setId={setId}
+                  color={color}
+                  setColor={setColor}
+                  increaseLenses={increaseLenses}
+                  setIncreaseLenses={setIncreaseLenses}
+                  price={price}
+                  setPrice={setPrice}
+                  amount={amount}
+                  setAmount={setAmount}
+                  brand={brand}
+                  setBrand={setBrand}
+                  saveImportLenses={saveImportLenses}
+                  handleEdit={handleEdit}
+                  loading={loading}
+                  setLoading={setLoading}
+                  importLens={importLens}
+                  setImportLens={setImportLens}
+                  cleanData={cleanData}
+                />
+              )}
+            </div>
+          </div>
+          <Toaster toastOptions={{ duration: 1500 }} />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default ProductosImportados;

@@ -1,92 +1,68 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
+.productos-container {
+  background: linear-gradient(to bottom right, #dbeafe, #ffffff);
+  min-height: 100vh;
+  padding: 2rem;
 }
 
-.main {
-    margin-left: 260px;
-    padding: 20px;
+.main-box {
+  max-width: 70%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  margin-left: 375px;
 }
 
-h1 {
-    margin-bottom: 30px;
+.titulo-principal {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.form-container {
-    background-color: #EBF5F6;
-    padding: 40px;
-    border-radius: 20px;
-    width: 80%;
-    max-width: 700px;
-    margin-top: 40px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1rem;
 }
 
-.form-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.tab-button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: #9ca3af;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+ 
+.tab-container {
+border-color: black;
+border-style: solid ;
+display: flex;
+flex-direction: row;
+width: 100%;
+margin-right: 190px;
 }
 
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.tab-button:hover {
+  background-color: #6b7280;
 }
 
-.form-group label {
-    font-size: 18px;
-    font-weight: bold;
-    width: 120px;
+.tab-button.active {
+  background-color: #2563eb;
 }
 
-.form-group select,
-.form-group input {
-    background-color: #C3E0E4;
-    color: black;
-    border: 1px solid #C3E0E4;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-size: 16px;
-    width: 60%;
+.contenido-tab {
+  margin-top: 1.5rem;
 }
 
-input[type="number"] {
-    background-color: #fff;
-}
-
-.form-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
-}
-
-button {
-    height: 50px;
-    width: 160px;
-    background-color: #607578;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-button:hover {
-    background-color: #4e5f62;
-}
-
-button.cancel {
-    background-color: #aab1b2;
-}
-
-button.cancel:hover {
-    background-color: #929a9b;
+.category-selector{
+    margin-bottom: 100px;
 }

@@ -25,7 +25,7 @@ importLensesController.getLenses = async (req, res) => {
 importLensesController.postLens = async (req, res) => {
   const { color, price, IncreaseLenses, amount, brand } = req.body;
 
-  let imageURL = "";
+ /* let imageURL = "";
 
   // Subir imagen a Cloudinary
   if (req.file) {
@@ -40,7 +40,7 @@ importLensesController.postLens = async (req, res) => {
       console.error("Error al subir la imagen a Cloudinary:", error);
       return res.status(requestMessages.SERVER_ERROR.code).json({ message: "Error al subir la imagen." });
     }
-  }
+  }*/
 
   try {
     const newLens = new Lens({
@@ -49,7 +49,7 @@ importLensesController.postLens = async (req, res) => {
       IncreaseLenses,
       amount,
       brand,
-      img: imageURL,
+      /*img: imageURL,*/
     });
 
     await newLens.save();
