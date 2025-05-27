@@ -22,7 +22,7 @@ const ListPedidos = () => {
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
           {[...Array(4)].map((_, index) => <SkeletonCard key={index} />)}
-        </div>
+        </div>  
       ) : pedidos.length === 0 ? (
         <p className="text-center text-gray-500 text-lg mt-4">No hay pedidos disponibles.</p>
       ) : (

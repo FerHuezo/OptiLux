@@ -19,7 +19,6 @@ import Login from "../pages/LogIn/Login";
 
 import { PrivateRoute } from "../components/privateRoute";
 import { useAuth } from "../context/AuthContext";
-import Sidebar from "../components/SideBar/SideBar";
 
 const AppRoutes = () => {
   const { authCokie } = useAuth();
@@ -33,7 +32,7 @@ const AppRoutes = () => {
 
   return (
   <>
-    {authCokie && <Sidebar />}
+    {authCokie}
 
     <div className={`flex ${authCokie ? "ml-64" : ""} w-full min-h-screen`}>
       <Routes>

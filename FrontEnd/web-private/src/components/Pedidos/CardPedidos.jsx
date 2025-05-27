@@ -1,9 +1,11 @@
 import React from "react";
 import { FaUser, FaPhoneAlt, FaEnvelopeOpenText, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const CardPedidos = ({ pedido }) => {
-  const { idClient } = pedido;
+  const navigate = useNavigate();
+  const { idClient, _id } = pedido;
 
   return (
     <motion.div
@@ -42,6 +44,7 @@ const CardPedidos = ({ pedido }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-6 rounded-full shadow-md hover:shadow-lg transition-all"
+          onClick={() => navigate(`/Pedidos/${_id}`)}
         >
           Ver detalles
         </motion.button>
