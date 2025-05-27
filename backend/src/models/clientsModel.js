@@ -15,10 +15,10 @@ const clientSchema = new Schema(
     email: {
       type: String,
       required: [true, "El correo electrónico es obligatorio."],
-      unique: true,
+     /* unique: true,
       trim: true,
       lowercase: true,
-      match: [/.+@.+\..+/, "Formato de correo electrónico no válido."],
+      match: [/.+@.+\..+/, "Formato de correo electrónico no válido."],*/
     },
     password: {
       type: String,

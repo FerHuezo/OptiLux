@@ -8,12 +8,14 @@ ordersController.getOrders = async (req, res) => {
   try {
     const orders = await Order.find()
       .populate("idClient")
-      .populate("importLenses.idProduct")
-      .populate("customLenses.idProduct");
+      .populate({
+        path: "products.idProduct",
+        options: { strictPopulate: false },
+      });
 
     res.status(requestMessages.SUCCESS.code).json(orders);
   } catch (error) {
-    console.error("Error al obtener las órdenes:", error); 
+    console.error("Error al obtener las órdenes:", error);
     res.status(requestMessages.SERVER_ERROR.code).json({
       message: "Error interno del servidor.",
     });
