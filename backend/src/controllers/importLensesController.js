@@ -1,13 +1,14 @@
 import Lens from "../models/importLensesModel.js";
 import requestMessages from "../utils/strings.js";
-import cloudinary from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+import { config } from "../config.js";
 
 // Configuración de Cloudinary
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+  cloud_name: config.cloudinary.cloud_name,
+  api_key: config.cloudinary.api_key,
+  api_secret: config.cloudinary.api_secret,
+}); 
 
 const importLensesController = {};
 
@@ -22,7 +23,7 @@ importLensesController.getLenses = async (req, res) => {
 };
 
 importLensesController.postLens = async (req, res) => {
-  const { color, price, increaseLens, amount, brand } = req.body;
+  const { color, price, IncreaseLenses, amount, brand } = req.body;
 
   let imageURL = "";
 
@@ -30,8 +31,8 @@ importLensesController.postLens = async (req, res) => {
   if (req.file) {
     try {
       const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "lenses",
-        allowed_formats: ["jpg", "png", "jpeg"],
+        folder: "public",
+        allowed_formats: ["jpg", "png", "jpeg", "webp"],
       });
 
       imageURL = result.secure_url;
@@ -45,7 +46,7 @@ importLensesController.postLens = async (req, res) => {
     const newLens = new Lens({
       color,
       price,
-      increaseLens,
+      IncreaseLenses,
       amount,
       brand,
       img: imageURL,
@@ -63,7 +64,7 @@ importLensesController.postLens = async (req, res) => {
 // Actualizar un lente, incluyendo opción para actualizar imagen en Cloudinary
 importLensesController.putLens = async (req, res) => {
   try {
-    const { color, price, increaseLens, amount, brand } = req.body;
+    const { color, price, IncreaseLenses, amount, brand } = req.body;
     let img = req.body.img; 
     const imageFile = req.file; 
 
@@ -77,7 +78,7 @@ importLensesController.putLens = async (req, res) => {
 
     const updatedLens = await Lens.findByIdAndUpdate(
       req.params.id,
-      { color, price, increaseLens, amount, brand, img },
+      { color, price, IncreaseLenses, amount, brand, img },
       { new: true }
     );
 
