@@ -32,30 +32,30 @@ const AppRoutes = () => {
   }, [authCokie]);
 
   return (
-    <>
-      {authCokie && <Sidebar />}
+  <>
+    {authCokie && <Sidebar />}
 
-      <div className={authCokie ? "ml-64" : ""}> 
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          {!authCokie && <Route path="/login" element={<Login />} />}
+    <div className={`flex ${authCokie ? "ml-64" : ""} w-full min-h-screen`}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        {!authCokie && <Route path="/login" element={<Login />} />}
+        
+        <Route element={<PrivateRoute />}>
+          <Route path="/Productos" element={<ProductosImportados />} />
+          <Route path="/Productos/Filtros" element={<ProductoFiltro />} />
+          <Route path="/Productos/Aros" element={<ProductoAros />} />
+          <Route path="/Productos/Aumento" element={<ProductoAumento />} />
+          <Route path="/Productos/Terminales" element={<ProductoTerminales />} />
+          <Route path="/Pedidos" element={<div className="flex-grow"><Pedidos /></div>} />
+          <Route path="/Pedidos/:id" element={<Venta />} />  
+          <Route path="/Home" element={<Home />} />
+        </Route>
 
-          <Route element={<PrivateRoute />}>
-            <Route path="/Productos" element={<ProductosImportados />} />
-            <Route path="/Productos/Filtros" element={<ProductoFiltro />} />
-            <Route path="/Productos/Aros" element={<ProductoAros />} />
-            <Route path="/Productos/Aumento" element={<ProductoAumento />} />
-            <Route path="/Productos/Terminales" element={<ProductoTerminales />} />
-            <Route path="/Pedidos" element={<Pedidos />} />
-            <Route path="/Pedidos/:id" element={<Venta />} />  
-            <Route path="/Home" element={<Home />} />
-          </Route>
-
-          <Route path="*" element={<Navigate to="/login" />} />
-        </Routes>
-      </div>
-    </>
-  );
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </div>
+  </>
+);
 };
 
 export default AppRoutes;
