@@ -44,7 +44,7 @@ const useDataFiltro = ()=>{
         };
 
         console.log("Enviando:", newFilterLenses);
-        if (!color || !increaseLenses || !brand || !price || !amount) {
+        if (!typeFilter || !price ) {
          toast.error("Todos los campos son obligatorios");
         return;
 }
@@ -70,7 +70,7 @@ const useDataFiltro = ()=>{
         setPrice("");
     };
 
-    const deleteImportLenses = async(id)=>{
+    const deleteFilterLenses = async(id)=>{
         const response = await fetch(`${API}/${id}`,{
             method: "DELETE",
             headers:{
@@ -140,7 +140,7 @@ const useDataFiltro = ()=>{
         cleanData,
         saveFilterLenses,
         fetchFiltro,
-        deleteImportLenses,
+        deleteFilterLenses,
         update,
         handleEdit,
       };
