@@ -1,4 +1,3 @@
-import { set } from "mongoose";
 import React, {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 import { data } from "react-router";
@@ -11,10 +10,22 @@ const useDataImport = ()=>{
     const [price, setPrice] = useState("");
     const [amount, setAmount] = useState("");
     const [brand, setBrand] = useState("");
+    const [increaseLenses, setIncreaseLenses] = useState("");
     const [importLens, setImportLens] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const cleanData = () => {
+        setId("");
+        setColor("");
+        setPrice("");
+        setAmount("");
+        setBrand("");
+        setIncreaseLenses("");
+    }
+
+    
     const fetchImportLens = async() =>{
+      
         const response = await fetch(API);
         if(!response.ok){
             throw new Error("hubo un error al obtener los lentes importados")
@@ -34,11 +45,18 @@ const useDataImport = ()=>{
 
         const newImportLenses = {
             color: color,
-            price: price,
-            amount : amount,
+            price: Number(price),
+            amount : Number(amount),
+            increaseLenses: increaseLenses,
             brand : brand,
             
         };
+
+        console.log("Enviando:", newImportLenses);
+        if (!color || !increaseLenses || !brand || !price || !amount) {
+         toast.error("Todos los campos son obligatorios");
+        return;
+}
 
         const response = await fetch(API,{
             method: "POST",
@@ -61,6 +79,7 @@ const useDataImport = ()=>{
         setPrice("");
         setAmount("");
         setBrand("");
+        setIncreaseLenses("");
     };
 
     const deleteImportLenses = async(id)=>{
@@ -83,6 +102,7 @@ const useDataImport = ()=>{
         setColor(dataImportLens.color);
         setPrice(dataImportLens.price);
         setAmount(dataImportLens.amount);
+        setIncreaseLenses(dataImportLens.increaseLenses);
         setBrand(dataImportLens.brand);
         setActiveTab("form");
     };
@@ -95,6 +115,7 @@ const useDataImport = ()=>{
             color: color,
             price: price,
             amount : amount,
+            setIncreaseLenses: increaseLenses,
             brand : brand,
           };
           const response = await fetch(`${API}/${id}`, {
@@ -121,7 +142,7 @@ const useDataImport = ()=>{
         }
       };
     
-      return(
+      return{
         activeTab,
         setActiveTab,
         id,
@@ -142,8 +163,11 @@ const useDataImport = ()=>{
         saveImportLenses,
         deleteImportLenses,
         update,
-        handleEdit
-      );
-}
+        setIncreaseLenses,
+        increaseLenses,
+        handleEdit,
+        cleanData
+      };
+};
 
 export default useDataImport;

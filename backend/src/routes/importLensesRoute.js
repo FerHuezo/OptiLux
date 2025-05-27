@@ -9,11 +9,11 @@ const upload = multer({ dest: "public/" });
 router
   .route("/")
   .get(importLensesController.getLenses) 
-  .post(upload.single("img"), importLensesController.postLens); 
+  .post(/*upload.single("img"),*/ importLensesController.postLens); 
 
 router
   .route("/:id")
-  .put(upload.single("img"), importLensesController.putLens) 
+  .put(/*upload.single("img"), */importLensesController.putLens) 
   .delete(importLensesController.deleteLens); 
 
 export default router;

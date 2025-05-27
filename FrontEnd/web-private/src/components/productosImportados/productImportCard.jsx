@@ -1,30 +1,39 @@
 import React from "react";
+import "./card.css";
 
-const productCard = ({})=>{
+const ProductCard = ({ importLen, deleteImportLenses, update }) => {
+  if (!importLen) {
+    return <div className="product-loading">Cargando...</div>;
+  }
 
-    return(
-        <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
-        <div className="px-6 py-4">
-          <h2 className="text-xl font-bold text-gray-800 mb-2">
-            Marca:{" "}
-            <span className="text-xl font-medium text-gray-700">
-              {brand.name}{" "}
-            </span>
-          </h2>
-  
-                  <button 
-          label={"Eliminar"}
-          actionButton={() => deleteBrand(brand._id)}
-          colorClass={"danger"}
-          />
-                  <button 
-          label={"Editar Información"}
-          actionButton={() => updateBrands(brand)}
-          colorClass={"warning"}
-          />
-        </div>
+  return (
+    <div className="product-card">
+      <img
+        src={importLen.imageUrl}
+        alt="Producto"
+        className="product-image"
+      />
+      <h3 className="product-title">Marca: {importLen.brand}</h3>
+      <p><span className="label">Color:</span> {importLen.color}</p>
+      <p><span className="label">Cantidad:</span> {importLen.amount}</p>
+      <p><span className="label">Precio:</span> ${importLen.price}</p>
+      <p><span className="label">Aumento:</span> {importLen.increaseLenses}</p>
+      <div className="product-actions">
+        <button
+          onClick={() => deleteImportLenses(importLen._id)}
+          className="btn btn-delete"
+        >
+          Eliminar
+        </button>
+        <button
+          onClick={() => update(importLen)}
+          className="btn btn-edit"
+        >
+          Editar
+        </button>
       </div>
-    );
-}
+    </div>
+  );
+};
 
-export default productCard;
+export default ProductCard;

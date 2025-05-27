@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import './productoFiltro.css';
+
 import CategorySelector from '../../components/ComboBox/ComboBox';
+
+import {Toaster} from 'react-hot-toast';
+
 
 
 const ProductoFiltro = () =>{
+
     return( 
     <>
         <SideBar/>
@@ -56,6 +61,5 @@ const ProductoFiltro = () =>{
         </div>
     </>
     );
-   
 }
 export default ProductoFiltro;
