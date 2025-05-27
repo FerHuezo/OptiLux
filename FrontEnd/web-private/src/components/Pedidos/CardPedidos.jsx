@@ -10,7 +10,7 @@ const CardPedidos = ({ pedido }) => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4 }}
-      className="bg-gradient-to-r from-indigo-200 to-indigo-300 p-4 rounded-xl shadow-lg border border-gray-300 hover:shadow-xl transform hover:scale-105 transition-all w-full"
+      className="bg-gradient-to-r from-indigo-200 to-indigo-300 p-4 rounded-xl shadow-lg border border-gray-300 hover:shadow-xl transform hover:scale-102 transition-all w-full"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-900">
         <div className="flex items-center gap-2">

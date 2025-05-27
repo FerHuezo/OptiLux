@@ -3,7 +3,6 @@ import requestMessages from "../utils/strings.js";
 import { v2 as cloudinary } from "cloudinary";
 import { config } from "../config.js";
 
-// Configuración de Cloudinary
 cloudinary.config({
   cloud_name: config.cloudinary.cloud_name,
   api_key: config.cloudinary.api_key,
@@ -12,7 +11,6 @@ cloudinary.config({
 
 const importLensesController = {};
 
-// Obtener todos los lentes importados
 importLensesController.getLenses = async (req, res) => {
   try {
     const lenses = await Lens.find();
@@ -25,9 +23,8 @@ importLensesController.getLenses = async (req, res) => {
 importLensesController.postLens = async (req, res) => {
   const { color, price, IncreaseLenses, amount, brand } = req.body;
 
- /* let imageURL = "";
+  let imageURL = "";
 
-  // Subir imagen a Cloudinary
   if (req.file) {
     try {
       const result = await cloudinary.uploader.upload(req.file.path, {
@@ -40,7 +37,7 @@ importLensesController.postLens = async (req, res) => {
       console.error("Error al subir la imagen a Cloudinary:", error);
       return res.status(requestMessages.SERVER_ERROR.code).json({ message: "Error al subir la imagen." });
     }
-  }*/
+  }
 
   try {
     const newLens = new Lens({
@@ -49,7 +46,7 @@ importLensesController.postLens = async (req, res) => {
       IncreaseLenses,
       amount,
       brand,
-      /*img: imageURL,*/
+      img: imageURL
     });
 
     await newLens.save();
@@ -61,7 +58,6 @@ importLensesController.postLens = async (req, res) => {
   }
 };
 
-// Actualizar un lente, incluyendo opción para actualizar imagen en Cloudinary
 importLensesController.putLens = async (req, res) => {
   try {
     const { color, price, IncreaseLenses, amount, brand } = req.body;

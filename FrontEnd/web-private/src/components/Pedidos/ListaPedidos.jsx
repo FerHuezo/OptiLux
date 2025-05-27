@@ -17,8 +17,7 @@ const ListPedidos = () => {
 
   return (
     <div className="flex flex-col justify-start w-full overflow-hidden">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Bienvenido al menú de empleado</h1>
-      <h2 className="text-xl font-medium mb-4 text-gray-700">Pedidos activos</h2>
+      <h2 className="text-xl font-medium mb-4 text-gray-700 mt-5">Pedidos activos</h2>
 
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
