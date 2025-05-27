@@ -12,11 +12,12 @@ const filterSchema = new Schema(
       required: [true, "El precio es obligatorio."],
       min: [0, "El precio no puede ser negativo."],
     },
+    /*
     image : {
       type : String,
       required : [true, "La imagen es obligatoria"],
       trim : true
-    }
+    }*/
   },
   {
     timestamps: true,

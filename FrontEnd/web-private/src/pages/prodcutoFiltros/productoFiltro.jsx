@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import './productoFiltro.css';
-
+import useDataFiltro from "../../components/productosFiltros/hooks/useDataFiltro";
 import CategorySelector from '../../components/ComboBox/ComboBox';
 
 import {Toaster} from 'react-hot-toast';
@@ -9,6 +9,27 @@ import {Toaster} from 'react-hot-toast';
 
 
 const ProductoFiltro = () =>{
+    
+    const {
+        activeTab,
+        setActiveTab,
+        id,
+        setId,
+        typeFilter,
+        setTypeFilter,
+        price,
+        setPrice,
+        filterLens,
+        setFilterLens,
+        loading,
+        setLoading,
+        fetchFiltro,
+        saveFilterLenses,
+        deleteFilterLenses,
+        update,
+        handleEdit,
+        cleanData,
+    } = useDataFiltro();
 
     return( 
     <>

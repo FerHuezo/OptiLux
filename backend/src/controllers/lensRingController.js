@@ -3,11 +3,11 @@ import requestMessages from "../utils/strings.js";
 import cloudinary from "cloudinary";
 
 // Configuración de Cloudinary
-cloudinary.config({
+/*cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+});*/
 
 const lensRingController = {};
 
@@ -25,7 +25,7 @@ lensRingController.getLensRing = async (req, res) => {
 lensRingController.postLensRing = async (req, res) => {
   try {
     const { typeLens, price } = req.body;
-    const imageFile = req.file; // El archivo debe ser manejado con Multer
+   /* const imageFile = req.file; // El archivo debe ser manejado con Multer
 
     if (!typeLens || !price || !imageFile) {
       return res.status(requestMessages.BAD_REQUEST.code).json({ message: "Todos los campos son obligatorios." });
@@ -34,12 +34,12 @@ lensRingController.postLensRing = async (req, res) => {
     // Subir imagen a Cloudinary
     const uploadResult = await cloudinary.v2.uploader.upload(imageFile.path, {
       folder: "lensRings",
-    });
+    });*/
 
     const lensRing = new lensRingModel({
       typeLens,
       price,
-      img: uploadResult.secure_url, // Guardar URL de la imagen
+     /* img: uploadResult.secure_url,*/ // Guardar URL de la imagen
     });
 
     await lensRing.save();
@@ -53,17 +53,17 @@ lensRingController.postLensRing = async (req, res) => {
 lensRingController.putLensRing = async (req, res) => {
   try {
     const { typeLens, price } = req.body;
-    const imageFile = req.file;
+    /*const imageFile = req.file;*/
 
     let updateData = { typeLens, price };
 
     // Si hay una nueva imagen, subirla a Cloudinary y actualizar
-    if (imageFile) {
+  /*  if (imageFile) {
       const uploadResult = await cloudinary.v2.uploader.upload(imageFile.path, {
         folder: "lensRings",
       });
       updateData.img = uploadResult.secure_url;
-    }
+    }*/
 
     const updatedLensRing = await lensRingModel.findByIdAndUpdate(req.params.id, updateData, { new: true });
 
