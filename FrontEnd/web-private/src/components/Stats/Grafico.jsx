@@ -8,13 +8,13 @@ const GraficoActivos = () => {
   const [cantidadActivos, setCantidadActivos] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/importLenses')
+    axios.get('http://localhost:4000/api/orders')
       .then(res => setCantidadActivos(res.data.activos))
       .catch(err => console.error(err));
   }, []);
 
   const data = [
-    { name: 'Productos Importados', cantidad: cantidadActivos }
+    { name: 'Ordenes activas', cantidad: cantidadActivos }
   ];
 
   return (
