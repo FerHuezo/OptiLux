@@ -1,4 +1,4 @@
-/*import AumentoCard from "./productAumentoCard";*/
+import ProductAroCard from "./productAroCard";
 import React from "react";
 
 const ListProduct = ({ deleteRingLenses, update, loading, aroLens }) => {
@@ -12,7 +12,7 @@ const ListProduct = ({ deleteRingLenses, update, loading, aroLens }) => {
 
         {aroLens?.length > 0 ? (
           aroLens.map((aroLen) => (
-            <AumentoCard
+            <ProductAroCard
               key={aroLen._id}
               aroLen={aroLen}
               deleteRingLenses={deleteRingLenses}
