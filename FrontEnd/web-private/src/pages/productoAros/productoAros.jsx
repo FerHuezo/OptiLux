@@ -2,61 +2,108 @@ import React from "react";
 import './productoAros.css';
 import Sidebar from "../../components/SideBar/SideBar";
 import CategorySelector from '../../components/ComboBox/ComboBox';
+import useDataAro from "../../components/productosAro/hooks/useDataAro";
+import ListProductAro from "../../components/productosAro/listProductAro";
+import RegisterAro from "../../components/productosAro/registerProductAro";
+import { Toaster } from "react-hot-toast";
 
 const ProductoAros = () =>{
-    return(
-    <>
-                <Sidebar/>
+    
+    const {
+        activeTab,
+        setActiveTab,
+        id,
+        setId,
+        typeLens,
+        setTypeLens,
+        aroLens,
+        setAroLens,
+        price,
+        setPrice,
+        loading,
+        setLoading,
+        cleanData,
+        saveRingLenses,
+        fetchAros,
+        deleteRingLenses,
+        update,
+        handleEdit,
+    } = useDataAro();
+    
+    return( 
+        <>
+    <Sidebar />
+    <div className="contenedor-padre">
+      <div className="productos-container">
+        <div className="main-box">
+          <div className="category-selector">
+          <CategorySelector
+            options={[
+              { value: ' ', label: 'Lentes Importados' },   
+              { value: 'aumento', label: 'Aumento' },
+              { value: 'aros', label: 'Aros' },
+              { value: 'terminales', label: 'Terminales' },
+            ]}
+          />
+          </div>
+          <h1 className="titulo-principal">Gestión de Aros</h1>
 
-                <div className="main">
-            <h1>Añadir un nuevo producto</h1>
-
-            <CategorySelector
-                    placeholder="Aros"
-                    options={[
-                        { value: ' ', label: 'Lentes Importados' },
-                        { value: 'filtros', label: 'Filtros' },
-                        { value: 'aros', label: 'Aros' },
-                        { value: 'terminales', label: 'Terminales' },
-                    ]}
-                />
-
-            <br />
-            <br />
-                     <h1>Tipo de lente</h1>           
-            <select name="combo" id="">
-                <option value="value1">Lentes importados</option>
-                <option value="value2">Lentes arreglados</option>
-                <option value="value2">Lentes opcion</option>
-            </select>
-
-            <div id="container">
-                <div id="contenedor2">
-                    <div className="container-child">
-                    <h2>Forma: </h2>
-                        <select name="combo" id="">
-                            <option value="value1">Cuadrado</option>
-                            <option value="value2">Ovalado</option>
-                            <option value="value2">circular</option>
-                        </select>
-                    </div>
-                    <div className="container-child">
-                    <h2>Precio:</h2>
-                    <input type="number" id="precio" name="precio" placeholder="Precio" required/>
-                    </div>
-                </div>
-            <div className="buttons">
-                <div className="childButton">
-                <button>Guardar</button>
-                <button>Cancelar</button>
-                </div>
+          <div className="tab-buttons">
+              <div className="tab-container">
+            <button
+              className={activeTab === 'list' ? 'tab-button active' : 'tab-button'}
+              onClick={() => setActiveTab("list")}
+            >
+              Lista de Aros
+            </button>
+            <button
+              className={activeTab === 'form' ? 'tab-button active' : 'tab-button'}
+              onClick={() => {
+                setActiveTab("form");
+                cleanData();
+              }}
+            >
+              Gestionar Aros
+            </button>
             </div>
+          </div>
 
-            </div>
-               
+          <div className="contenido-tab">
+            {activeTab === "list" && (
+              <ListProductAro
+                setId={setId}
+                setActiveTab={setActiveTab}
+                update={update}
+                handleEdit={handleEdit}
+                deleteRingLenses={deleteRingLenses}
+                typeLens={typeLens}
+                loading={loading}
+              />
+            )}
+            {activeTab === "form" && (
+              <RegisterAro
+                id={id}
+                setId={setId}
+                price={price}
+                setPrice={setPrice}
+                typeLens={typeLens}
+                setTypeLens={setTypeLens}
+                saveRingLenses={saveRingLenses}
+                handleEdit={handleEdit}
+                loading={loading}
+                setLoading={setLoading}
+                aroLens={aroLens}
+                setAroLens={setAroLens}
+                cleanData={cleanData}
+              />
+            )}
+          </div>
         </div>
-    </>
-    );
+        <Toaster toastOptions={{ duration: 1500 }} />
+      </div>
+    </div>
+  </>
+  );
     
 }
 export default ProductoAros;

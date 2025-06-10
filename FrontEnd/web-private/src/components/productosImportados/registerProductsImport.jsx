@@ -19,6 +19,7 @@ const RegisterImport = ({setColor, color, setPrice, price, setAmount, amount, se
           value={color}
           onChange={(e) => setColor(e.target.value)}
         >
+          <option value="" selected >Selecciona una opición</option>
           <option value="rojo">Rojo</option>
           <option value="verde">Verde</option>
           <option value="azul">Azul</option>
@@ -32,6 +33,7 @@ const RegisterImport = ({setColor, color, setPrice, price, setAmount, amount, se
           value={increaseLenses}
           onChange={(e) => setIncreaseLenses(e.target.value)}
         >
+          <option value="" selected >Selecciona una opición</option>
           <option value="bajo">1.4</option>
           <option value="masBajo">1</option>
           <option value="superBajo">-0.20</option>
@@ -45,6 +47,7 @@ const RegisterImport = ({setColor, color, setPrice, price, setAmount, amount, se
           value={brand}
           onChange={(e) => setBrand(e.target.value)}
         >
+          <option value="" selected >Selecciona una opición</option>
           <option value="1">Marca 1</option>
           <option value="2">Marca 2</option>
           <option value="3">Marca 3</option>
@@ -61,6 +64,7 @@ const RegisterImport = ({setColor, color, setPrice, price, setAmount, amount, se
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         >
+          <option value="" selected >Selecciona la cantidad</option>
           {[1, 2, 3, 4, 5].map(n => (
             <option key={n} value={n}>{n}</option>
           ))}

@@ -4,7 +4,7 @@ dotenv.config();
 
 export const config = {   
     dataBase:{
-        URI: process.env.URI  
+        URI: process.env.DB_URI  
     },
 
     server:{

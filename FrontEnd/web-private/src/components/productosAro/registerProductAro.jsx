@@ -18,9 +18,9 @@ const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id
           value={typeLens}
           onChange={(e) => setTypeLens(e.target.value)}
         >
-          <option value="ovalados">ovalados</option>
+          <option value="ovalados">Ovalados</option>
           <option value="Rectangulares">Rectangulares</option>
-          <option value="circulados">circulados</option>
+          <option value="circulados">Circulados</option>
           <option value="Cerrados">Cerrados</option>
         </select>
       </div>
