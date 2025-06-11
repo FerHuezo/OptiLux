@@ -76,7 +76,7 @@ const ProductoAros = () =>{
                 update={update}
                 handleEdit={handleEdit}
                 deleteRingLenses={deleteRingLenses}
-                typeLens={typeLens}
+                aroLens={aroLens}
                 loading={loading}
               />
             )}
