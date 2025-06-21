@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { data } from "react-router";
 
 const useDataAro = ()=>{
+  
     const [activeTab, setActiveTab] = useState("list");
     const API = "http://localhost:4000/api/lensRing";
     const [id, setId] = useState("");
@@ -47,7 +48,7 @@ const useDataAro = ()=>{
         if (!typeLens || !price ) {
          toast.error("Todos los campos son obligatorios");
         return;
-}
+        }
 
         const response = await fetch(API,{
             method: "POST",
@@ -114,7 +115,7 @@ const useDataAro = ()=>{
     
           const data = await response.json();
           toast.success('Lentes Actualizados');
-          setIncreaseLens(data);
+          setAroLens(data);
           setId(""); 
          
           fetchAumento();

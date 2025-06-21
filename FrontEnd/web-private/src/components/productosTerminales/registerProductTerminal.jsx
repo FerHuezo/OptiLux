@@ -1,6 +1,7 @@
 import React from "react";
 
-const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id, handleEdit}) =>{
+
+const RegisterTerminal = ({setTypeTerminals, typeTerminals, setPrice, price, saveTerminalLenses, id, handleEdit}) =>{
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-6">
@@ -12,17 +13,16 @@ const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id
 
   <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Nombre</label>
+        <label className="block text-sm font-medium text-gray-700">Material</label>
         <select
           className="w-full mt-1 p-2 border rounded-lg bg-gray-50"
-          value={typeLens}
-          onChange={(e) => setTypeLens(e.target.value)}
+          value={typeTerminals}
+          onChange={(e) => setTypeTerminals(e.target.value)}
         > 
           <option value="" disabled>Seleccione una opción</option>
-          <option value="ovalados">Ovalados</option>
-          <option value="Rectangulares">Rectangulares</option>
-          <option value="circulados">Circulados</option>
-          <option value="Cerrados">Cerrados</option>
+          <option value="Goma">Goma</option>
+          <option value="Plastico">Plastico</option>
+          <option value="Metalicos">Metalicos</option>
         </select>
       </div>
       
@@ -45,7 +45,7 @@ const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id
   <div className="mt-6">
     <button
       className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition" style={{ marginLeft: "39%" }}
-      onClick={(e) => id ? handleEdit(e) : saveRingLenses(e)}
+      onClick={(e) => id ? handleEdit(e) : saveTerminalLenses(e)}
     >
       {id ? "Editar" : "Guardar"}
     </button>
@@ -54,4 +54,4 @@ const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id
     );
 }
 
-export default RegisterAro;
+export default RegisterTerminal;
