@@ -14,7 +14,7 @@ loginController.login = async (req, res) => {
         let userFound;
         let userType;
 
-        if(email === config.EMAIL.ADMINEMAIL && password === config.EMAIL.ADMINPASSWORD)
+        if(email === config.EMAILADMIN.ADMINEMAIL && password === config.EMAILADMIN.EMAILPASS)
         {
            (userType = "admin"), (userFound = {_id: "admin"});
         } else{

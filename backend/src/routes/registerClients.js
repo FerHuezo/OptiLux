@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
 .route("/").post(registerClientsController.registerClient);
-router.route("/verifyCodeEmail").post(registerClientsController.verifyCodeEmail);
+router
+.route("/verifyCodeEmail").post(registerClientsController.verifyCodeEmail);
 
 export default router;

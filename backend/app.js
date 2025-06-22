@@ -14,6 +14,8 @@ import registerEmployeesRoute from "./src/routes/registerEmployeesRoute.js";
 import employeesRoute from "./src/routes/employeesRoute.js";
 import loginRoute from "./src/routes/login.js";
 import logoutRoute from "./src/routes/logout.js";
+import salesRoute from "./src/routes/salesRoute.js"
+
 import dotenv from "dotenv";
 
 
@@ -44,6 +46,7 @@ app.use("/api/orders", ordersRoute);
 app.use("/api/registerClients", clientsRegisterRoute);
 app.use("/api/registerEmployees", registerEmployeesRoute);
 app.use("/api/employees", employeesRoute);
+app.use("/api/sales", salesRoute)
 
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);

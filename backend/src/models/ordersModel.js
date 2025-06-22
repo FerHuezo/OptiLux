@@ -7,23 +7,24 @@ const orderSchema = new Schema(
       ref: "Clients",
       required: [true, "El cliente es obligatorio."],
     },
-    importLenses: [
+    products: [
       {
         idProduct: {
           type: Schema.Types.ObjectId,
-          ref: "importLenses",
-          required: [true, "El producto es obligatorio."],
-        }
-      }
-    ],
-    customLenses: [
-      {
-        idProduct: {
-          type: Schema.Types.ObjectId,
-          ref: "customLenses",
-          required: [true, "El producto es obligatorio."],
-        }
-      }
+          required: true,
+          refPath: "products.productType", // Dinámico según el tipo
+        },
+        productType: {
+          type: String,
+          required: true,
+          enum: ["importLenses", "customLenses"],
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+          min: [1, "La cantidad mínima es 1."],
+        },
+      },
     ],
     total: {
       type: Number,
@@ -31,9 +32,10 @@ const orderSchema = new Schema(
       min: [0, "El total no puede ser negativo."],
     },
     status: {
-      type: Boolean,
-      default: true,
-    }
+      type: String,
+      enum: ["pendiente", "en_proceso", "completado", "cancelado"],
+      default: "pendiente",
+    },
   },
   {
     timestamps: true,

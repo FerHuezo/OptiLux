@@ -1,35 +1,56 @@
-import { MapPin, Mail, Phone, User } from "lucide-react";
+import React from "react";
+import { FaUser, FaPhoneAlt, FaEnvelopeOpenText, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-const PedidoCard = ({ pedido }) => {
+const CardPedidos = ({ pedido }) => {
   const navigate = useNavigate();
+  const { idClient, _id } = pedido;
 
   return (
-    <div className="bg-[#b7c6c9] p-6 rounded-lg shadow-md text-sm">
-      <div className="flex items-center gap-2 mb-2">
-        <User size={18} />
-        <span><strong>Cliente:</strong> {pedido.cliente}</span>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4 }}
+      className="bg-gradient-to-r from-indigo-200 to-indigo-300 p-4 rounded-xl shadow-lg border border-gray-300 hover:shadow-xl transform hover:scale-102 transition-all w-full"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-900">
+        <div className="flex items-center gap-2">
+          <FaUser className="text-blue-600" />
+          <span className="font-semibold">Cliente:</span> {idClient.firstName} {idClient.lastName}
+        </div>
+        <div className="flex items-center gap-2">
+          <FaPhoneAlt className="text-red-600" />
+          <span className="font-semibold">Teléfono:</span> {idClient.telephone}
+        </div>
+        <div className="flex items-center gap-2">
+          <FaEnvelopeOpenText className="text-green-600" />
+          <span className="font-semibold">Correo:</span> {idClient.email}
+        </div>
+        <div className="flex items-center gap-2">
+          {idClient.isVerified ? (
+            <FaCheckCircle className="text-green-600" />
+          ) : (
+            <FaTimesCircle className="text-gray-600" />
+          )}
+          <span className="font-semibold">
+            {idClient.isVerified ? "✅ Verificado" : "❌ No verificado"}
+          </span>
+        </div>
       </div>
-      <div className="flex items-center gap-2 mb-2">
-        <MapPin size={18} />
-        <span><strong>Dirección:</strong> {pedido.direccion}</span>
+
+      <div className="mt-4 flex justify-center">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-6 rounded-full shadow-md hover:shadow-lg transition-all"
+          onClick={() => navigate(`/Pedidos/${_id}`)}
+        >
+          Ver detalles
+        </motion.button>
       </div>
-      <div className="flex items-center gap-2 mb-2">
-        <Mail size={18} />
-        <span><strong>Correo:</strong> {pedido.correo}</span>
-      </div>
-      <div className="flex items-center gap-2 mb-4">
-        <Phone size={18} />
-        <span><strong>Teléfono:</strong> {pedido.telefono}</span>
-      </div>
-      <button
-        onClick={() => navigate(`/pedidos/${pedido.id}`)}
-        className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-      >
-        Ver detalles
-      </button>
-    </div>
+    </motion.div>
   );
 };
 
-export default PedidoCard;
+export default CardPedidos;
