@@ -15,6 +15,7 @@ import employeesRoute from "./src/routes/employeesRoute.js";
 import loginRoute from "./src/routes/login.js";
 import logoutRoute from "./src/routes/logout.js";
 import salesRoute from "./src/routes/salesRoute.js"
+import customLensesRoute from "./src/routes/customLensesRoute.js";
 
 import dotenv from "dotenv";
 
@@ -36,6 +37,7 @@ app.use(express.json());
 
 // Rutas
 app.use("/api/increaseLenses", increaseLensesRoutes);
+app.use("/api/customLenses", customLensesRoute);
 app.use("/api/lensRing", lensRingRoutes);
 app.use("/api/terminalLenses", terminalLensesRoutes);
 app.use("/api/branches", branchesRoute);

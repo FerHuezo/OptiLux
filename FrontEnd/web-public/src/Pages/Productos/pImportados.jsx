@@ -73,18 +73,18 @@ const Pimportados = () =>{
                     <button >Filtrar</button>
             </div>
 
-<div className="contenedorprod">
-    <div>
-        <ListProducts
-            products={products}
-        />
+        <div className="contenedorprod">
+            <div>
+                <ListProducts
+                    products={products}
+                />
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</div>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-       <Footer/>
-        </>
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <Footer/>
+                </>
     )
 }
 

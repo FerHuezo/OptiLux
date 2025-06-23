@@ -1,16 +1,28 @@
-// customLensesModel.js
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const customLensSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-  },
   price: {
     type: Number,
+    required: true,
+  },
+  increase: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"increaseLenses",
+    required: true,
+  },
+  filter: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"filterLenses",
+    required: true,
+  },
+  ring: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"lensRing",
+    required: true,
+  },
+  terminals: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"terminalLenses",
     required: true,
   },
 });
