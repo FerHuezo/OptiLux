@@ -13,7 +13,6 @@ import Home from "../pages/Menu/menu";
 import ProductoFiltro from "../pages/prodcutoFiltros/productoFiltro";
 import ProductoAros from "../pages/productoAros/productoAros";
 import ProductosImportados from "../pages/productosImportados/productosImportados";
-import ProductoAumento from "../pages/productoAumento/productoAumento";
 import ProductoTerminales from "../pages/productoTerminales/productoTerminales";
 import Login from "../pages/LogIn/Login";
 
@@ -26,7 +25,7 @@ const AppRoutes = () => {
 
   useEffect(() => {
     if (authCokie) {
-      navigate("/Productos");
+      navigate("/Home");
     }
   }, [authCokie]);
 
@@ -40,7 +39,6 @@ const AppRoutes = () => {
           <Route path="/Productos" element={<ProductosImportados />} />
           <Route path="/Productos/Filtros" element={<ProductoFiltro />} />
           <Route path="/Productos/Aros" element={<ProductoAros />} />
-          <Route path="/Productos/Aumento" element={<ProductoAumento />} />
           <Route path="/Productos/Terminales" element={<ProductoTerminales />} />
           <Route path="/Pedidos" element={<div className="flex-grow"><Pedidos /></div>} />
           <Route path="/Pedidos/:id" element={<Venta />} />  

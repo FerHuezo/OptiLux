@@ -47,7 +47,6 @@ const ProductosImportados = () => {
             <div className="category-selector">
             <CategorySelector
               options={[
-                { value: 'aumento', label: 'Aumento' },
                 { value: 'filtros', label: 'Filtros' },
                 { value: 'aros', label: 'Aros' },
                 { value: 'terminales', label: 'Terminales' },

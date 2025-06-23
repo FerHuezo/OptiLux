@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";  // Importa el middleware CORS
 import cookieParser from "cookie-parser";
-import increaseLensesRoutes from "./src/routes/increaseLenses.js";
 import lensRingRoutes from "./src/routes/lensRing.js";
 import terminalLensesRoutes from "./src/routes/terminalLenses.js";
 import branchesRoute from "./src/routes/branchesRoute.js";
@@ -36,7 +35,6 @@ app.use(express.json());
 
 
 // Rutas
-app.use("/api/increaseLenses", increaseLensesRoutes);
 app.use("/api/customLenses", customLensesRoute);
 app.use("/api/lensRing", lensRingRoutes);
 app.use("/api/terminalLenses", terminalLensesRoutes);

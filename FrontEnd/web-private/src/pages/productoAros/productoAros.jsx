@@ -42,7 +42,6 @@ const ProductoAros = () =>{
           <CategorySelector
             options={[
               { value: ' ', label: 'Lentes Importados' },   
-              { value: 'aumento', label: 'Aumento' },
               { value: 'filtros', label: 'Filtros' },
               { value: 'aros', label: 'Aros' },
               { value: 'terminales', label: 'Terminales' },

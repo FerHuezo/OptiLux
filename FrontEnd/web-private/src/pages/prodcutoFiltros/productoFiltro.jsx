@@ -45,7 +45,6 @@ const ProductoFiltro = () =>{
             <CategorySelector
               options={[
                 { value: ' ', label: 'Lentes Importados' },   
-                { value: 'aumento', label: 'Aumento' },
                 { value: 'aros', label: 'Aros' },
                 { value: 'terminales', label: 'Terminales' },
               ]}
