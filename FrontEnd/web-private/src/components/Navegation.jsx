@@ -32,8 +32,6 @@ const AppRoutes = () => {
 
   return (
   <>
-    {authCokie}
-
     <div className={`flex ${authCokie ? "ml-64" : ""} w-full min-h-screen`}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />

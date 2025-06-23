@@ -1,7 +1,7 @@
-import FiltroCard from "./productFiltroCard";
 import React from "react";
+import ProductTerminalCard from "./productTerminalCard";
 
-const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
+const ListProductTerminal = ({ deleteTerminalLenses, update, loading, terminalLensesA }) => {
   return (
     <div>
       <h1 className="text-2xl font-bold underline text-center">
@@ -10,12 +10,12 @@ const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
       <div className="flex flex-wrap gap-4 justify-center mt-5">
         {loading && <div className="text-center text-gray-500">Cargando...</div>}
 
-        {filterLens?.length > 0 ? (
-          filterLens.map((filterLen) => (
-            <FiltroCard
-              key={filterLen._id}
-              filterLen={filterLen}
-              deleteFilterLenses={deleteFilterLenses}
+        {terminalLensesA?.length > 0 ? (
+          terminalLensesA.map((terminalLen) => (
+            <ProductTerminalCard
+              key={terminalLen._id}
+              terminalLen={terminalLen}
+              deleteTerminalLenses={deleteTerminalLenses}
               update={update}
             />
           ))
@@ -27,4 +27,4 @@ const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
   );
 };
 
-export default ListProduct;
+export default ListProductTerminal;

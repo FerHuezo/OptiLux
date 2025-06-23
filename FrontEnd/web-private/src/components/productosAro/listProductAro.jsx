@@ -1,7 +1,7 @@
-import FiltroCard from "./productFiltroCard";
+import ProductAroCard from "./productAroCard";
 import React from "react";
 
-const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
+const ListProduct = ({ deleteRingLenses, update, loading, aroLens }) => {
   return (
     <div>
       <h1 className="text-2xl font-bold underline text-center">
@@ -10,12 +10,12 @@ const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
       <div className="flex flex-wrap gap-4 justify-center mt-5">
         {loading && <div className="text-center text-gray-500">Cargando...</div>}
 
-        {filterLens?.length > 0 ? (
-          filterLens.map((filterLen) => (
-            <FiltroCard
-              key={filterLen._id}
-              filterLen={filterLen}
-              deleteFilterLenses={deleteFilterLenses}
+        {aroLens?.length > 0 ? (
+          aroLens.map((aroLen) => (
+            <ProductAroCard
+              key={aroLen._id}
+              aroLen={aroLen}
+              deleteRingLenses={deleteRingLenses}
               update={update}
             />
           ))

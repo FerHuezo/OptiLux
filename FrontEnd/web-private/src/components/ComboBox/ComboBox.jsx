@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const CategorySelector = ({
-  placeholder = 'Lentes Importados',
+  placeholder = 'Seleccione una categoría',
   options = [],
   baseRoute = '/Productos',
 }) => {
@@ -14,8 +15,8 @@ const CategorySelector = ({
   };
 
   return (
-    <select onChange={handleChange} defaultValue="">
-      <option value="">{placeholder}</option>
+    <select onChange={handleChange} defaultValue="" style={{ width: '350px' }}>
+      <option value="" disabled>{placeholder}</option>
       {options.map(({ value, label }) => (
         <option key={value} value={value}>{label}</option>
       ))}

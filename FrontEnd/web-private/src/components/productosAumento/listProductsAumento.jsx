@@ -1,7 +1,7 @@
-import FiltroCard from "./productFiltroCard";
+import AumentoCard from "./productAumentoCard";
 import React from "react";
 
-const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
+const ListProduct = ({ deleteIncreaseLenses, update, loading, increaseLens }) => {
   return (
     <div>
       <h1 className="text-2xl font-bold underline text-center">
@@ -10,12 +10,12 @@ const ListProduct = ({ deleteFilterLenses, update, loading, filterLens }) => {
       <div className="flex flex-wrap gap-4 justify-center mt-5">
         {loading && <div className="text-center text-gray-500">Cargando...</div>}
 
-        {filterLens?.length > 0 ? (
-          filterLens.map((filterLen) => (
-            <FiltroCard
-              key={filterLen._id}
-              filterLen={filterLen}
-              deleteFilterLenses={deleteFilterLenses}
+        {increaseLens?.length > 0 ? (
+          increaseLens.map((increaseLen) => (
+            <AumentoCard
+              key={increaseLen._id}
+              increaseLen={increaseLen}
+              deleteIncreaseLenses={deleteIncreaseLenses}
               update={update}
             />
           ))

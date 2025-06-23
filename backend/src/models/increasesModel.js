@@ -5,7 +5,9 @@ const increaseLensesSchema = new Schema(
     increaseLevel: {
       type: Number,
       required: [true, "El nivel de aumento es obligatorio."],
-      min: [0, "El nivel de aumento no puede ser negativo."],
+      min: [-25, "El nivel de aumento no puede ser menor a 25."],
+      mix: [20, "El nivel de aumento no puede ser negativo."],
+       
     },
     price: {
       type: Number,

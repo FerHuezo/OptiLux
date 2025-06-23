@@ -1,6 +1,6 @@
 import React from "react";
 
-const RegisterFiltro = ({setTypeFilter, typeFilter, setPrice, price, saveFilterLenses, id, handleEdit}) =>{
+const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id, handleEdit}) =>{
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-6">
@@ -9,17 +9,20 @@ const RegisterFiltro = ({setTypeFilter, typeFilter, setPrice, price, saveFilterL
   </h2>
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div className="space-y-4">
+
+  <div className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700">Nombre</label>
         <select
           className="w-full mt-1 p-2 border rounded-lg bg-gray-50"
-          value={typeFilter}
-          onChange={(e) => setTypeFilter(e.target.value)}
-        >
-          <option value="UV">UV</option>
-          <option value="Azul">Azul</option>
-          <option value="Amarillo">Amarillo</option>
+          value={typeLens}
+          onChange={(e) => setTypeLens(e.target.value)}
+        > 
+          <option value="" disabled>Seleccione una opción</option>
+          <option value="ovalados">Ovalados</option>
+          <option value="Rectangulares">Rectangulares</option>
+          <option value="circulados">Circulados</option>
+          <option value="Cerrados">Cerrados</option>
         </select>
       </div>
       
@@ -42,7 +45,7 @@ const RegisterFiltro = ({setTypeFilter, typeFilter, setPrice, price, saveFilterL
   <div className="mt-6">
     <button
       className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition" style={{ marginLeft: "39%" }}
-      onClick={(e) => id ? handleEdit(e) : saveFilterLenses(e)}
+      onClick={(e) => id ? handleEdit(e) : saveRingLenses(e)}
     >
       {id ? "Editar" : "Guardar"}
     </button>
@@ -51,4 +54,4 @@ const RegisterFiltro = ({setTypeFilter, typeFilter, setPrice, price, saveFilterL
     );
 }
 
-export default RegisterFiltro;
+export default RegisterAro;

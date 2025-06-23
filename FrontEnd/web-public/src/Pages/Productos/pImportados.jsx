@@ -36,7 +36,7 @@ const Pimportados = () => {
       <div>
         <div className="bar">
           <a href="/Productos/Importados"><strong>Importados</strong></a>
-          <a href="/Productos/Personalizados"><strong>Personalizar</strong></a>
+          <a href="/Productos/Personalizado"><strong>Personalizar</strong></a>
         </div>
 
         <div className="contenedor">

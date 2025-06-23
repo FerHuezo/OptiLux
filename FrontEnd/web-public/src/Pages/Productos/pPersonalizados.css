@@ -1,0 +1,89 @@
+
+body {
+  background-color: #f1f5f9; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal */
+.contenedor-padre {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  background-color: #e2e8f0;
+}
+
+
+.productos-container {
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+
+}
+
+
+.main-box {
+  width: 1400px;
+  height: 750px; 
+  margin: 0 auto; 
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-box:hover {
+  transform: scale(1.01);
+}
+
+
+.titulo-principal {
+  font-size: 2.2rem;
+  text-align: center;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+}
+
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tab-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.tab-button {
+  background-color: #cbd5e1;
+  color: #1e293b;
+  padding: 0.6rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tab-button:hover {
+  background-color: #94a3b8;
+  color: #f8fafc;
+  transform: translateY(-2px);
+}
+
+.tab-button.active {
+  background-color: #3b82f6; 
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+
+.contenido-tab {
+  margin-top: 6rem;
+  padding-bottom: 1rem;
+}

@@ -2,23 +2,24 @@ import React, {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 import { data } from "react-router";
 
-const useDataFiltro = ()=>{
+const useDataAro = ()=>{
+  
     const [activeTab, setActiveTab] = useState("list");
-    const API = "http://localhost:4000/api/filters";
+    const API = "http://localhost:4000/api/lensRing";
     const [id, setId] = useState("");
-    const [typeFilter, setTypeFilter] = useState("");
+    const [typeLens, setTypeLens] = useState("");
     const [price, setPrice] = useState("");
-    const [filterLens, setFilterLens] = useState([]);
+    const [aroLens, setAroLens] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const cleanData = () => {
         setId("");
-        setTypeFilter("");
+        setTypeLens("");
         setPrice("");
     }
 
     
-    const fetchFiltro = async() =>{
+    const fetchAros = async() =>{
       
         const response = await fetch(API);
         if(!response.ok){
@@ -26,28 +27,28 @@ const useDataFiltro = ()=>{
         }
 
         const data = await response.json();
-        setFilterLens(data);
+        setAroLens(data);
         setLoading(false);
     };
 
     useEffect(() => {
-        fetchFiltro();
+        fetchAros();
       }, []);
 
-    const saveFilterLenses = async(e) =>{
+    const saveRingLenses = async(e) =>{
         e.preventDefault();
 
-        const newFilterLenses = {
-            typeFilter: typeFilter,
+        const newRingLenses = {
+            typeLens: typeLens,
             price: Number(price),
             
         };
 
-        console.log("Enviando:", newFilterLenses);
-        if (!typeFilter || !price ) {
+        console.log("Enviando:", newRingLenses);
+        if (!typeLens || !price ) {
          toast.error("Todos los campos son obligatorios");
         return;
-}
+        }
 
         const response = await fetch(API,{
             method: "POST",
@@ -55,22 +56,22 @@ const useDataFiltro = ()=>{
                 "Content-Type": "application/json",
             },
             credentials: "include",
-            body: JSON.stringify(newFilterLenses),
+            body: JSON.stringify(newRingLenses),
         });
 
         if(!response.ok){
-                throw new Error("hubo un error al registrar los lentes importados")
+                throw new Error("hubo un error al registrar  el aro")
         }
 
         const data = await response.json();
-        toast.success("nuevos lentes registrados exitosamente")
-        setFilterLens(data);
-        fetchFiltro();
-        setTypeFilter("");
+        toast.success("nuevos aumento registrado")
+        setAroLens(data);
+        fetchAros();
+        setTypeLens("");
         setPrice("");
     };
 
-    const deleteFilterLenses = async(id)=>{
+    const deleteRingLenses = async(id)=>{
         const response = await fetch(`${API}/${id}`,{
             method: "DELETE",
             headers:{
@@ -78,17 +79,17 @@ const useDataFiltro = ()=>{
             },
         });
         if (!response.ok) {
-            throw new Error("hubo un error al eliminar los lentes")
+            throw new Error("hubo un error al eliminar el aro")
         }
 
-        toast.success("lentes eliminados")
-        fetchFiltro();
+        toast.success("Aro eliminado")
+        fetchAros();
     };
 
-    const update = async(dataFilterLens)=>{
-        setId(dataFilterLens._id);
-        setTypeFilter(dataFilterLens.filter);
-        setPrice(dataFilterLens.price);
+    const update = async(dataRingLens)=>{
+        setId(dataRingLens._id);
+        setTypeLens(dataRingLens.typelens);
+        setPrice(dataRingLens.price);
         setActiveTab("form");
     };
 
@@ -96,8 +97,8 @@ const useDataFiltro = ()=>{
         e.preventDefault();
     
         try {
-          const editFilterLens = {
-            typeFilter: typeFilter,
+          const editRingLens = {
+            typeLens: typeLens,
             price: price,
           };
           const response = await fetch(`${API}/${id}`, {
@@ -105,19 +106,19 @@ const useDataFiltro = ()=>{
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(editFilterLens),
+            body: JSON.stringify(editRingLens),
           });
     
           if (!response.ok) {
-            throw new Error("Error al actualizar la marca");
+            throw new Error("Error al actualizar");
           }
     
           const data = await response.json();
           toast.success('Lentes Actualizados');
-          setFilterLens(data);
+          setAroLens(data);
           setId(""); 
          
-          fetchFiltro();
+          fetchAumento();
         } catch (error) {
           console.error("Error al editar los lentes:", error);
           alert("Error al editar los lentes");
@@ -129,21 +130,21 @@ const useDataFiltro = ()=>{
         setActiveTab,
         id,
         setId,
-        typeFilter,
-        setTypeFilter,
+        typeLens,
+        setTypeLens,
+        aroLens,
+        setAroLens,
         price,
         setPrice,
-        filterLens,
-        setFilterLens,
         loading,
         setLoading,
         cleanData,
-        saveFilterLenses,
-        fetchFiltro,
-        deleteFilterLenses,
+        saveRingLenses,
+        fetchAros,
+        deleteRingLenses,
         update,
         handleEdit,
       };
 };
 
-export default useDataFiltro;
+export default useDataAro;
