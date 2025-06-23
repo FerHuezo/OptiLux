@@ -9,7 +9,6 @@ import {Toaster} from 'react-hot-toast';
 
 const ProductosImportados = () => {
     
-    
     const { 
         activeTab,
         setActiveTab,
@@ -23,6 +22,8 @@ const ProductosImportados = () => {
         setAmount,
         brand,
         setBrand,
+        image,
+        setImage,
         importLens,
         setImportLens,
         loading,
@@ -89,26 +90,28 @@ const ProductosImportados = () => {
               )}
               {activeTab === "form" && (
                 <RegisterImport
-                  id={id}
-                  setId={setId}
-                  color={color}
-                  setColor={setColor}
-                  increaseLenses={increaseLenses}
-                  setIncreaseLenses={setIncreaseLenses}
-                  price={price}
-                  setPrice={setPrice}
-                  amount={amount}
-                  setAmount={setAmount}
-                  brand={brand}
-                  setBrand={setBrand}
-                  saveImportLenses={saveImportLenses}
-                  handleEdit={handleEdit}
-                  loading={loading}
-                  setLoading={setLoading}
-                  importLens={importLens}
-                  setImportLens={setImportLens}
-                  cleanData={cleanData}
-                />
+                id={id}
+                setId={setId}
+                color={color}
+                setColor={setColor}
+                increaseLenses={increaseLenses}
+                setIncreaseLenses={setIncreaseLenses}
+                price={price}
+                setPrice={setPrice}
+                amount={amount}
+                setAmount={setAmount}
+                brand={brand}
+                setBrand={setBrand}
+                saveImportLenses={saveImportLenses}
+                handleEdit={handleEdit}
+                loading={loading}
+                setLoading={setLoading}
+                importLens={importLens}
+                setImportLens={setImportLens}
+                cleanData={cleanData}
+                image={image}           
+                setImage={setImage}   
+              />
               )}
             </div>
           </div>

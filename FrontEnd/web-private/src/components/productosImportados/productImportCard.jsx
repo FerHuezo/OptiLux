@@ -9,7 +9,7 @@ const ProductCard = ({ importLen, deleteImportLenses, update }) => {
   return (
     <div className="product-card">
       <img
-        src={importLen.imageUrl}
+        src={importLen.img}
         alt="Producto"
         className="product-image"
       />

@@ -21,7 +21,7 @@ importLensesController.getLenses = async (req, res) => {
 };
 
 importLensesController.postLens = async (req, res) => {
-  const { color, price, IncreaseLenses, amount, brand } = req.body;
+  const { color, price, increaseLenses, amount, brand } = req.body;
 
   let imageURL = "";
 
@@ -43,7 +43,7 @@ importLensesController.postLens = async (req, res) => {
     const newLens = new Lens({
       color,
       price,
-      IncreaseLenses,
+      increaseLenses,
       amount,
       brand,
       img: imageURL

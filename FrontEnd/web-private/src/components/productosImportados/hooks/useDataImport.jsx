@@ -55,7 +55,7 @@ const saveImportLenses = async (e) => {
   formData.append("amount", amount);
   formData.append("increaseLenses", increaseLenses);
   formData.append("brand", brand);
-  formData.append("image", image); // Aquí va la imagen
+  formData.append("img", image); 
 
   try {
     const response = await fetch(API, {
@@ -103,40 +103,40 @@ const saveImportLenses = async (e) => {
         setActiveTab("form");
     };
 
-    const handleEdit = async (e) => {
-        e.preventDefault();
-    
-        try {
-          const editImportLens = {
-            color: color,
-            price: price,
-            amount : amount,
-            setIncreaseLenses: increaseLenses,
-            brand : brand,
-          };
-          const response = await fetch(`${API}/${id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(editImportLens),
-          });
-    
-          if (!response.ok) {
-            throw new Error("Error al actualizar la marca");
-          }
-    
-          const data = await response.json();
-          toast.success('Lentes Actualizados');
-          setImportLens(data);
-          setId(""); 
-         
-          fetchImportLens();
-        } catch (error) {
-          console.error("Error al editar los lentes:", error);
-          alert("Error al editar los lentes");
-        }
-      };
+   const handleEdit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const editImportLens = {
+      color: color,
+      price: price,
+      amount: amount,
+      increaseLenses: increaseLenses, 
+      brand: brand,
+    };
+
+    const response = await fetch(`${API}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editImportLens),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al actualizar la marca");
+    }
+
+    const data = await response.json();
+    toast.success("Lentes Actualizados");
+    setImportLens(data);
+    setId("");
+    fetchImportLens();
+  } catch (error) {
+    console.error("Error al editar los lentes:", error);
+    alert("Error al editar los lentes");
+  }
+};
     
       return{
         activeTab,
