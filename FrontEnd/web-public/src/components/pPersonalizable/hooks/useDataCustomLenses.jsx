@@ -6,9 +6,6 @@ import toast from "react-hot-toast";
 const useDataCustomLenses = () => {
     const [activeTab, setActiveTab] = useState("list");
     const API = "http://localhost:4000/api/customLenses";
-    const [id, setId] = useState("");
-    const [price, setPrice] = useState("");
-    const [increase, setIncrease] = useState([]);
     const [filter, setFilter] = useState([]);
     const [ring, setRing] = useState([]);
     const [terminals, setTerminals] = useState([]);
@@ -16,10 +13,13 @@ const useDataCustomLenses = () => {
     const [loading, setLoading] = useState(true);
     const [totalPrice   , setTotalPrice] = useState(100);
 
-    const [increseSelected, setIncreaseSelected] = useState("");
+    const [id, setId] = useState("");
+    const [price, setPrice] = useState("");
+    const [increase, setIncrease] = useState("");
     const [filterSelected, setFilterSelected] = useState("");
     const [ringSelected, setRingSelected] = useState("");
     const [terminalsSelected, setTerminalsSelected] = useState("");
+    const [color , setColor] = useState("");
 
 
 useEffect(() => {
@@ -32,14 +32,13 @@ useEffect(() => {
 
   const total =
     basePrice +
-    findPrice(increase, increseSelected) +
     findPrice(filter, filterSelected) +
     findPrice(ring, ringSelected) +
     findPrice(terminals, terminalsSelected);
 
   setTotalPrice(total);
   setPrice(total);
-}, [increseSelected, filterSelected, ringSelected, terminalsSelected, increase, filter, ring, terminals]);
+}, [filterSelected, ringSelected, terminalsSelected,filter, ring, terminals]);
 
     
 
@@ -60,17 +59,14 @@ useEffect(() => {
     useEffect(() => {   
             const fetchData = async () => {
       try {
-        const  lensIncrease = await fetch("http://localhost:4000/api/increaseLenses");
         const  lensFilter = await fetch("http://localhost:4000/api/filters");
         const  lensRing = await fetch("http://localhost:4000/api/lensRing");
         const  lensTerminals = await fetch("http://localhost:4000/api/terminalLenses");
 
-        const dataIncrease = await lensIncrease.json();
         const dataFilter = await lensFilter.json();
         const dataRing = await lensRing.json();
         const dataTerminals = await lensTerminals.json();
 
-        setIncrease(dataIncrease);
         setFilter(dataFilter);
         setRing(dataRing);
         setTerminals(dataTerminals);
@@ -86,14 +82,15 @@ useEffect(() => {
         e.preventDefault();
 
         const newCustomLenses = {
-            increase: increseSelected,
+            increase: Number(increase),
             filter: filterSelected,
             ring: ringSelected,
             terminals: terminalsSelected,
             price: Number(price),
+            color: color,
         };
 
-        if (!increseSelected || !filterSelected || !ringSelected || !terminalsSelected || !price) {
+        if (!increase || !filterSelected || !ringSelected || !terminalsSelected || !price || !color) {
             toast.error("Todos los campos son obligatorios");
             return;
         }
@@ -116,8 +113,9 @@ useEffect(() => {
         toast.success("Lente personalizado registrado")
         setCustomLenses(data);
         fetchCustomLenses();
-        setIncreaseSelected("");
+        setIncrease("");
         setPrice("");
+        setColor("");
         setFilterSelected("");
         setRingSelected("");
         setTerminalsSelected("");
@@ -143,8 +141,9 @@ useEffect(() => {
     
     const update = async (dataCustomLenses) => {
         setId(dataCustomLenses._id);
+        setColor(dataCustomLenses.color);
         setFilterSelected(dataCustomLenses.filter);
-        setIncreaseSelected(dataCustomLenses.increase);
+        setIncrease(dataCustomLenses.increase);
         setRingSelected(dataCustomLenses.ring);
         setTerminalsSelected(dataCustomLenses.terminals);
         setPrice(dataCustomLenses.price);
@@ -156,11 +155,12 @@ useEffect(() => {
 
         try {
             const editCustomLenses = {
-                increase: increseSelected,
+                increase: Number(increase),
                 filter: filterSelected,
                 ring: ringSelected,
                 terminals: terminalsSelected,
                 price: Number(price),
+                color: color,
             };
 
             const response = await fetch(`${API}/${id}`, {
@@ -203,8 +203,10 @@ useEffect(() => {
         filter,
         ring,
         terminals,
-        increseSelected,
-        setIncreaseSelected,
+        increase,
+        color,
+        setColor,
+        setIncrease,
         filterSelected,
         setFilterSelected,
         ringSelected,

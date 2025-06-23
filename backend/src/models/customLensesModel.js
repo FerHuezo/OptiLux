@@ -5,9 +5,12 @@ const customLensSchema = new Schema({
     type: Number,
     required: true,
   },
+  color:{
+    type: String,
+    required: true,
+  },
   increase: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:"increaseLenses",
+    type: Number,
     required: true,
   },
   filter: {

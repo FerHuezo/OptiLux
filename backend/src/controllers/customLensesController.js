@@ -5,7 +5,7 @@ const customLensesController = {}
 
 customLensesController.getAllCustomLenses = async (req, res) => {
     try {
-        const customLenses = await customLensesModel.find().populate('increase').populate('filter').populate('ring').populate('terminals');
+        const customLenses = await customLensesModel.find().populate('filter').populate('ring').populate('terminals');
         res.status(200).json(customLenses);
     } catch (error) {
         res.status(500).json({ message: "Error al obtener las lentes personalizadas", error: error.message });
@@ -14,14 +14,15 @@ customLensesController.getAllCustomLenses = async (req, res) => {
 
 customLensesController.postCustomLens = async (req, res) => {
     try {
-        const { price, increase, filter, ring, terminals } = req.body;
+        const { price, increase, filter, ring, terminals, color } = req.body;
 
         const newCustomLens = new customLensesModel({
             price,
             increase,
             filter,
             ring,
-            terminals
+            terminals,
+            color
         });
 
         await newCustomLens.save();
@@ -49,11 +50,11 @@ customLensesController.deleteCustomLens = async (req, res) => {
 customLensesController.updateCustomLens = async (req, res) => {
     try {
         const { id } = req.params;
-        const { price, increase, filter, ring, terminals } = req.body;
+        const { price, increase, filter, ring, terminals,color } = req.body;
 
         const updatedCustomLens = await customLensesModel.findByIdAndUpdate(
             id,
-            { price, increase, filter, ring, terminals },
+            { price, increase, filter, ring, terminals, color },
             { new: true }
         );
 

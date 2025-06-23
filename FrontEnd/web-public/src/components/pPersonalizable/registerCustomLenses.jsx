@@ -1,12 +1,20 @@
 import React from "react";
 import "./registerCustomLenses.css";
+import color1 from '../../assets/color1.png'
+import color2 from '../../assets/color2.png'
+import color3 from '../../assets/color3.png'
+import color4 from '../../assets/color4.png'
+import color5 from '../../assets/color5.png'
+import color6 from '../../assets/color6.png'
+import color7 from '../../assets/color7.png'
 
 const RegisterCustomLenses = ({
   id,
   totalPrice,
   increase,
-  increseSelected,
-  setIncreaseSelected,
+  color,
+  setColor,
+  setIncrease,
   filter,
   filterSelected,
   setFilterSelected,
@@ -22,26 +30,22 @@ const RegisterCustomLenses = ({
   return (
     <div className="form-container">
       <h2 className="form-title">
-        {id ? "Editar Lente Personalizado" : "Registrar Lente Personalizado"}
+        {id ? "Editar Lente Personalizado" : ""}
       </h2>
 
       <div className="form-grid">
-        {/* Columna izquierda */}
         <div className="form-column">
           <div className="form-group">
-            <label className="form-label">Aumento</label>
-            <select
-              className="form-select"
-              value={increseSelected}
-              onChange={(e) => setIncreaseSelected(e.target.value)}
-            >
-              <option disabled value="">Seleccione un aumento</option>
-              {increase.map((item) => (
-                <option key={item._id} value={item._id}>
-                  {item.increaseLevel}
-                </option>
-              ))}
-            </select>
+      <div>
+      <label className="form-label">Nivel de aumento (Dioptrías)</label>
+        <input
+          type="number"
+          placeholder="Aumento"
+          className="w-full mt-1 p-2 border rounded-lg bg-gray-50" step="0.01" min="-25.00" max = "20.00"
+          value={increase}
+          onChange={(e) => setIncrease(e.target.value)}
+        />
+      </div>
           </div>
 
           <div className="form-group">
@@ -59,9 +63,56 @@ const RegisterCustomLenses = ({
               ))}
             </select>
           </div>
+
+                      <div className="coloresdiv">
+            <p>Color:</p>
+              <img
+                src={color1}
+                alt="Amarillo"
+                onClick={() => setColor("Amarillo")}
+                className={color === "Amarillo" ? "color-selected" : ""}
+              />
+              <img
+                src={color2}
+                alt="Azul"
+                onClick={() => setColor("Azul")}
+                className={color === "Azul" ? "color-selected" : ""}
+              />
+              <img
+                src={color3}
+                alt="Gris"
+                onClick={() => setColor("Gris")}
+                className={color === "Gris" ? "color-selected" : ""}
+              />
+              <img
+                src={color4}
+                alt="Rojo"
+                onClick={() => setColor("Rojo")}
+                className={color === "Rojo" ? "color-selected" : ""}
+              />
+              <img
+                src={color5}
+                alt="Verde"
+                onClick={() => setColor("Verde")}
+                className={color === "Verde" ? "color-selected" : ""}
+              />
+              <img
+                src={color6}
+                alt="Marron"
+                onClick={() => setColor("Marron")}
+                className={color === "Marron" ? "color-selected" : ""}
+              />
+              <img
+                src={color7}
+                alt="Morado"
+                onClick={() => setColor("Morado")}
+                className={color === "Morado" ? "color-selected" : ""}
+              />
+            </div>
+
         </div>
 
-        {/* Columna derecha */}
+
         <div className="form-column">
           <div className="form-group">
             <label className="form-label">Tipo de aro</label>
@@ -111,6 +162,7 @@ const RegisterCustomLenses = ({
             <input
                 type="text"
                 className="form-input"
+                disabled
                 value={`$${totalPrice.toFixed(2)}`}
                 readOnly
             />

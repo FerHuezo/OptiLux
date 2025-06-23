@@ -4,15 +4,19 @@ import useDataCustomLenses from "../../components/pPersonalizable/hooks/useDataC
 import RegisterCustomLenses from "../../components/pPersonalizable/registerCustomLenses";
 import { Toaster } from "react-hot-toast";
 import Navbar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 const ProductoCustomLenses = () => {
   const {
     activeTab,
     setActiveTab,
+    color,
+    setColor,
     id,
     price,
     totalPrice,
     setPrice,
     increase,
+    setIncrease,
     filter,
     ring,
     terminals,
@@ -35,32 +39,18 @@ const ProductoCustomLenses = () => {
       <div className="contenedor-padre">
         <div className="productos-container">
           <div className="main-box">
-            <h1 className="titulo-principal">Gestión de Lentes Personalizados</h1>
-
-            <div className="tab-buttons">
-              <div className="tab-container">
-                <button
-                  className={activeTab === "form" ? "tab-button active" : "tab-button"}
-                  onClick={() => {
-                    setActiveTab("form");
-                    setId("");
-                  }}
-                >
-                  Crear Lentes Personalizado
-                </button>
-              </div>
-            </div>
+            <h1 className="titulo-principal">Creación de lentes personalizados</h1>
 
             <div className="contenido-tab">
-              {activeTab === "form" && (
                 <RegisterCustomLenses
                   id={id}
+                  color={color}
+                  setColor={setColor}
                   price={price}
                   setPrice={setPrice}
                   totalPrice={totalPrice}
                   increase={increase}
-                  increseSelected={increseSelected}
-                  setIncreaseSelected={setIncreaseSelected}
+                  setIncrease={setIncrease}
                   filter={filter}
                   filterSelected={filterSelected}
                   setFilterSelected={setFilterSelected}
@@ -73,12 +63,12 @@ const ProductoCustomLenses = () => {
                   saveCustomLenses={saveCustomLenses}
                   handleEdit={handleEdit}
                 />
-              )}
             </div>
           </div>
           <Toaster toastOptions={{ duration: 1500 }} />
         </div>
       </div>
+      <Footer />
     </>
   );
 };
