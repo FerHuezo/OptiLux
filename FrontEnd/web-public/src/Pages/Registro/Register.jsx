@@ -119,16 +119,7 @@ function Registro() {
 
             <button type="submit" className="btn-crear">Crear Cuenta</button>
           </form>
-
-          <div className="registro-divider">
-            <hr /> <span>o</span> <hr />
-          </div>
-
-          <button className="btn-google">
-            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google" />
-            Iniciar con Google
-          </button>
-
+        <br />
           <p className="registro-login">
             ¿Ya tienes una cuenta? <a href="/InicioSesion">Inicia Sesión</a>
           </p>

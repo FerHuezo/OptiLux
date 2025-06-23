@@ -6,14 +6,13 @@ import nodemailer from 'nodemailer';
 
 const registerClientsController = {};
 
+// 1. Registro y envío del código por correo
 registerClientsController.registerClient = async (req, res) => {
     const { firstName, lastName, telephone, dui, email, password } = req.body;
 
-    if (!firstName || !lastName || !telephone || !dui || !email || !password ) {
+    if (!firstName || !lastName || !telephone || !dui || !email || !password) {
         return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
     }
-
-    console.log("Datos recibidos:", req.body);
 
     try {
         const existingClient = await ClientsModel.findOne({ email });
@@ -23,24 +22,16 @@ registerClientsController.registerClient = async (req, res) => {
         }
 
         const passwordHash = await bcryptjs.hash(password, 10);
-
-       // Aquí solo se genera el código de verificación y se envía el correo
-       const verificationCode = Math.floor(10000 + Math.random() * 90000).toString();
-       const expiresAt = Date.now() + 2 * 60 * 60 * 1000;
+        const verificationCode = Math.floor(10000 + Math.random() * 90000).toString();
+        const expiresAt = Date.now() + 2 * 60 * 60 * 1000;
 
         const tokenCode = jsonwebtoken.sign(
-            { email, verificationCode, expiresAt },
+            { email, verificationCode, expiresAt, firstName, lastName, telephone, dui, password },
             config.JWT.SECRET,
             { expiresIn: '2h' }
         );
 
-        // Verificar que el email es válido antes de enviar el correo
-        if (!email) {
-            return res.status(400).json({ message: "El correo electrónico es obligatorio." });
-        }
-
-        console.log("Enviando correo a:", email); // Para depuración
-
+        // Envío del correo
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -69,26 +60,26 @@ registerClientsController.registerClient = async (req, res) => {
             `
         };
 
-        try {
-            let info = await transporter.sendMail(mailOptions);
-            console.log("Correo electrónico enviado:", info.response);
-            console.log(verificationCode);
-            res.status(201).json({
-                message: "Cliente registrado exitosamente. Por favor verifica tu correo electrónico.",
-                token: tokenCode
-            });
+        await transporter.sendMail(mailOptions);
 
-        } catch (error) {
-            console.error("Error al enviar el correo electrónico:", error);
-            return res.status(500).json({ message: "Error al enviar el correo electrónico." });
-        }
+        // ✅ Establecer la cookie
+        res.cookie("verificationToken", tokenCode, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // true en producción con HTTPS
+            maxAge: 2 * 60 * 60 * 1000 // 2 horas
+        });
+
+        return res.status(201).json({
+            message: "Cliente registrado exitosamente. Por favor verifica tu correo electrónico."
+        });
 
     } catch (error) {
         console.error("Error en el registro:", error);
-        res.status(500).json({ message: "Error", error: error.message });
+        res.status(500).json({ message: "Error en el servidor", error: error.message });
     }
 };
 
+// 2. Verificación del código
 registerClientsController.verifyCodeEmail = async (req, res) => {
     const { verificationCode } = req.body;
     const token = req.cookies.verificationToken;
@@ -99,45 +90,37 @@ registerClientsController.verifyCodeEmail = async (req, res) => {
 
     try {
         const decoded = jsonwebtoken.verify(token, config.JWT.SECRET);
-        const { email, verificationCode: storedCode } = decoded;
+        const { email, verificationCode: storedCode, firstName, lastName, telephone, dui, password } = decoded;
 
-        // Comparar el código recibido con el almacenado en el JWT
         if (verificationCode !== storedCode) {
-            console.log("El código almacenado es: " + storedCode);
             return res.status(400).json({ message: "Código de verificación inválido" });
         }
 
-        // Crear al cliente después de la verificación del código
-        const passwordHash = await bcryptjs.hash(req.body.password, 10); // El hash de la contraseña
+        const existingClient = await ClientsModel.findOne({ email });
+        if (existingClient) {
+            return res.status(400).json({ message: "Este correo ya está registrado." });
+        }
+
         const newClient = new ClientsModel({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            telephone: req.body.telephone,
-            dui: req.body.dui,
-            email: req.body.email,
-            password: passwordHash
+            firstName,
+            lastName,
+            telephone,
+            dui,
+            email,
+            password,
+            isVerified: true
         });
 
         await newClient.save();
 
-        // Marcar al cliente como verificado
-        const client = await ClientsModel.findOne({ email });
-        if (!client) {
-            return res.status(404).json({ message: "Cliente no encontrado" });
-        }
-
-        // Actualizar el campo de verificación
-        client.isVerified = true;
-        await client.save();
-
-        // Limpiar la cookie después de la verificación
+        // ✅ Limpiar la cookie
         res.clearCookie("verificationToken");
 
-        res.status(200).json({ message: "Correo electrónico verificado y cliente registrado correctamente" });
+        return res.status(200).json({ message: "Correo verificado y cliente registrado correctamente" });
 
     } catch (error) {
         console.error("Error verificando el email:", error);
-        res.status(500).json({ message: "Error verificando el correo electrónico", error: error.message });
+        return res.status(500).json({ message: "Error verificando el correo electrónico", error: error.message });
     }
 };
 
