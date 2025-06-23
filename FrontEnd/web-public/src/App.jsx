@@ -13,6 +13,7 @@ import Login from './Pages/Login/Login'
 import Categorias from './Pages/Categoria/Categoria'
 import Ofertas from './Pages/Ofertas/Ofertas'
 import Ppersonalizados from './Pages/Productos/pPersonalizados';
+import Marcas from './Pages/Marcas/Marcas'
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/Carrito" element={<Carrito />} />
           <Route path="/Productos" element={<Categorias />} />
           <Route path="/Ofertas" element={<Ofertas />} />
+          <Route path="/Marcas" element={<Marcas />} />
         </Routes>
       </Router>
     </>
