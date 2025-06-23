@@ -13,17 +13,13 @@ const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id
   <div className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700">Nombre</label>
-        <select
+        <input
+          type="text"
+          placeholder="Ej: Ovalados, Redondos, Cuadrados"
           className="w-full mt-1 p-2 border rounded-lg bg-gray-50"
           value={typeLens}
           onChange={(e) => setTypeLens(e.target.value)}
-        > 
-          <option value="" disabled>Seleccione una opción</option>
-          <option value="ovalados">Ovalados</option>
-          <option value="Rectangulares">Rectangulares</option>
-          <option value="circulados">Circulados</option>
-          <option value="Cerrados">Cerrados</option>
-        </select>
+        />
       </div>
       
     </div>
