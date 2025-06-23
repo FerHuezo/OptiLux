@@ -1,99 +1,164 @@
-*{
- color: white;
+/* Quitamos la regla global blanca para evitar conflictos */
+body {
+  background: #f0f4f5; /* gris azulado suave */
+  color: #000; /* color base negro */
+  font-family: 'Segoe UI', sans-serif;
 }
+
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 40px;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px;
+  text-align: center;
 }
+
 .cart {
-    flex: 3;
+  flex: 3;
+  color: black;
 }
+
 .item {
-    background: #c9dadc;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
 }
+
 .item img {
-    height: 70px;
-    width: auto;
-    border-radius: 8px;
+  height: 70px;
+  width: auto;
+  border-radius: 8px;
 }
+
 .item-info {
-    flex: 3;
-    margin-left: 20px;
+  flex: 3;
+  margin-left: 20px;
+  color: #111;
+  font-weight: 500;
+  text-align: left;
 }
+
 .precio, .itemca, .total {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
+  color: #111;
+  font-weight: 600;
 }
+
 .control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .control button {
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-    margin: 0 10px;
-    border-radius: 50%;
-    border: none;
-    background: white;
-    color: black;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  margin: 0 10px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
+.control button:hover {
+  background: #e0e0e0;
+}
+
 .removerit {
-    font-size: 20px;
-    cursor: pointer;
-    color: #333;
+  font-size: 20px;
+  cursor: pointer;
+  color: #900;
+  font-weight: bold;
+  transition: color 0.2s ease;
 }
+
+.removerit:hover {
+  color: #c00;
+}
+
 .carritopago {
-    flex: 1.5;
-    background: #c9dadc;
-    padding: 30px;
-    border-radius: 15px;
-    margin-left: 30px;
+  flex: 1.5;
+  background: rgba(156, 252, 231, 0.65);
+  padding: 30px;
+  border-radius: 15px;
+  margin-left: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  color: #111;
 }
+
 .carritopago h3 {
-    font-size: 24px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
+
+.carritopago small {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 20px;
+  color: #333;
+}
+
 .carritopago .checkbox {
-    margin: 15px 0;
+  margin: 15px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #222;
 }
+
 .carritopago textarea {
-    width: 100%;
-    height: 60px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #222;
+  background: #fff;
 }
+
 .carritopago button {
-    width: 100%;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    font-size: 16px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 10px;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to right, #f43f5e, #ec4899);
+  color: white;
+  font-size: 16px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(244, 63, 94, 0.4);
+  transition: background 0.3s ease;
 }
+
+.carritopago button:hover {
+  background: linear-gradient(to right, #be123c, #db2777);
+}
+
 .mapa {
-    height: 200px;
-    margin-top: 10px;
-    border-radius: 10px;
-    overflow: hidden;
+  height: 300px;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
+
 .details-link {
-    text-align: right;
-    font-size: 14px;
-    color: #0066cc;
-    text-decoration: underline;
-    cursor: pointer;
+  text-align: right;
+  font-size: 14px;
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
 }

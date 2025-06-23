@@ -4,14 +4,14 @@ import { Link } from "react-router";
 import importado from '../../assets/importado.jpg';
 import personalizado from '../../assets/personalizado.jpg';
 import Navbar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
+import Footer from '../../components/Footer/footer';
 
 // Arreglo de objetos que representan las diferentes categorías de productos
 const categories = [
   {
     name: "Productos Importados",
     image: importado,
-    path: "/Productos/Importados",
+    path: "/Pr  oductos/Importados",
   },
   {
     name: "Producto Personalizado",

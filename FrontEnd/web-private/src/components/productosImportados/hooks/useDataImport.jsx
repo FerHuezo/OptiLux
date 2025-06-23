@@ -10,6 +10,7 @@ const useDataImport = ()=>{
     const [price, setPrice] = useState("");
     const [amount, setAmount] = useState("");
     const [brand, setBrand] = useState("");
+    const [image, setImage] = useState(null);
     const [increaseLenses, setIncreaseLenses] = useState("");
     const [importLens, setImportLens] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -40,47 +41,42 @@ const useDataImport = ()=>{
         fetchImportLens();
       }, []);
 
-    const saveImportLenses = async(e) =>{
-        e.preventDefault();
+const saveImportLenses = async (e) => {
+  e.preventDefault();
 
-        const newImportLenses = {
-            color: color,
-            price: Number(price),
-            amount : Number(amount),
-            increaseLenses: increaseLenses,
-            brand : brand,
-            
-        };
+  if (!color || !increaseLenses || !brand || !price || !amount || !image) {
+    toast.error("Todos los campos son obligatorios, incluyendo la imagen.");
+    return;
+  }
 
-        console.log("Enviando:", newImportLenses);
-        if (!color || !increaseLenses || !brand || !price || !amount) {
-         toast.error("Todos los campos son obligatorios");
-        return;
-}
+  const formData = new FormData();
+  formData.append("color", color);
+  formData.append("price", price);
+  formData.append("amount", amount);
+  formData.append("increaseLenses", increaseLenses);
+  formData.append("brand", brand);
+  formData.append("image", image); // Aquí va la imagen
 
-        const response = await fetch(API,{
-            method: "POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify(newImportLenses),
-        });
+  try {
+    const response = await fetch(API, {
+      method: "POST",
+      body: formData,
+      credentials: "include",
+    });
 
-        if(!response.ok){
-                throw new Error("hubo un error al registrar los lentes importados")
-        }
+    if (!response.ok) {
+      throw new Error("Error al registrar los lentes importados");
+    }
 
-        const data = await response.json();
-        toast.success("nuevos lentes registrados exitosamente")
-        setImportLens(data);
-        fetchImportLens();
-        setColor("");
-        setPrice("");
-        setAmount("");
-        setBrand("");
-        setIncreaseLenses("");
-    };
+    const data = await response.json();
+    toast.success("Nuevos lentes registrados exitosamente");
+    fetchImportLens();
+    cleanData();
+    setImage(null);
+  } catch (error) {
+    toast.error("Error al registrar el producto");
+  }
+};
 
     const deleteImportLenses = async(id)=>{
         const response = await fetch(`${API}/${id}`,{
@@ -159,6 +155,8 @@ const useDataImport = ()=>{
         setImportLens,
         loading,
         setLoading,
+        image,
+        setImage,
         fetchImportLens,
         saveImportLenses,
         deleteImportLenses,

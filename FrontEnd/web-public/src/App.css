@@ -5,6 +5,21 @@
 
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+  
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
 /*#root {
  
   max-width: 1280px;       ///he comentado esto por que da estilo al app.jsx

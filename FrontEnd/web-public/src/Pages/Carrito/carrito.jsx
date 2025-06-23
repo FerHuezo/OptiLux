@@ -1,92 +1,146 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/NavBar/NavBar";
-import Footer from '../../components/Footer/footer';
-import Lentes from '../../assets/lentesNautica.jpg';
+import Footer from "../../components/Footer/footer";
+import Lentes from "../../assets/lentesNautica.jpg";
+import { useCart } from "../../context/useCartContext.jsx";
 import './Carrito.css';
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import toast from "react-hot-toast";
 
+const MapSelector = ({ onSelect }) => {
+  const [position, setPosition] = useState(null);
 
+  useMapEvents({
+    click(e) {
+      setPosition(e.latlng);
+      onSelect(e.latlng);
+    },
+  });
 
-const Carrito = () =>{
+  return position ? <Marker position={position} /> : null;
+};
 
-    return(
-        <>
-<Navbar />
-<div className="container">
+const Carrito = () => {
+  const { cartItems, cartTotal, removeFromCart } = useCart();
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [note, setNote] = useState("");
+  const [location, setLocation] = useState(null);
+
+  const handleSubmit = async () => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (!token || !userId) return toast.error("Inicia sesión para continuar");
+    if (!termsAccepted) return toast.error("Debes aceptar los términos");
+    if (!location) return toast.error("Selecciona una ubicación en el mapa");
+    if (cartItems.length === 0) return toast.error("El carrito está vacío");
+
+    const order = {
+      idClient: userId,
+      products: cartItems.map((item) => ({
+        idProduct: item._id,
+        productType: "importLenses",
+        quantity: item.quantity,
+      })),
+      total: cartTotal,
+      status: "pendiente",
+      location,
+      note,
+    };
+
+    try {
+      const res = await fetch("http://localhost:4000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(order),
+      });
+
+      if (!res.ok) throw new Error("Error al crear el pedido");
+
+      toast.success("Pedido realizado con éxito");
+    } catch (err) {
+      toast.error("Hubo un error al procesar tu pedido");
+    }
+  };
+
+  return (
+    <>
+      <Navbar />
+      <div className="container">
         <div className="cart">
-            <div className="item">
-                <img src={Lentes} alt="Lentes 9RX5"/>
+          {cartItems.length === 0 ? (
+            <p className="text-center w-full text-gray-500">Tu carrito está vacío 🛒</p>
+          ) : (
+            cartItems.map((item) => (
+              <div className="item" key={item._id}>
+                <img src={item.img || Lentes} alt={`Lente ${item.brand}`} />
                 <div className="item-info">
-                    <strong>Lentes modelo 9RX5</strong><br/>Personalizado
+                  <strong>{item.brand}</strong><br />
+                  {item.increaseLenses}
                 </div>
-                <div className="precio">$130.00</div>
+                <div className="precio">${item.price.toFixed(2)}</div>
                 <div className="itemca">
-                    <div className="control">
-                        <button>-</button>
-                        <span>2</span>
-                        <button>+</button>
-                    </div>
+                  <div className="control">
+                    <button>-</button>
+                    <span>{item.quantity}</span>
+                    <button>+</button>
+                  </div>
                 </div>
-                <div className="total">$260.00</div>
-                <div className="removerit">&times;</div>
-            </div>
-            <div className="item">
-                <img src={Lentes} alt="Lentes X4RT"/>
-                <div className="item-info">
-                    <strong>Lentes nautica modelo X4RT</strong><br/>Importado
+                <div className="total">${(item.price * item.quantity).toFixed(2)}</div>
+                <div
+                  className="removerit"
+                  onClick={() => removeFromCart(item._id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  &times;
                 </div>
-                <div className="precio">$170.00</div>
-                <div className="itemca">
-                    <div className="control">
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
-                    </div>
-                </div>
-                <div className="total">$170.00</div>
-                <div className="removerit">&times;</div>
-            </div>
-            <div className="item">
-                <img src={Lentes} alt="Lentes F8I9"/>
-                <div className="item-info">
-                    <strong>Lentes lacoste modelo F8I9</strong><br/>Importado
-                </div>
-                <div className="precio">$225.00</div>
-                <div className="itemca">
-                    <div className="control">
-                        <button>-</button>
-                        <span>1</span>
-                        <button>+</button>
-                    </div>
-                </div>
-                <div className="total">$225.00</div>
-                <div className="removerit">&times;</div>
-            </div>
+              </div>
+            ))
+          )}
         </div>
 
         <div className="carritopago">
-            <h3>Total de carrito: <br/><strong>$965.00</strong></h3>
-            <small>Envío y impuestos calculados en la factura</small>
-            <div className="checkbox">
-                <input type="checkbox" id="terms"/> Estoy de acuerdo con los <a href="#">Términos y Condiciones</a>
-            </div>
-            <div className="mapa">
-            <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3303.9105294133447!2d-86.81035652437836!3d33.52068217337086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88891b940d9aab0f%3A0x38fcb0d0a98a0dc5!2sBirmingham%2C%20AL%2C%20EE.%20UU.!5e0!3m2!1ses!2smx!4v1713998372389!5m2!1ses!2smx"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            />
+          <h3>Total de carrito: <br /><strong>${cartTotal.toFixed(2)}</strong></h3>
+          <small>Envío y impuestos calculados en la factura</small>
 
-            </div>
-            <textarea placeholder="Agrega una nota extra del pedido (Opcional)"></textarea>
-            <button>Realizar Compra</button>
+          <div className="checkbox">
+            <input
+              type="checkbox"
+              id="terms"
+              checked={termsAccepted}
+              onChange={() => setTermsAccepted(!termsAccepted)}
+            /> Estoy de acuerdo con los <a href="#">Términos y Condiciones</a>
+          </div>
+          <div>
+            <hr />
+            <h4>Elige la ubicación de entrega exacta 📍</h4>
+          </div>
+          <div className="mapa">
+            <MapContainer
+              center={[13.6929, -89.2182]}
+              zoom={13}
+              style={{ height: "100%", width: "100%" }}
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              <MapSelector onSelect={(coords) => setLocation(coords)} />
+            </MapContainer>
+          </div>
+
+          <textarea
+            placeholder="Agrega una nota extra del pedido (Opcional)"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          <button onClick={handleSubmit}>Realizar Compra</button>
         </div>
-    </div>
+      </div>
+      <Footer />
+    </>
+  );
+};
 
-    <Footer />
-        </>
-    )
-}
 export default Carrito;
