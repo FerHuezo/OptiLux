@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Card from "./Card.jsx";
-import { useCart } from "../../context/useCartContext.jsx"; // 👈 Importa el contexto
+import { useCart } from '../../context/useCart';
 import toast from 'react-hot-toast';
 
 const ListProducts = ({ products }) => {
@@ -79,11 +79,11 @@ const ListProducts = ({ products }) => {
               {selectedProduct.brand}
             </h2>
 
-            <div className="grid grid-cols-2 gap-4 text-sm text-white/90 mb-6">
-              <p><span className="font-semibold">Color:</span> {selectedProduct.color}</p>
-              <p><span className="font-semibold">Aumento:</span> {selectedProduct.increaseLenses}</p>
-              <p><span className="font-semibold">Cantidad:</span> {selectedProduct.amount}</p>
-              <p><span className="font-semibold">Precio:</span> ${selectedProduct.price.toFixed(2)}</p>
+            <div className="grid grid-cols-2 gap-4 text-sm text-white/100 mb-6">
+              <p className="text-white"><span className="font-semibold text-white">Color:</span > {selectedProduct.color}</p>
+              <p className="text-white"><span className="font-semibold text-white">Aumento:</span> {selectedProduct.increaseLenses}</p>
+              <p className="text-white"><span className="font-semibold text-white">Cantidad:</span> {selectedProduct.amount}</p>
+              <p className="text-white"><span className="font-semibold text-white">Precio:</span> ${selectedProduct.price.toFixed(2)}</p>
             </div>
 
             {/* Botón agregar */}

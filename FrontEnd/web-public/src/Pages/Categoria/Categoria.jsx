@@ -11,7 +11,7 @@ const categories = [
   {
     name: "Productos Importados",
     image: importado,
-    path: "/Pr  oductos/Importados",
+    path: "/Productos/Importados",
   },
   {
     name: "Producto Personalizado",

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Navbar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/footer";
+import Footer from "../../components/footer/footer";
 import Lentes from "../../assets/lentesNautica.jpg";
-import { useCart } from "../../context/useCartContext.jsx";
+import { useCart } from '../../context/useCart';
 import './Carrito.css';
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -22,7 +22,14 @@ const MapSelector = ({ onSelect }) => {
 };
 
 const Carrito = () => {
-  const { cartItems, cartTotal, removeFromCart } = useCart();
+  const {
+    cartItems,
+    cartTotal,
+    removeFromCart,
+    incrementQuantity,
+    decrementQuantity,
+  } = useCart();
+
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [note, setNote] = useState("");
   const [location, setLocation] = useState(null);
@@ -85,9 +92,9 @@ const Carrito = () => {
                 <div className="precio">${item.price.toFixed(2)}</div>
                 <div className="itemca">
                   <div className="control">
-                    <button>-</button>
+                    <button onClick={() => decrementQuantity(item._id)}>-</button>
                     <span>{item.quantity}</span>
-                    <button>+</button>
+                    <button onClick={() => incrementQuantity(item._id)}>+</button>
                   </div>
                 </div>
                 <div className="total">${(item.price * item.quantity).toFixed(2)}</div>
@@ -115,10 +122,10 @@ const Carrito = () => {
               onChange={() => setTermsAccepted(!termsAccepted)}
             /> Estoy de acuerdo con los <a href="#">Términos y Condiciones</a>
           </div>
-          <div>
+          
             <hr />
-            <h4>Elige la ubicación de entrega exacta 📍</h4>
-          </div>
+            <h4>Selecciona la ubicación de envío 📍</h4>
+
           <div className="mapa">
             <MapContainer
               center={[13.6929, -89.2182]}

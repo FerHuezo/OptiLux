@@ -203,7 +203,6 @@ useEffect(() => {
         filter,
         ring,
         terminals,
-        increase,
         color,
         setColor,
         setIncrease,

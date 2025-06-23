@@ -24,17 +24,7 @@ registerClientsController.registerClient = async (req, res) => {
 
         const passwordHash = await bcryptjs.hash(password, 10);
 
-        const newClient = new ClientsModel({
-            firstName, 
-            lastName, 
-            telephone, 
-            dui, 
-            email, 
-            password : passwordHash
-        });
-
-        await newClient.save();
-
+       // Aquí solo se genera el código de verificación y se envía el correo
        const verificationCode = Math.floor(10000 + Math.random() * 90000).toString();
        const expiresAt = Date.now() + 2 * 60 * 60 * 1000;
 
@@ -48,7 +38,7 @@ registerClientsController.registerClient = async (req, res) => {
         if (!email) {
             return res.status(400).json({ message: "El correo electrónico es obligatorio." });
         }
-        
+
         console.log("Enviando correo a:", email); // Para depuración
 
         const transporter = nodemailer.createTransport({
@@ -82,7 +72,7 @@ registerClientsController.registerClient = async (req, res) => {
         try {
             let info = await transporter.sendMail(mailOptions);
             console.log("Correo electrónico enviado:", info.response);
-            console.log(verificationCode)
+            console.log(verificationCode);
             res.status(201).json({
                 message: "Cliente registrado exitosamente. Por favor verifica tu correo electrónico.",
                 token: tokenCode
@@ -113,15 +103,27 @@ registerClientsController.verifyCodeEmail = async (req, res) => {
 
         // Comparar el código recibido con el almacenado en el JWT
         if (verificationCode !== storedCode) {
-            console.log("el store es " + storedCode)
-            return res.status(400).json({ message: "Invalid verification code el codigo es: " + storedCode });
-            
+            console.log("El código almacenado es: " + storedCode);
+            return res.status(400).json({ message: "Código de verificación inválido" });
         }
+
+        // Crear al cliente después de la verificación del código
+        const passwordHash = await bcryptjs.hash(req.body.password, 10); // El hash de la contraseña
+        const newClient = new ClientsModel({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            telephone: req.body.telephone,
+            dui: req.body.dui,
+            email: req.body.email,
+            password: passwordHash
+        });
+
+        await newClient.save();
 
         // Marcar al cliente como verificado
         const client = await ClientsModel.findOne({ email });
         if (!client) {
-            return res.status(404).json({ message: "Client not found" });
+            return res.status(404).json({ message: "Cliente no encontrado" });
         }
 
         // Actualizar el campo de verificación
@@ -131,11 +133,11 @@ registerClientsController.verifyCodeEmail = async (req, res) => {
         // Limpiar la cookie después de la verificación
         res.clearCookie("verificationToken");
 
-        res.status(200).json({ message: "Email verified successfully" });
+        res.status(200).json({ message: "Correo electrónico verificado y cliente registrado correctamente" });
 
     } catch (error) {
         console.error("Error verificando el email:", error);
-        res.status(500).json({ message: "Error verifying email", error: error.message });
+        res.status(500).json({ message: "Error verificando el correo electrónico", error: error.message });
     }
 };
 

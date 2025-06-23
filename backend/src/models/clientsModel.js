@@ -12,13 +12,23 @@ const clientSchema = new Schema(
       required: [true, "El apellido es obligatorio."],
       trim: true,
     },
+    dui: {
+      type: String,
+      required: [true, "El dui es obligatorio."],
+      trim: true,
+    },
+    telephone: {
+      type: String,
+      required: [true, "El número de telefóno es obligatorio."],
+      trim: true,
+    },
     email: {
       type: String,
       required: [true, "El correo electrónico es obligatorio."],
-     /* unique: true,
+      unique: true,
       trim: true,
       lowercase: true,
-      match: [/.+@.+\..+/, "Formato de correo electrónico no válido."],*/
+      match: [/.+@.+\..+/, "Formato de correo electrónico no válido."]
     },
     password: {
       type: String,
