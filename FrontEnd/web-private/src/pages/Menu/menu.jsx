@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 
 const Menu = () => {
   const navigate = useNavigate();
-
+  
   return (
     <>
         <Sidebar />
