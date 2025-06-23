@@ -8,6 +8,7 @@ const useDataAro = ()=>{
     const API = "http://localhost:4000/api/lensRing";
     const [id, setId] = useState("");
     const [typeLens, setTypeLens] = useState("");
+    const [image, setImage] = useState(null);
     const [price, setPrice] = useState("");
     const [aroLens, setAroLens] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -38,37 +39,30 @@ const useDataAro = ()=>{
     const saveRingLenses = async(e) =>{
         e.preventDefault();
 
-        const newRingLenses = {
-            typeLens: typeLens,
-            price: Number(price),
-            
-        };
+        const formData = new FormData();
+        formData.append("typeLens", typeLens);
+        formData.append("price", price);
+        formData.append("image", image); 
 
-        console.log("Enviando:", newRingLenses);
-        if (!typeLens || !price ) {
-         toast.error("Todos los campos son obligatorios");
-        return;
-        }
-
-        const response = await fetch(API,{
+        try {
+          const response = await fetch(API, {
             method: "POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
+            body: formData,
             credentials: "include",
-            body: JSON.stringify(newRingLenses),
-        });
+          });
 
-        if(!response.ok){
-                throw new Error("hubo un error al registrar  el aro")
+          if (!response.ok) {
+            throw new Error("Error al registrar el Aro");
+          }
+
+          const data = await response.json();
+          toast.success("Nuevos Aros registrados exitosamente");
+          fetchAros();
+          cleanData();
+          setImage(null);
+        } catch (error) {
+          toast.error("Error al registrar el producto");
         }
-
-        const data = await response.json();
-        toast.success("nuevos aumento registrado")
-        setAroLens(data);
-        fetchAros();
-        setTypeLens("");
-        setPrice("");
     };
 
     const deleteRingLenses = async(id)=>{
@@ -127,6 +121,8 @@ const useDataAro = ()=>{
     
       return{
         activeTab,
+        image,
+        setImage,
         setActiveTab,
         id,
         setId,

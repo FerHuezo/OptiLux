@@ -19,6 +19,8 @@ const ProductoAros = () =>{
         aroLens,
         setAroLens,
         price,
+        image,
+        setImage,
         setPrice,
         loading,
         setLoading,
@@ -41,6 +43,7 @@ const ProductoAros = () =>{
             options={[
               { value: ' ', label: 'Lentes Importados' },   
               { value: 'aumento', label: 'Aumento' },
+              { value: 'filtros', label: 'Filtros' },
               { value: 'aros', label: 'Aros' },
               { value: 'terminales', label: 'Terminales' },
             ]}
@@ -83,6 +86,8 @@ const ProductoAros = () =>{
             {activeTab === "form" && (
               <RegisterAro
                 id={id}
+                image={image}
+                setImage={setImage}
                 setId={setId}
                 price={price}
                 setPrice={setPrice}

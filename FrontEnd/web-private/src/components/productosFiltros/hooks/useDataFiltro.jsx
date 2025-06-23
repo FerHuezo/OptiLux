@@ -6,6 +6,7 @@ const useDataFiltro = ()=>{
     const [activeTab, setActiveTab] = useState("list");
     const API = "http://localhost:4000/api/filters";
     const [id, setId] = useState("");
+    const [image, setImage] = useState(null);
     const [typeFilter, setTypeFilter] = useState("");
     const [price, setPrice] = useState("");
     const [filterLens, setFilterLens] = useState([]);
@@ -37,37 +38,30 @@ const useDataFiltro = ()=>{
     const saveFilterLenses = async(e) =>{
         e.preventDefault();
 
-        const newFilterLenses = {
-            typeFilter: typeFilter,
-            price: Number(price),
-            
-        };
+        const formData = new FormData();
+        formData.append("typeFilter", typeFilter);
+        formData.append("price", price);
+        formData.append("image", image); 
 
-        console.log("Enviando:", newFilterLenses);
-        if (!typeFilter || !price ) {
-         toast.error("Todos los campos son obligatorios");
-        return;
-}
-
-        const response = await fetch(API,{
+        try {
+          const response = await fetch(API, {
             method: "POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
+            body: formData,
             credentials: "include",
-            body: JSON.stringify(newFilterLenses),
-        });
+          });
 
-        if(!response.ok){
-                throw new Error("hubo un error al registrar los lentes importados")
+          if (!response.ok) {
+            throw new Error("Error al registrar el filtro");
+          }
+
+          const data = await response.json();
+          toast.success("Nuevos lentes registrados exitosamente");
+          fetchFiltro();
+          cleanData();
+          setImage(null);
+        } catch (error) {
+          toast.error("Error al registrar el producto");
         }
-
-        const data = await response.json();
-        toast.success("nuevos lentes registrados exitosamente")
-        setFilterLens(data);
-        fetchFiltro();
-        setTypeFilter("");
-        setPrice("");
     };
 
     const deleteFilterLenses = async(id)=>{
@@ -125,6 +119,8 @@ const useDataFiltro = ()=>{
       };
     
       return{
+        image,
+        setImage,
         activeTab,
         setActiveTab,
         id,

@@ -10,7 +10,7 @@ const FiltroCard = ({ filterLen, deleteFilterLenses, update }) => {
   return (
     <div className="product-card">
       <img
-        src={filterLen.imageUrl}
+        src={filterLen.image}
         alt="Producto"
         className="product-image"
       />

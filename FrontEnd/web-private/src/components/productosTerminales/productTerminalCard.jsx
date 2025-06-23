@@ -8,6 +8,11 @@ const TerminalCard = ({ terminalLen, deleteTerminalLenses, update }) => {
 
   return (
     <div className="product-card">
+        <img
+        src={terminalLen.image}
+        alt="Producto"
+        className="product-image"
+      />
       <h3 className="product-title">Tipo de aro: {terminalLen.typeTerminals}</h3>
       <p><span className="label">Precio:</span> ${terminalLen.price}</p>
       <div className="product-actions">

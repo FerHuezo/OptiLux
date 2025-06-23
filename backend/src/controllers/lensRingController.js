@@ -1,20 +1,21 @@
-import lensRingModel from "../models/ringsModel.js";
+import ringsModel from "../models/ringsModel.js";
 import requestMessages from "../utils/strings.js";
-import cloudinary from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+import { config } from "../config.js";
 
-// Configuración de Cloudinary
-/*cloudinary.config({
+
+cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
-});*/
+});
 
 const lensRingController = {};
 
 // Obtener todos los anillos de lentes
 lensRingController.getLensRing = async (req, res) => {
   try {
-    const lensRings = await lensRingModel.find();
+    const lensRings = await ringsModel.find();
     res.status(requestMessages.SUCCESS.code).json(lensRings);
   } catch (error) {
     res.status(requestMessages.SERVER_ERROR.code).json({ message: error.message });
@@ -23,64 +24,65 @@ lensRingController.getLensRing = async (req, res) => {
 
 // Crear un nuevo anillo de lente con imagen
 lensRingController.postLensRing = async (req, res) => {
-  try {
-    const { typeLens, price } = req.body;
-   /* const imageFile = req.file; // El archivo debe ser manejado con Multer
+  const { typeLens, price } = req.body;
+  let imageURL = "";
 
-    if (!typeLens || !price || !imageFile) {
-      return res.status(requestMessages.BAD_REQUEST.code).json({ message: "Todos los campos son obligatorios." });
+    try {
+        const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "public",
+        allowed_formats: ["jpg", "png", "jpeg", "webp"],
+      });
+
+      imageURL = result.secure_url;
+    } catch (error) {
+      console.error("Error al subir la imagen a Cloudinary:", error);
+      return res.status(requestMessages.SERVER_ERROR.code).json({ message: "Error al subir la imagen." });
     }
 
-    // Subir imagen a Cloudinary
-    const uploadResult = await cloudinary.v2.uploader.upload(imageFile.path, {
-      folder: "lensRings",
-    });*/
-
-    const lensRing = new lensRingModel({
-      typeLens,
-      price,
-     /* img: uploadResult.secure_url,*/ // Guardar URL de la imagen
-    });
-
-    await lensRing.save();
-    res.status(requestMessages.CREATED.code).json({ message: requestMessages.CREATED.message, lensRing });
-  } catch (error) {
-    res.status(requestMessages.SERVER_ERROR.code).json({ message: error.message });
-  }
+    try {
+      const newRing = new ringsModel({ typeLens, price, image: imageURL });
+      await newRing.save();
+      res.status(requestMessages.CREATED.code).json({ message: requestMessages.CREATED.message });
+    } catch (error) {
+      res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
+    }
 };
 
 // Actualizar un anillo de lente, incluyendo imagen
 lensRingController.putLensRing = async (req, res) => {
   try {
-    const { typeLens, price } = req.body;
-    /*const imageFile = req.file;*/
+    const { typeLens, price, } = req.body;
+    let image = req.body.image; 
+    const imageFile = req.file; 
 
-    let updateData = { typeLens, price };
-
-    // Si hay una nueva imagen, subirla a Cloudinary y actualizar
-  /*  if (imageFile) {
+    if (imageFile) {
+      console.log("Actualizando imagen en Cloudinary...");
       const uploadResult = await cloudinary.v2.uploader.upload(imageFile.path, {
-        folder: "lensRings",
+        folder: "lenses",
       });
-      updateData.img = uploadResult.secure_url;
-    }*/
-
-    const updatedLensRing = await lensRingModel.findByIdAndUpdate(req.params.id, updateData, { new: true });
-
-    if (!updatedLensRing) {
-      return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });
+      image = uploadResult.secure_url;
     }
 
-    res.status(requestMessages.UPDATED.code).json({ message: requestMessages.UPDATED.message, lensRing: updatedLensRing });
+    const updatedRing = await ringsModel.findByIdAndUpdate(
+      req.params.id,
+      { typeLens, price, image },
+      { new: true }
+    );
+
+
+    if (!updatedRing) {
+      return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });
+    }
+    res.status(requestMessages.UPDATED.code).json({ message: requestMessages.UPDATED.message });
   } catch (error) {
-    res.status(requestMessages.SERVER_ERROR.code).json({ message: error.message });
+    res.status(requestMessages.SERVER_ERROR.code).json({ message: requestMessages.SERVER_ERROR.message });
   }
 };
 
 // Eliminar un anillo de lente
 lensRingController.deleteLensRing = async (req, res) => {
   try {
-    const lensRing = await lensRingModel.findByIdAndDelete(req.params.id);
+    const lensRing = await ringsModel.findByIdAndDelete(req.params.id);
 
     if (!lensRing) {
       return res.status(requestMessages.NOT_FOUND.code).json({ message: requestMessages.NOT_FOUND.message });

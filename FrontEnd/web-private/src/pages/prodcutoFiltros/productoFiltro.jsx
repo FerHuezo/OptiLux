@@ -15,6 +15,8 @@ const ProductoFiltro = () =>{
     const {
         activeTab,
         setActiveTab,
+        image,
+        setImage,
         id,
         setId,
         typeFilter,
@@ -86,6 +88,8 @@ const ProductoFiltro = () =>{
               {activeTab === "form" && (
                 <RegisterFiltro
                   id={id}
+                  image={image}
+                  setImage={setImage}
                   setId={setId}
                   price={price}
                   setPrice={setPrice}

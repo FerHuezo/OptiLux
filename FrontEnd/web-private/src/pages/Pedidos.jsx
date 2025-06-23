@@ -11,7 +11,8 @@ const Pedidos = () => {
 };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-r from-gray-100 to-gray-300 overflow-hidden mr-80">
+    <>
+
           <Sidebar />
       <motion.div
         initial={{ opacity: 0 }}
@@ -31,7 +32,7 @@ const Pedidos = () => {
           <ListPedidos />
         </div>
       </motion.div>
-    </div>
+    </>
   );
 };
 

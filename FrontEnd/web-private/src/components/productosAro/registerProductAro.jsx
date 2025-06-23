@@ -1,6 +1,11 @@
 import React from "react";
 
-const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id, handleEdit}) =>{
+const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id, handleEdit, image, setImage}) =>{
+
+    const handleImageChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) setImage(file);
+  };
 
     return (
         <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-6">
@@ -35,6 +40,29 @@ const RegisterAro = ({setTypeLens, typeLens, setPrice, price, saveRingLenses, id
           onChange={(e) => setPrice(e.target.value)}
         />
       </div>
+    </div>
+
+        <div className="space-y-4">
+      <label className="block text-sm font-semibold text-gray-700 mb-1">Imagen del Producto</label>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className="w-full p-2 border rounded-lg bg-white shadow-sm text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 transition"
+      />
+      {!id && !image && (
+        <p className="text-sm text-red-500 mt-1">* La imagen es obligatoria.</p>
+      )}
+      {image && (
+        <div className="mt-3">
+          <p className="text-sm text-gray-700 mb-1">Vista previa:</p>
+          <img
+            src={URL.createObjectURL(image)}
+            alt="Vista previa"
+            className="w-32 h-32 object-cover rounded-lg border border-gray-300 shadow-sm"
+          />
+        </div>  
+      )}
     </div>
   </div>
 

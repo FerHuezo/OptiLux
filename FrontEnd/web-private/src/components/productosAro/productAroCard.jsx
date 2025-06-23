@@ -8,6 +8,11 @@ const RingCard = ({ aroLen, deleteRingLenses, update }) => {
 
   return (
     <div className="product-card">
+      <img
+        src={aroLen.image}
+        alt="Producto"
+        className="product-image"
+      />
       <h3 className="product-title">Tipo de aro: {aroLen.typeLens}</h3>
       <p><span className="label">Precio:</span> ${aroLen.price}</p>
       <div className="product-actions">

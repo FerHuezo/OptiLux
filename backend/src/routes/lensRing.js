@@ -1,18 +1,21 @@
 import express, { Router } from "express";
 import lensRingController from "../controllers/lensRingController.js";
+import multer from "multer";
 
 
 const router = express.Router();
 
+const upload = multer({ dest: "public/" });
+
 router
 .route("/")
 .get(lensRingController.getLensRing)
-.post(lensRingController.postLensRing)
+.post(upload.single("image"),lensRingController.postLensRing)
 
 
 router
 .route("/:id")
-.put(lensRingController.putLensRing)
+.put(upload.single("image"),lensRingController.putLensRing)
 .delete(lensRingController.deleteLensRing)
 
 

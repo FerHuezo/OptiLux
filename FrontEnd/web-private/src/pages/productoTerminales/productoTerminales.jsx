@@ -11,6 +11,8 @@ import RegisterTerminal from "../../components/productosTerminales/registerProdu
 const ProductoTerminales = () => {
     const {
         activeTab,
+        image,
+        setImage,
         setActiveTab,
         id,
         setId,
@@ -41,6 +43,7 @@ const ProductoTerminales = () => {
             options={[
               { value: ' ', label: 'Lentes Importados' },   
               { value: 'aumento', label: 'Aumento' },
+              { value: 'filtros', label: 'Filtros' },
               { value: 'aros', label: 'Aros' },
               { value: 'terminales', label: 'Terminales' },
             ]}
@@ -83,6 +86,8 @@ const ProductoTerminales = () => {
             {activeTab === "form" && (
               <RegisterTerminal
                 id={id}
+                image={image}
+                setImage={setImage}
                 setId={setId}
                 price={price}
                 setPrice={setPrice}

@@ -7,6 +7,7 @@ const useDataTerminal = () => {
     const [activeTab, setActiveTab] = useState("list");
     const API = "http://localhost:4000/api/terminalLenses";
     const [id, setId] = useState("");
+    const[image, setImage] = useState(null);
     const [typeTerminals, setTypeTerminals] = useState("");
     const [price, setPrice] = useState("");
     const [terminalLensesA, setTerminalLensesA] = useState([]);
@@ -45,37 +46,30 @@ const useDataTerminal = () => {
     const saveTerminalLenses = async (e) => {
         e.preventDefault();
 
-        const newTerminalLenses = {
-            typeTerminals: typeTerminals,
-            price: Number(price),
-        };
+        const formData = new FormData();
+        formData.append("typeTerminals", typeTerminals);
+        formData.append("price", price);
+        formData.append("image", image); 
 
-        console.log("Enviando:", newTerminalLenses);
-        if (!typeTerminals || !price) {
-            toast.error("Todos los campos son obligatorios");
-            return;
-        }
-
-        const response = await fetch(API, {
+        try {
+          const response = await fetch(API, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            body: formData,
             credentials: "include",
-            body: JSON.stringify(newTerminalLenses),
-        });
+          });
 
-        if (!response.ok) {
-            toast.error("Error al guardar el producto");
-            return;
+          if (!response.ok) {
+            throw new Error("Error al registrar la terminal");
+          }
+
+          const data = await response.json();
+          toast.success("Nueva terminal registrada exitosamente");
+          fetchTerminalLenses();
+          cleanData();
+          setImage(null);
+        } catch (error) {
+          toast.error("Error al registrar el producto");
         }
-
-        const data = await response.json();
-        toast.success("Producto guardado correctamente");
-        setTerminalLensesA(data);
-        fetchTerminalLenses();
-        setTypeTerminals("");
-        setPrice("");
     };
 
     const deleteTerminalLenses = async (id) => {
@@ -151,6 +145,8 @@ const useDataTerminal = () => {
         activeTab,
         setActiveTab,
         id,
+        image,
+        setImage,
         setId,
         typeTerminals,
         setTypeTerminals,
