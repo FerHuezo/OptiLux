@@ -14,16 +14,13 @@ const RegisterTerminal = ({setTypeTerminals, typeTerminals, setPrice, price, sav
   <div className="space-y-4">
       <div>
         <label className="block text-sm font-medium text-gray-700">Material</label>
-        <select
+        <input
+          type="text"
+          placeholder="Ej: Plastico, Metal, Goma"
           className="w-full mt-1 p-2 border rounded-lg bg-gray-50"
           value={typeTerminals}
           onChange={(e) => setTypeTerminals(e.target.value)}
-        > 
-          <option value="" disabled>Seleccione una opción</option>
-          <option value="Goma">Goma</option>
-          <option value="Plastico">Plastico</option>
-          <option value="Metalicos">Metalicos</option>
-        </select>
+        />
       </div>
       
     </div>
